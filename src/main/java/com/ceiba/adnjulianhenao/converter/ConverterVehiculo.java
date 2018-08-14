@@ -1,4 +1,4 @@
-package com.ceiba.adnjulianhenao.controller;
+package com.ceiba.adnjulianhenao.converter;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ import com.ceiba.adnjulianhenao.model.Vehiculo;
 import java.util.List;
 
 @Component("convertidorVehiculo")
-public class ConvertidorVehiculo {
+public class ConverterVehiculo {
 
 	
 	public List<Vehiculo> convertirLista(List<EntityVehiculo> entityVehiculos){

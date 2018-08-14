@@ -32,16 +32,21 @@ public class EntityVehiculo implements Serializable {
     
     @Column(name="cilindraje")
     private int cilindraje;
+          
     
-        protected EntityVehiculo() {}
-
+    public EntityVehiculo(){
+    	
+    }
+    
     public EntityVehiculo(int id, String placa, int tipoVehiculo, int cilindraje) {
         this.id = id;
     	this.placa = placa;
         this.tipoVehiculo = tipoVehiculo;
         this.cilindraje = cilindraje;
     }
-           
+
+    
+    
     public int getId() {
 		return id;
 	}

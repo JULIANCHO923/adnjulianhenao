@@ -15,6 +15,10 @@ public class Vehiculo {
         this.tipoVehiculo = vehiculo.getTipoVehiculo();
         this.cilindraje = vehiculo.getCilindraje();
     }
+    
+    public Vehiculo(){
+    	
+    }
 
     public Vehiculo(int id, String placa, int tipoVehiculo, int cilindraje) {
         this.id = id;
