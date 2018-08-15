@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="tipoVehiculo")
+@Table(name="tipovehiculo")
 public class EntityTipoVehiculo implements Serializable {
 	
 	@Id    
@@ -22,6 +22,18 @@ public class EntityTipoVehiculo implements Serializable {
 	public EntityTipoVehiculo(){
 		
 	}
+	
+/*
+	 * localhost:8080/v2/tipovehiculo
+	{	
+		"id":2,
+		"descripcion": "Moto"
+	},
+	{	
+		"id":1,
+		"descripcion": "Automovil"
+	}
+*/
 	
 	public EntityTipoVehiculo(int id, String descripcion){
 		this.id = id;

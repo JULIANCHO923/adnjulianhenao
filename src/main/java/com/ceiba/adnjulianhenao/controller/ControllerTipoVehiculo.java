@@ -42,8 +42,8 @@ public class ControllerTipoVehiculo {
 	}
 	
 	@DeleteMapping("/tipovehiculo/{id}")
-	public boolean borrarTipoVehiculo(@PathVariable("id") int idTipoVehiculo){
-		return serviceTipoVehiculo.borrar(idTipoVehiculo);
+	public boolean borrarTipoVehiculo(@PathVariable("id") int id){
+		return serviceTipoVehiculo.borrar(id);
 	}
 	
 	@GetMapping("/tipovehiculos")

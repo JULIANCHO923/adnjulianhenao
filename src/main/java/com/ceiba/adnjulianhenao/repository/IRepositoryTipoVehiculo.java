@@ -10,7 +10,7 @@ import com.ceiba.adnjulianhenao.entity.EntityTipoVehiculo;
 @Repository("repositorioTipoVehiculo")
 public interface IRepositoryTipoVehiculo extends JpaRepository<EntityTipoVehiculo, Serializable>{
 	
-	public abstract EntityTipoVehiculo findById(int idTipoVehiculo);		
+	public abstract EntityTipoVehiculo findById(int id);		
 		
 	
 }

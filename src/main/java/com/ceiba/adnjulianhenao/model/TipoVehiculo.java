@@ -2,6 +2,7 @@ package com.ceiba.adnjulianhenao.model;
 
 import com.ceiba.adnjulianhenao.entity.EntityTipoVehiculo;
 
+
 public class TipoVehiculo {
 
 	private int id;
@@ -14,7 +15,7 @@ public class TipoVehiculo {
 	public TipoVehiculo(EntityTipoVehiculo tipoVehiculo){
     	this.id = tipoVehiculo.getId();
     	this.descripcion = tipoVehiculo.getDescripcion();
-   }
+        }
 	
 	public TipoVehiculo(int id, String descripcion){
 		this.id = id;

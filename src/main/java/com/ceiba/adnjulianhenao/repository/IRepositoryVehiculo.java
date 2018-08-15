@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.ceiba.adnjulianhenao.entity.EntityVehiculo;
+//import com.ceiba.adnjulianhenao.entity.EntityTipoVehiculo;
 
 /**
  * Se encarga de las peticiones en la base de datos
@@ -21,7 +22,7 @@ public interface IRepositoryVehiculo extends JpaRepository<EntityVehiculo, Seria
 	
 	public abstract EntityVehiculo findById(int idVehiculo);	
 	public abstract List<EntityVehiculo> findByPlaca(String placa);
-	public abstract List<EntityVehiculo> findByTipoVehiculo(int tipoVehiculo);
+	/*public abstract List<EntityVehiculo> findByTipoVehiculo(EntityTipoVehiculo tipoVehiculo);*/
 	public abstract List<EntityVehiculo> findByCilindraje(int cilindraje);		
 	
 	public abstract Page<EntityVehiculo> findAll(Pageable pageable);

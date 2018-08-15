@@ -56,9 +56,9 @@ public class ServiceTipoVehiculo {
 		return false;
 	}
 		
-	public boolean borrar(int idTipoVehiculo){
+	public boolean borrar(int id){
 		try{
-			EntityTipoVehiculo vehiculo = repositoryTipoVehiculo.findById(idTipoVehiculo);
+			EntityTipoVehiculo vehiculo = repositoryTipoVehiculo.findById(id);
 			repositoryTipoVehiculo.delete(vehiculo);
 			return true;
 		}catch(Exception e){
@@ -73,7 +73,7 @@ public class ServiceTipoVehiculo {
 	}
 	
 	public TipoVehiculo obtenerporId(int idTipoVehiculo){
-		return converterTipoVehiculo.convertirTipoVehiculo(repositoryTipoVehiculo.findById(idTipoVehiculo)); 		
+		return converterTipoVehiculo.convertirEntidadAModelo(repositoryTipoVehiculo.findById(idTipoVehiculo)); 		
 	}
 	
 }

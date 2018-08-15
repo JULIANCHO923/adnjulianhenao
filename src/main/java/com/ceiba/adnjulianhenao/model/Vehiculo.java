@@ -1,41 +1,25 @@
 package com.ceiba.adnjulianhenao.model;
 
-import com.ceiba.adnjulianhenao.entity.EntityVehiculo;
-
 public class Vehiculo {
-    
-	private int  id;   
-    private String placa;    
-    private int tipoVehiculo;   
-    private int cilindraje;
-    
-    public Vehiculo(EntityVehiculo vehiculo){
-    	this.id = vehiculo.getId();
-    	this.placa = vehiculo.getPlaca();
-        this.tipoVehiculo = vehiculo.getTipoVehiculo();
-        this.cilindraje = vehiculo.getCilindraje();
-    }
-    
-    public Vehiculo(){
-    	
-    }
 
-    public Vehiculo(int id, String placa, int tipoVehiculo, int cilindraje) {
-        this.id = id;
-    	this.placa = placa;
-        this.tipoVehiculo = tipoVehiculo;
-        this.cilindraje = cilindraje;
-    }
-                
-    public int getId() {
+	private int id;
+	private String placa;
+	private TipoVehiculo tipoVehiculo; // String
+	private int cilindraje;
+
+	public Vehiculo() {
+		super();
+	}
+
+	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
-    
-    public String getPlaca() {
+
+	public String getPlaca() {
 		return placa;
 	}
 
@@ -43,14 +27,14 @@ public class Vehiculo {
 		this.placa = placa;
 	}
 
-	public int getTipoVehiculo() {
+	public TipoVehiculo getTipoVehiculo() {
 		return tipoVehiculo;
 	}
 
-	public void setTipoVehiculo(int tipoVehiculo) {
+	public void setTipoVehiculo(TipoVehiculo tipoVehiculo) {
 		this.tipoVehiculo = tipoVehiculo;
 	}
-	
+
 	public int getCilindraje() {
 		return cilindraje;
 	}
@@ -58,4 +42,5 @@ public class Vehiculo {
 	public void setCilindraje(int cilindraje) {
 		this.cilindraje = cilindraje;
 	}
+
 }

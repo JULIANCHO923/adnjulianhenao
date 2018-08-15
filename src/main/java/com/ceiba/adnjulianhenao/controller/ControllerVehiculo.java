@@ -21,39 +21,36 @@ import com.ceiba.adnjulianhenao.service.ServiceVehiculo;
 @RestController
 @RequestMapping("/v1")
 public class ControllerVehiculo {
-	
-	
+
 	@Autowired
 	@Qualifier("servicioVehiculo")
-	private ServiceVehiculo serviceVehiculo; 
-	
-	
+	private ServiceVehiculo serviceVehiculo;
+
 	// Por cada peticion nos trae un header y un body del tipo Json
 	// Con RequestBody llamo y con el Valid lo convierto en entityVehiculo
-	
+
 	@PutMapping("/vehiculo")
-	public boolean agregarVehiculo(@RequestBody EntityVehiculo vehiculo){
+	public boolean agregarVehiculo(@RequestBody Vehiculo vehiculo) {
 		return serviceVehiculo.crear(vehiculo);
 	}
-   
-       
+
 	@PostMapping("/vehiculo")
-	public boolean actualizarVehiculo(@RequestBody EntityVehiculo vehiculo){
+	public boolean actualizarVehiculo(@RequestBody EntityVehiculo vehiculo) {
 		return serviceVehiculo.actualizar(vehiculo);
 	}
-	
+
 	@DeleteMapping("/vehiculo/{id}")
-	public boolean borrarVehiculo(@PathVariable("id") int idVehiculo){
+	public boolean borrarVehiculo(@PathVariable("id") int idVehiculo) {
 		return serviceVehiculo.borrar(idVehiculo);
 	}
-	
+
 	@GetMapping("/vehiculo")
-	public List<Vehiculo> obtenerVehiculos(){
+	public List<Vehiculo> obtenerVehiculos() {
 		return serviceVehiculo.obtenerVehiculos();
 	}
-	
+
 	@GetMapping("/vehiculos")
-	public List<Vehiculo> obtenerVehiculosPorPaginacion(Pageable pageable){
+	public List<Vehiculo> obtenerVehiculosPorPaginacion(Pageable pageable) {
 		return serviceVehiculo.obtenerVehiculosPorPaginacion(pageable);
 	}
 }
