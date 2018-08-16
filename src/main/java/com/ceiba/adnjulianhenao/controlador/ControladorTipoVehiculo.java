@@ -29,13 +29,13 @@ public class ControladorTipoVehiculo {
 	
 	// Por cada peticion nos trae un header y un body del tipo Json
 	// Con RequestBody llamo y con el Valid lo convierto en entityVehiculo	
-	@RequestMapping(value="", method=RequestMethod.PUT)
+	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<String> agregarTipoVehiculo(@RequestBody ModeloTipoVehiculo vehiculo){
 		servicioTipoVehiculo.crear(vehiculo);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Tipo de vehiculo Ingresado exitosamente");
 	}
           
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="", method=RequestMethod.PUT)
 	public ResponseEntity<String> actualizarTipoVehiculo(@RequestBody ModeloTipoVehiculo vehiculo){
 		servicioTipoVehiculo.actualizar(vehiculo);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Tipo de vehiculo Actualizado exitosamente");

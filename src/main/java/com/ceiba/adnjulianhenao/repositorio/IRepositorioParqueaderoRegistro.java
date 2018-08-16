@@ -18,11 +18,12 @@ import com.ceiba.adnjulianhenao.entidad.EntidadParqueaderoRegistro;
  *
  */
 @Repository("repositorioParqueaderoRegistro")
-public interface RepositorioParqueaderoRegistro extends JpaRepository<EntidadParqueaderoRegistro, Serializable>, PagingAndSortingRepository<EntidadParqueaderoRegistro, Serializable>{ 
+public interface IRepositorioParqueaderoRegistro extends JpaRepository<EntidadParqueaderoRegistro, Serializable>, PagingAndSortingRepository<EntidadParqueaderoRegistro, Serializable>{ 
 	
 	public abstract EntidadParqueaderoRegistro findById(int id);
 	public abstract List<EntidadParqueaderoRegistro> findByVehiculoId(int id);
 	public abstract List<EntidadParqueaderoRegistro> findByFechaEntradaAndFechaSalidaIsNull(Date fechaEntrada);		
 	public abstract Page<EntidadParqueaderoRegistro> findAll(Pageable pageable);
-	public abstract Page<EntidadParqueaderoRegistro> findByFechaEntradaAndFechaSalidaIsNull(Date fechaEntrada, Pageable pageable);
+	public abstract EntidadParqueaderoRegistro findByPlacaAndFechaSalidaIsNull(String placa);	
+	
 }

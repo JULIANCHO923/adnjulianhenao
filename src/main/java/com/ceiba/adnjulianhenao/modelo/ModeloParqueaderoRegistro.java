@@ -10,12 +10,12 @@ public class ModeloParqueaderoRegistro {
 	private Calendar fechaSalida;
 	private int diasParqueadero;
 	private int horasParqueadero;
-	private int costoTotal;
+	private long costoTotal;
 	
 	public ModeloParqueaderoRegistro(){}
 	
 	public ModeloParqueaderoRegistro(int id, ModeloVehiculo vehiculo, Calendar fechaEntrada, Calendar fechaSalida,  int diasParqueadero,
-			int horasParqueadero, int costoTotal) {		
+			int horasParqueadero, long costoTotal) {		
 		this.id = id;
 		this.vehiculo = vehiculo;
 		this.fechaEntrada = fechaEntrada;
@@ -73,11 +73,11 @@ public class ModeloParqueaderoRegistro {
 		this.horasParqueadero = horasParqueadero;
 	}
 
-	public int getCostoTotal() {
+	public long getCostoTotal() {
 		return costoTotal;
 	}
 
-	public void setCostoTotal(int costoTotal) {
+	public void setCostoTotal(long costoTotal) {
 		this.costoTotal = costoTotal;
 	}
 	

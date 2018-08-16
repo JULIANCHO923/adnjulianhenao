@@ -55,7 +55,7 @@ public class ControladorParqueaderoTarifa {
 	}
 	
 	@RequestMapping(value="{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<ModeloParqueaderoTarifa>> obtenerTarifasPorTipoVehiculo(@PathVariable("id") int idTipoVehiculo){
+	public ResponseEntity<ModeloParqueaderoTarifa> obtenerTarifasPorTipoVehiculo(@PathVariable("id") int idTipoVehiculo){
 		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoTarifa.obtenerTarifasPorTipoVehiculo(idTipoVehiculo));
 	}
 	

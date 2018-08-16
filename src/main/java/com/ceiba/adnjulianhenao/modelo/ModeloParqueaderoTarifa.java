@@ -1,26 +1,16 @@
 package com.ceiba.adnjulianhenao.modelo;
 
-import com.ceiba.adnjulianhenao.entidad.EntidadParqueaderoTarifa;
-
 public class ModeloParqueaderoTarifa {
 
 	private int id;
 	private ModeloTipoVehiculo tipovehiculo;
-	private double costoHora;
-	private double costoDia;
+	private long costoHora;
+	private long costoDia;
 	private int horasCobroDia;
 		
 	public ModeloParqueaderoTarifa(){}
-	
-	public ModeloParqueaderoTarifa(EntidadParqueaderoTarifa tarifa) {	
-		this.id = tarifa.getId();
-		this.tipovehiculo = new ModeloTipoVehiculo(tarifa.getTipoVehiculo());
-		this.costoHora = tarifa.getCostoHora();
-		this.costoDia = tarifa.getCostoDia();
-		this.horasCobroDia = tarifa.getHorasCobroDia();
-	}
-	
-	public ModeloParqueaderoTarifa(int id, ModeloTipoVehiculo tipoVehiculo, double costoHora, double costoDia, int horasCobroDia) {	
+		
+	public ModeloParqueaderoTarifa(int id, ModeloTipoVehiculo tipoVehiculo, long costoHora, long costoDia, int horasCobroDia) {	
 		this.id = id;
 		this.tipovehiculo = tipoVehiculo;
 		this.costoHora = costoHora;
@@ -40,16 +30,16 @@ public class ModeloParqueaderoTarifa {
 	public void setTipoVehiculo(ModeloTipoVehiculo tipoVehiculo) {
 		this.tipovehiculo = tipoVehiculo;
 	}
-	public double getCostoHora() {
+	public long getCostoHora() {
 		return costoHora;
 	}
-	public void setCostoHora(double costoHora) {
+	public void setCostoHora(long costoHora) {
 		this.costoHora = costoHora;
 	}
-	public double getCostoDia() {
+	public long getCostoDia() {
 		return costoDia;
 	}
-	public void setCostoDia(double costoDia) {
+	public void setCostoDia(long costoDia) {
 		this.costoDia = costoDia;
 	}
 	public int getHorasCobroDia() {

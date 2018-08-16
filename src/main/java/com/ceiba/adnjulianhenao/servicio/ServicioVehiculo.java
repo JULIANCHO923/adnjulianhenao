@@ -14,80 +14,63 @@ import com.ceiba.adnjulianhenao.convertidor.ConvertidorVehiculo;
 import com.ceiba.adnjulianhenao.entidad.EntidadVehiculo;
 import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
 import com.ceiba.adnjulianhenao.parqueadero.Vigilante;
-import com.ceiba.adnjulianhenao.repositorio.RepositorioVehiculo;
+import com.ceiba.adnjulianhenao.repositorio.IRepositorioVehiculo;
 
 @Service("servicioVehiculo")
 public class ServicioVehiculo {
 
 	@Autowired
 	@Qualifier("repositorioVehiculo") // Inyecta el bean
-	private RepositorioVehiculo repositorioVehiculo;
+	private IRepositorioVehiculo iRepositorioVehiculo;
 
 	@Autowired
 	@Qualifier("convertidorVehiculo") // Inyecta el bean
 	private ConvertidorVehiculo convertidorVehiculo;
 
-	
 	@Autowired
 	@Qualifier("convertidorTipoVehiculo") // Inyecta el bean
 	private ConvertidorTipoVehiculo convertidorTipoVehiculo;
 
-	
 	@Autowired
 	private Vigilante vigilante;
-	
+
 	private static final Logger log = LoggerFactory.getLogger(ServicioVehiculo.class);
 
-	public void crear(ModeloVehiculo modeloVehiculo) {
-		log.info("Creando Vehiculo");
-		try {
-			
-			repositorioVehiculo.save(convertidorVehiculo.convertirModeloAEntidad(modeloVehiculo));
-			log.info("El vehiculo se creó exitosamente");
-			
-		} catch (Exception e) {
-			
-		}
+	public void crear(ModeloVehiculo modeloVehiculo) {				
+		log.info("Creando Vehiculo");		
+		
+		
+		iRepositorioVehiculo.save(convertidorVehiculo.convertirModeloAEntidad(modeloVehiculo));
+		log.info("El vehiculo se creó exitosamente");	
 	}
 
 	public void actualizar(ModeloVehiculo modeloVehiculo) {
-		try {
-			if (repositorioVehiculo.findById(modeloVehiculo.getId()) != null) {
-				repositorioVehiculo.save(convertidorVehiculo.convertirModeloAEntidad(modeloVehiculo));
-				
-			}
-		} catch (Exception e) {
+		if (iRepositorioVehiculo.findById(modeloVehiculo.getId()) != null) {
+			iRepositorioVehiculo.save(convertidorVehiculo.convertirModeloAEntidad(modeloVehiculo));
 		}
-		
 	}
 
 	public void borrar(int idVehiculo) {
-		try {
-			EntidadVehiculo entidadVehiculo = repositorioVehiculo.findById(idVehiculo);
-			repositorioVehiculo.delete(entidadVehiculo);
-			
-		} catch (Exception e) {
-			
-		}
+		EntidadVehiculo entidadVehiculo = iRepositorioVehiculo.findById(idVehiculo);
+		iRepositorioVehiculo.delete(entidadVehiculo);
 	}
 
 	public List<ModeloVehiculo> obtenerVehiculos() {
 		log.info("Listando Vehiculos");
-		return convertidorVehiculo.convertirLista(repositorioVehiculo.findAll());
+		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findAll());
 	}
 
 	public ModeloVehiculo obtenerporId(int idVehiculo) {
-		return convertidorVehiculo.convertirEntidadAModelo(repositorioVehiculo.findById(idVehiculo));
+		return convertidorVehiculo.convertirEntidadAModelo(iRepositorioVehiculo.findById(idVehiculo));
 	}
 
 	public List<ModeloVehiculo> obtenerPorPlaca(String placa) {
-		return convertidorVehiculo.convertirLista(repositorioVehiculo.findByPlaca(placa));
+		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findByPlaca(placa));
 	}
-	
-	public List<ModeloVehiculo> obtenerPorTipoVehiculo(int idTipoVehiculo){
-		return convertidorVehiculo.convertirLista(repositorioVehiculo.findByTipoVehiculoId(idTipoVehiculo));
+
+	public List<ModeloVehiculo> obtenerPorTipoVehiculo(int idTipoVehiculo) {
+		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findByTipoVehiculoId(idTipoVehiculo));
 	}
-	
 
 	/*
 	 * public List<Vehiculo> obtenerPorIdTipoVehiculo(EntityTipoVehiculo
@@ -97,11 +80,11 @@ public class ServicioVehiculo {
 	 */
 
 	public List<ModeloVehiculo> obtenerPorCilindraje(int cilindraje) {
-		return convertidorVehiculo.convertirLista(repositorioVehiculo.findByCilindraje(cilindraje));
+		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findByCilindraje(cilindraje));
 	}
 
 	public List<ModeloVehiculo> obtenerVehiculosPorPaginacion(Pageable pageable) {
-		return convertidorVehiculo.convertirLista(repositorioVehiculo.findAll(pageable).getContent());
+		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findAll(pageable).getContent());
 	}
 
 }

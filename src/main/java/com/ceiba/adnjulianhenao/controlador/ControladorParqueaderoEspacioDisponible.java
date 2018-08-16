@@ -54,7 +54,7 @@ public class ControladorParqueaderoEspacioDisponible {
 	}
 	
 	@RequestMapping(value="{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<ModeloParqueaderoEspacioDisponible>> obtenerEspacioDisponiblePorTipoVehiculo(@PathVariable("id") int idTipoVehiculo){
+	public ResponseEntity<ModeloParqueaderoEspacioDisponible> obtenerEspacioDisponiblePorTipoVehiculo(@PathVariable("id") int idTipoVehiculo){
 		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoEspacioDisponible.obtenerEspacioDisponiblePorTipoVehiculo(idTipoVehiculo));
 	}
 }

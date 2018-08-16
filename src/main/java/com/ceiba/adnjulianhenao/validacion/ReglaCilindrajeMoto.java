@@ -1,10 +1,10 @@
-package com.ceiba.adnjulianhenao.validacion.entrada;
+package com.ceiba.adnjulianhenao.validacion;
 
 
 import com.ceiba.adnjulianhenao.excepcion.ExcepcionParametroInvalido;
 import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
 
-public class ReglaCilindrajeMoto implements ValidacionesEntrada{
+public class ReglaCilindrajeMoto implements Validaciones{
 
 	@Override
 	public void validar(ModeloVehiculo modelVehiculo) {

@@ -18,7 +18,7 @@ import com.ceiba.adnjulianhenao.entidad.EntidadVehiculo;
  *
  */
 @Repository("repositorioVehiculo")
-public interface RepositorioVehiculo extends JpaRepository<EntidadVehiculo, Serializable>, PagingAndSortingRepository<EntidadVehiculo, Serializable>{ 
+public interface IRepositorioVehiculo extends JpaRepository<EntidadVehiculo, Serializable>, PagingAndSortingRepository<EntidadVehiculo, Serializable>{ 
 	
 	public abstract EntidadVehiculo findById(int idVehiculo);	
 	public abstract List<EntidadVehiculo> findByPlaca(String placa);

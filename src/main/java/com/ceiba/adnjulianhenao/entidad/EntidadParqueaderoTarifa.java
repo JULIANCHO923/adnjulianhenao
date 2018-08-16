@@ -30,17 +30,17 @@ public class EntidadParqueaderoTarifa implements Serializable {
 	//, referencedColumnName="id_tipo_vehiculo"
 	
 	@Column(name="costo_hora")
-	private double costoHora;
+	private long costoHora;
 	
 	@Column(name="costo_dia")
-	private double costoDia;
+	private long costoDia;
 	
 	@Column(name="horas_cobro_dia")
 	private int horasCobroDia;
 		
 	public EntidadParqueaderoTarifa(){}
 	
-	public EntidadParqueaderoTarifa(int id, EntidadTipoVehiculo tipoVehiculo, double costoHora, double costoDia, int horasCobroDia) {	
+	public EntidadParqueaderoTarifa(int id, EntidadTipoVehiculo tipoVehiculo, long costoHora, long costoDia, int horasCobroDia) {	
 		this.id = id;
 		this.tipoVehiculo = tipoVehiculo;
 		this.costoHora = costoHora;
@@ -61,16 +61,16 @@ public class EntidadParqueaderoTarifa implements Serializable {
 	public void setTipoVehiculo(EntidadTipoVehiculo tipoVehiculo) {
 		this.tipoVehiculo = tipoVehiculo;
 	}
-	public double getCostoHora() {
+	public long getCostoHora() {
 		return costoHora;
 	}
-	public void setCostoHora(double costoHora) {
+	public void setCostoHora(long costoHora) {
 		this.costoHora = costoHora;
 	}
-	public double getCostoDia() {
+	public long getCostoDia() {
 		return costoDia;
 	}
-	public void setCostoDia(double costoDia) {
+	public void setCostoDia(long costoDia) {
 		this.costoDia = costoDia;
 	}
 	public int getHorasCobroDia() {

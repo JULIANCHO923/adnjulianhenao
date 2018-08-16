@@ -54,7 +54,7 @@ public class ControladorParqueaderoRegistro {
 		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistros());
 	}
 
-	@RequestMapping(value="{fechaEntrada}", method=RequestMethod.GET)
+	@RequestMapping(value="/todos/{fechaEntrada}", method=RequestMethod.GET)
 	public ResponseEntity<List<ModeloParqueaderoRegistro>> obtenerRegistroPorVehiculosSinSalir(@PathVariable("fechaEntrada") Date fechaEntrada) {
 		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistrosPorVehiculosSinSalir(fechaEntrada));
 	}
@@ -64,10 +64,9 @@ public class ControladorParqueaderoRegistro {
 		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistrosPorPaginacion(pageable));
 	}
 	
-	@RequestMapping(value="/paginacion/{fechaEntrada}", method=RequestMethod.GET)
-	public ResponseEntity<List<ModeloParqueaderoRegistro>> obtenerRegistroPorVehiculosSinSalirPorPaginacion(@PathVariable("fechaEntrada") Date fechaEntrada, Pageable pageable) {
-		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistrosPorVehiculosSinSalirPorPaginacion(fechaEntrada, pageable));
+	@RequestMapping(value="/{placa}", method=RequestMethod.GET)
+	public ResponseEntity<ModeloParqueaderoRegistro> obtenerRegistroPorVehiculosSinSalirPorPaginacion(@PathVariable("placa") String placa) {
+		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistrosPorVehiculosPorPlacaSinSalir(placa));
 	}
-	
-	
+		
 }

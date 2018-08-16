@@ -13,64 +13,44 @@ import org.springframework.stereotype.Service;
 import com.ceiba.adnjulianhenao.convertidor.ConvertidorTipoVehiculo;
 import com.ceiba.adnjulianhenao.entidad.EntidadTipoVehiculo;
 import com.ceiba.adnjulianhenao.modelo.ModeloTipoVehiculo;
-import com.ceiba.adnjulianhenao.repositorio.RepositorioTipoVehiculo;
-
+import com.ceiba.adnjulianhenao.repositorio.IRepositorioTipoVehiculo;
 
 @Service("servicioTipoVehiculo")
 public class ServicioTipoVehiculo {
-	
 
 	@Autowired
 	@Qualifier("repositorioTipoVehiculo") // Inyecta el bean
-	private RepositorioTipoVehiculo repositorioTipoVehiculo;
+	private IRepositorioTipoVehiculo iRepositorioTipoVehiculo;
 
-	
 	@Autowired
 	@Qualifier("convertidorTipoVehiculo") // Inyecta el bean
 	private ConvertidorTipoVehiculo convertidorTipoVehiculo;
-	
+
 	private static final Logger log = LoggerFactory.getLogger(ServicioTipoVehiculo.class);
-	
-	public void crear(ModeloTipoVehiculo modeloTipoVehiculo){
+
+	public void crear(ModeloTipoVehiculo modeloTipoVehiculo) {
 		log.info("Creando Tipo Vehiculo");
-		try{
-			repositorioTipoVehiculo.save(convertidorTipoVehiculo.convertirModeloAEntidad(modeloTipoVehiculo));
-			log.info("El Tipo vehiculo se creó exitosamente");
-			
-		}catch(Exception e){
-			
+		iRepositorioTipoVehiculo.save(convertidorTipoVehiculo.convertirModeloAEntidad(modeloTipoVehiculo));
+		log.info("El Tipo vehiculo se creó exitosamente");
+	}
+
+	public void actualizar(ModeloTipoVehiculo modeloTipoVehiculo) {
+		if (iRepositorioTipoVehiculo.findById(modeloTipoVehiculo.getId()) != null) {
+			iRepositorioTipoVehiculo.save(convertidorTipoVehiculo.convertirModeloAEntidad(modeloTipoVehiculo));
 		}
 	}
-	
-	public void actualizar(ModeloTipoVehiculo modeloTipoVehiculo){
-		try{			
-			if(repositorioTipoVehiculo.findById(modeloTipoVehiculo.getId()) != null){				
-				repositorioTipoVehiculo.save(convertidorTipoVehiculo.convertirModeloAEntidad(modeloTipoVehiculo));
-				
-			}			
-		}catch(Exception e){			
-		}
-		
+
+	public void borrar(int id) {
+		EntidadTipoVehiculo entidadTipoVehiculo = iRepositorioTipoVehiculo.findById(id);
+		iRepositorioTipoVehiculo.delete(entidadTipoVehiculo);
 	}
-		
-	public void borrar(int id){
-		try{
-			EntidadTipoVehiculo entidadTipoVehiculo = repositorioTipoVehiculo.findById(id);
-			repositorioTipoVehiculo.delete(entidadTipoVehiculo);
-			
-		}catch(Exception e){
-			
-		}
-	}
-	
-	
-	public List<ModeloTipoVehiculo> obtenerTipoVehiculos(){
+
+	public List<ModeloTipoVehiculo> obtenerTipoVehiculos() {
 		log.info("Listando Tipos de Vehiculos");
-		return convertidorTipoVehiculo.convertirLista(repositorioTipoVehiculo.findAll()); 		
+		return convertidorTipoVehiculo.convertirLista(iRepositorioTipoVehiculo.findAll());
 	}
-	
-	public ModeloTipoVehiculo obtenerporId(int idTipoVehiculo){
-		return convertidorTipoVehiculo.convertirEntidadAModelo(repositorioTipoVehiculo.findById(idTipoVehiculo)); 		
+
+	public ModeloTipoVehiculo obtenerporId(int idTipoVehiculo) {
+		return convertidorTipoVehiculo.convertirEntidadAModelo(iRepositorioTipoVehiculo.findById(idTipoVehiculo));
 	}
-	
 }

@@ -12,14 +12,14 @@ import org.springframework.stereotype.Service;
 import com.ceiba.adnjulianhenao.convertidor.ConvertidorParqueaderoTarifa;
 import com.ceiba.adnjulianhenao.entidad.EntidadParqueaderoTarifa;
 import com.ceiba.adnjulianhenao.modelo.ModeloParqueaderoTarifa;
-import com.ceiba.adnjulianhenao.repositorio.RepositorioParqueaderoTarifa;
+import com.ceiba.adnjulianhenao.repositorio.IRepositorioParqueaderoTarifa;
 
 @Service("servicioParqueaderoTarifa")
 public class ServicioParqueaderoTarifa {
 
 	@Autowired
 	@Qualifier("repositorioParqueaderoTarifa") // Inyecta el bean
-	private RepositorioParqueaderoTarifa repositorioParquederoTarifa;
+	private IRepositorioParqueaderoTarifa repositorioParquederoTarifa;
 
 	@Autowired
 	@Qualifier("convertidorParqueaderoTarifa") // Inyecta el bean
@@ -29,29 +29,20 @@ public class ServicioParqueaderoTarifa {
 
 	public void crear(ModeloParqueaderoTarifa modeloParqueaderoTarifa) {
 		log.info("Creando Tarifa");
-		try {
-			repositorioParquederoTarifa.save(converterParquederoTarifa.convertirModeloAEntidad(modeloParqueaderoTarifa));
-			log.info("La tarifa se creó exitosamente");			
-		} catch (Exception e) {			
-		}
+		repositorioParquederoTarifa.save(converterParquederoTarifa.convertirModeloAEntidad(modeloParqueaderoTarifa));
+		log.info("La tarifa se creó exitosamente");
 	}
 
 	public void actualizar(ModeloParqueaderoTarifa modeloParqueaderoTarifa) {
-		try {
-			if (repositorioParquederoTarifa.findById(modeloParqueaderoTarifa.getId()) != null) {
-				repositorioParquederoTarifa
-						.save(converterParquederoTarifa.convertirModeloAEntidad(modeloParqueaderoTarifa));				
-			}
-		} catch (Exception e) {
-		}		
+		if (repositorioParquederoTarifa.findById(modeloParqueaderoTarifa.getId()) != null) {
+			repositorioParquederoTarifa
+					.save(converterParquederoTarifa.convertirModeloAEntidad(modeloParqueaderoTarifa));
+		}
 	}
 
 	public void borrar(int id) {
-		try {
-			EntidadParqueaderoTarifa entidadParqueaderoTarifa = repositorioParquederoTarifa.findById(id);
-			repositorioParquederoTarifa.delete(entidadParqueaderoTarifa);			
-		} catch (Exception e) {			
-		}
+		EntidadParqueaderoTarifa entidadParqueaderoTarifa = repositorioParquederoTarifa.findById(id);
+		repositorioParquederoTarifa.delete(entidadParqueaderoTarifa);
 	}
 
 	public List<ModeloParqueaderoTarifa> obtenerTarifas() {
@@ -63,9 +54,10 @@ public class ServicioParqueaderoTarifa {
 		return converterParquederoTarifa.convertirEntidadAModelo(repositorioParquederoTarifa.findById(id));
 	}
 
-	public List<ModeloParqueaderoTarifa> obtenerTarifasPorTipoVehiculo(int idTipoVehiculo) {
+	public ModeloParqueaderoTarifa obtenerTarifasPorTipoVehiculo(int idTipoVehiculo) {
 		log.info("Listando Tarifas por tipo vehiculo");
-		return converterParquederoTarifa.convertirLista(repositorioParquederoTarifa.findByTipoVehiculoId(idTipoVehiculo));
+		return converterParquederoTarifa
+				.convertirEntidadAModelo(repositorioParquederoTarifa.findByTipoVehiculoId(idTipoVehiculo));
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.ceiba.adnjulianhenao.validacion.entrada;
+package com.ceiba.adnjulianhenao.validacion;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,7 +11,7 @@ import com.ceiba.adnjulianhenao.servicio.ServicioParqueaderoEspacioDisponible;
 
 
 @Component
-public class ReglaDisponibilidadEspacio implements ValidacionesEntrada{
+public class ReglaDisponibilidadEspacio implements Validaciones{
 
 	
 	@Autowired

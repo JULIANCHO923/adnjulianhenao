@@ -1,4 +1,4 @@
-package com.ceiba.adnjulianhenao.validacion.entrada;
+package com.ceiba.adnjulianhenao.validacion;
 
 import java.util.Calendar;
 
@@ -7,19 +7,19 @@ import org.springframework.stereotype.Component;
 
 import com.ceiba.adnjulianhenao.excepcion.ExcepcionParametroInvalido;
 import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
-import com.ceiba.adnjulianhenao.parqueadero.Calculadora;
+import com.ceiba.adnjulianhenao.parqueadero.Calendario;
 
 @Component
-public class ReglaDiaHabil implements ValidacionesEntrada{
+public class ReglaDiaHabil implements Validaciones{
 
 	
 	@Autowired
-	Calculadora calculadora;
+	Calendario calendario;
 	
 	@Override
 	public void validar(ModeloVehiculo modelVehiculo) {
 		
-		int diaActual = calculadora.obtenerDiaActual();
+		int diaActual = calendario.obtenerDiaActual();
 		
 		if(modelVehiculo.getPlaca().charAt(0) == 'A' && (diaNoHabilDomingoPlacaA(diaActual) || diaNoHabilLunesPlacaA(diaActual))){
 			throw new ExcepcionParametroInvalido("La placa que inicia por 'A' NO puede ingresar los Lunes y los Domingos");

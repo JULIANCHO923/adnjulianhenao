@@ -48,12 +48,12 @@ public class EntidadParqueaderoRegistro implements Serializable {
 	private int horasParqueadero;
 	
 	@Column(name = "costo_total")
-	private int costoTotal;
+	private long costoTotal;
 
 	public EntidadParqueaderoRegistro(){}
 	
 	public EntidadParqueaderoRegistro(int id, EntidadVehiculo vehiculo, Calendar fechaEntrada, Calendar fechaSalida,  int diasParqueadero,
-			int horasParqueadero, int costoTotal) {		
+			int horasParqueadero, long costoTotal) {		
 		this.id = id;
 		this.vehiculo = vehiculo;
 		this.fechaEntrada = fechaEntrada;
@@ -111,11 +111,11 @@ public class EntidadParqueaderoRegistro implements Serializable {
 		this.horasParqueadero = horasParqueadero;
 	}
 
-	public int getCostoTotal() {
+	public long getCostoTotal() {
 		return costoTotal;
 	}
 
-	public void setCostoTotal(int costoTotal) {
+	public void setCostoTotal(long costoTotal) {
 		this.costoTotal = costoTotal;
 	}
 
