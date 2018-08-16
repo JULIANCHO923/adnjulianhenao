@@ -4,26 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import com.ceiba.adnjulianhenao.model.ModelVehiculo;
-import com.ceiba.adnjulianhenao.validacion.DiaHabilRegla;
-import com.ceiba.adnjulianhenao.validacion.ValidacionesEntrada;
+import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
+import com.ceiba.adnjulianhenao.validacion.entrada.ReglaDiaHabil;
+import com.ceiba.adnjulianhenao.validacion.entrada.ValidacionesEntrada;
+import com.ceiba.adnjulianhenao.validacion.salida.ValidacionesSalida;
 
+@Component
 public class Vigilante {
 	
+	
+		
 	@Autowired
-	ValidacionesEntrada validaciones;
+	List<ValidacionesSalida> validacionesSalida = new ArrayList<>();
 	
 	@Autowired
-	DiaHabilRegla diaHabilregla;
+	List<ValidacionesEntrada> validacionesEntrada = new ArrayList<>();
 	
-	List<ValidacionesEntrada> listaValidaciones = new ArrayList<>();
 	
 	public void inicializarValidaciones(){
+		validacionesEntrada.add();
 		listaValidaciones.add(diaHabilregla);		
 	}
 	
-	public void registrar(ModelVehiculo vehiculo){
+	public void registrar(ModeloVehiculo vehiculo){
 		for(ValidacionesEntrada v: listaValidaciones){
 			v.validar(vehiculo);
 		}

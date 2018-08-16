@@ -1,0 +1,77 @@
+package com.ceiba.adnjulianhenao.entidad;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name="disponibilidad")
+public class EntidadParqueaderoEspacioDisponible implements Serializable{
+
+	@Id
+	@Column(name = "id_disponibilidad")
+	private int id;
+	
+	@JsonManagedReference
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "tipo_vehiculo")
+	private EntidadTipoVehiculo tipoVehiculo;	
+	
+	@Column(name = "limite_espacio")
+	private int limiteEspacio;
+	
+	@Column(name = "espacio_actual")
+	private int espacioActual;		
+	
+	public EntidadParqueaderoEspacioDisponible(){}
+	
+	public EntidadParqueaderoEspacioDisponible(int id, EntidadTipoVehiculo tipoVehiculo, int limiteEspacio,
+			int espacioActual) {	
+		this.id = id;
+		this.tipoVehiculo = tipoVehiculo;
+		this.limiteEspacio = limiteEspacio;
+		this.espacioActual = espacioActual;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public EntidadTipoVehiculo getTipoVehiculo() {
+		return tipoVehiculo;
+	}
+
+	public void setTipoVehiculo(EntidadTipoVehiculo tipoVehiculo) {
+		this.tipoVehiculo = tipoVehiculo;
+	}
+
+	public int getLimiteEspacio() {
+		return limiteEspacio;
+	}
+
+	public void setLimiteEspacio(int limiteEspacio) {
+		this.limiteEspacio = limiteEspacio;
+	}
+
+	public int getEspacioActual() {
+		return espacioActual;
+	}
+
+	public void setEspacioActual(int espacioActual) {
+		this.espacioActual = espacioActual;
+	}	
+	
+}
