@@ -26,14 +26,14 @@ public class EntityVehiculo implements Serializable {
 
 	@GeneratedValue
 	@Id
-	@Column(name = "idvehiculo")
+	@Column(name = "id_vehiculo")
 	private int id;
 
 	@Column(name = "placa")
 	private String placa;
 
 	@JsonManagedReference
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "tipo_vehiculo")
 	private EntityTipoVehiculo tipoVehiculo;
 

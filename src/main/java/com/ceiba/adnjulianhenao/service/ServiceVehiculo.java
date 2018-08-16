@@ -4,16 +4,16 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.ceiba.adnjulianhenao.converter.ConverterTipoVehiculo;
 import com.ceiba.adnjulianhenao.converter.ConverterVehiculo;
-//import com.ceiba.adnjulianhenao.entity.EntityTipoVehiculo;
+
 import com.ceiba.adnjulianhenao.entity.EntityVehiculo;
-import com.ceiba.adnjulianhenao.model.Vehiculo;
+import com.ceiba.adnjulianhenao.model.ModelVehiculo;
 import com.ceiba.adnjulianhenao.repository.IRepositoryVehiculo;
 
 @Service("servicioVehiculo")
@@ -27,12 +27,18 @@ public class ServiceVehiculo {
 	@Qualifier("convertidorVehiculo") // Inyecta el bean
 	private ConverterVehiculo converterVehiculo;
 
-	private static final Logger log = LoggerFactory.getLogger(ServiceTipoVehiculo.class);
+	
+	@Autowired
+	@Qualifier("convertidorTipoVehiculo") // Inyecta el bean
+	private ConverterTipoVehiculo converterTipoVehiculo;
 
-	public boolean crear(Vehiculo vehiculo) {
+	
+	private static final Logger log = LoggerFactory.getLogger(ServiceVehiculo.class);
+
+	public boolean crear(ModelVehiculo modelVehiculo) {
 		log.info("Creando Vehiculo");
 		try {
-			repositoryVehiculo.save(converterVehiculo.convertirModeloAEntidad(vehiculo));
+			repositoryVehiculo.save(converterVehiculo.convertirModeloAEntidad(modelVehiculo));
 			log.info("El vehiculo se creó exitosamente");
 			return true;
 		} catch (Exception e) {
@@ -40,10 +46,10 @@ public class ServiceVehiculo {
 		}
 	}
 
-	public boolean actualizar(EntityVehiculo vehiculo) {
+	public boolean actualizar(ModelVehiculo modelVehiculo) {
 		try {
-			if (repositoryVehiculo.findById(vehiculo.getId()) != null) {
-				repositoryVehiculo.save(vehiculo);
+			if (repositoryVehiculo.findById(modelVehiculo.getId()) != null) {
+				repositoryVehiculo.save(converterVehiculo.convertirModeloAEntidad(modelVehiculo));
 				return true;
 			}
 		} catch (Exception e) {
@@ -53,26 +59,31 @@ public class ServiceVehiculo {
 
 	public boolean borrar(int idVehiculo) {
 		try {
-			EntityVehiculo vehiculo = repositoryVehiculo.findById(idVehiculo);
-			repositoryVehiculo.delete(vehiculo);
+			EntityVehiculo entityVehiculo = repositoryVehiculo.findById(idVehiculo);
+			repositoryVehiculo.delete(entityVehiculo);
 			return true;
 		} catch (Exception e) {
 			return false;
 		}
 	}
 
-	public List<Vehiculo> obtenerVehiculos() {
+	public List<ModelVehiculo> obtenerVehiculos() {
 		log.info("Listando Vehiculos");
 		return converterVehiculo.convertirLista(repositoryVehiculo.findAll());
 	}
 
-	public Vehiculo obtenerporId(int idVehiculo) {
+	public ModelVehiculo obtenerporId(int idVehiculo) {
 		return converterVehiculo.convertirEntidadAModelo(repositoryVehiculo.findById(idVehiculo));
 	}
 
-	public List<Vehiculo> obtenerPorPlaca(String placa) {
+	public List<ModelVehiculo> obtenerPorPlaca(String placa) {
 		return converterVehiculo.convertirLista(repositoryVehiculo.findByPlaca(placa));
 	}
+	
+	public List<ModelVehiculo> obtenerPorTipoVehiculo(int idTipoVehiculo){
+		return converterVehiculo.convertirLista(repositoryVehiculo.findByTipoVehiculoId(idTipoVehiculo));
+	}
+	
 
 	/*
 	 * public List<Vehiculo> obtenerPorIdTipoVehiculo(EntityTipoVehiculo
@@ -81,11 +92,11 @@ public class ServiceVehiculo {
 	 * tipoVehiculo)); }
 	 */
 
-	public List<Vehiculo> obtenerPorCilindraje(int cilindraje) {
+	public List<ModelVehiculo> obtenerPorCilindraje(int cilindraje) {
 		return converterVehiculo.convertirLista(repositoryVehiculo.findByCilindraje(cilindraje));
 	}
 
-	public List<Vehiculo> obtenerVehiculosPorPaginacion(Pageable pageable) {
+	public List<ModelVehiculo> obtenerVehiculosPorPaginacion(Pageable pageable) {
 		return converterVehiculo.convertirLista(repositoryVehiculo.findAll(pageable).getContent());
 	}
 

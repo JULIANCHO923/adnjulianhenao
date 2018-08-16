@@ -14,7 +14,7 @@ import com.ceiba.adnjulianhenao.converter.ConverterTipoVehiculo;
 
 import com.ceiba.adnjulianhenao.entity.EntityTipoVehiculo;
 
-import com.ceiba.adnjulianhenao.model.TipoVehiculo;
+import com.ceiba.adnjulianhenao.model.ModelTipoVehiculo;
 
 import com.ceiba.adnjulianhenao.repository.IRepositoryTipoVehiculo;
 
@@ -32,12 +32,12 @@ public class ServiceTipoVehiculo {
 	@Qualifier("convertidorTipoVehiculo") // Inyecta el bean
 	private ConverterTipoVehiculo converterTipoVehiculo;
 	
-	private static final Logger log = LoggerFactory.getLogger(ServiceVehiculo.class);
+	private static final Logger log = LoggerFactory.getLogger(ServiceTipoVehiculo.class);
 	
-	public boolean crear(EntityTipoVehiculo tipoVehiculo){
+	public boolean crear(ModelTipoVehiculo modelTipoVehiculo){
 		log.info("Creando Tipo Vehiculo");
 		try{
-			repositoryTipoVehiculo.save(tipoVehiculo);
+			repositoryTipoVehiculo.save(converterTipoVehiculo.convertirModeloAEntidad(modelTipoVehiculo));
 			log.info("El Tipo vehiculo se creó exitosamente");
 			return true;
 		}catch(Exception e){
@@ -45,10 +45,10 @@ public class ServiceTipoVehiculo {
 		}
 	}
 	
-	public boolean actualizar(EntityTipoVehiculo tipoVehiculo){
+	public boolean actualizar(ModelTipoVehiculo modelTipoVehiculo){
 		try{			
-			if(repositoryTipoVehiculo.findById(tipoVehiculo.getId()) != null){				
-				repositoryTipoVehiculo.save(tipoVehiculo);
+			if(repositoryTipoVehiculo.findById(modelTipoVehiculo.getId()) != null){				
+				repositoryTipoVehiculo.save(converterTipoVehiculo.convertirModeloAEntidad(modelTipoVehiculo));
 				return true;
 			}			
 		}catch(Exception e){			
@@ -58,8 +58,8 @@ public class ServiceTipoVehiculo {
 		
 	public boolean borrar(int id){
 		try{
-			EntityTipoVehiculo vehiculo = repositoryTipoVehiculo.findById(id);
-			repositoryTipoVehiculo.delete(vehiculo);
+			EntityTipoVehiculo entityTipoVehiculo = repositoryTipoVehiculo.findById(id);
+			repositoryTipoVehiculo.delete(entityTipoVehiculo);
 			return true;
 		}catch(Exception e){
 			return false;
@@ -67,12 +67,12 @@ public class ServiceTipoVehiculo {
 	}
 	
 	
-	public List<TipoVehiculo> obtenerTipoVehiculos(){
+	public List<ModelTipoVehiculo> obtenerTipoVehiculos(){
 		log.info("Listando Tipos de Vehiculos");
 		return converterTipoVehiculo.convertirLista(repositoryTipoVehiculo.findAll()); 		
 	}
 	
-	public TipoVehiculo obtenerporId(int idTipoVehiculo){
+	public ModelTipoVehiculo obtenerporId(int idTipoVehiculo){
 		return converterTipoVehiculo.convertirEntidadAModelo(repositoryTipoVehiculo.findById(idTipoVehiculo)); 		
 	}
 	

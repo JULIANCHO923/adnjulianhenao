@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class EntityTipoVehiculo implements Serializable {
 	
 	@Id    
-    @Column(name="idtipovehiculo")
+    @Column(name="id_tipo_vehiculo")
 	private int id;
 	
 	@Column(name="descripcion")

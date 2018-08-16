@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ceiba.adnjulianhenao.entity.EntityTipoVehiculo;
-import com.ceiba.adnjulianhenao.model.TipoVehiculo;
+import com.ceiba.adnjulianhenao.model.ModelTipoVehiculo;
 import com.ceiba.adnjulianhenao.service.ServiceTipoVehiculo;
 
 @RestController
@@ -28,16 +27,15 @@ public class ControllerTipoVehiculo {
 	
 	
 	// Por cada peticion nos trae un header y un body del tipo Json
-	// Con RequestBody llamo y con el Valid lo convierto en entityVehiculo
-	
+	// Con RequestBody llamo y con el Valid lo convierto en entityVehiculo	
 	@PutMapping("/tipovehiculo")
-	public boolean agregarTipoVehiculo(@RequestBody EntityTipoVehiculo vehiculo){
+	public boolean agregarTipoVehiculo(@RequestBody ModelTipoVehiculo vehiculo){
 		return serviceTipoVehiculo.crear(vehiculo);
 	}
    
        
 	@PostMapping("/tipovehiculo")
-	public boolean actualizarTipoVehiculo(@RequestBody EntityTipoVehiculo vehiculo){
+	public boolean actualizarTipoVehiculo(@RequestBody ModelTipoVehiculo vehiculo){
 		return serviceTipoVehiculo.actualizar(vehiculo);
 	}
 	
@@ -47,7 +45,7 @@ public class ControllerTipoVehiculo {
 	}
 	
 	@GetMapping("/tipovehiculos")
-	public List<TipoVehiculo> obtenerTipoVehiculos(){
+	public List<ModelTipoVehiculo> obtenerTipoVehiculos(){
 		return serviceTipoVehiculo.obtenerTipoVehiculos();
 	}
 	

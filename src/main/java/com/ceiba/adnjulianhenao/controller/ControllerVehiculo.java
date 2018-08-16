@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ceiba.adnjulianhenao.entity.EntityVehiculo;
-import com.ceiba.adnjulianhenao.model.Vehiculo;
+import com.ceiba.adnjulianhenao.model.ModelVehiculo;
 import com.ceiba.adnjulianhenao.service.ServiceVehiculo;
 
 @RestController
@@ -30,12 +29,12 @@ public class ControllerVehiculo {
 	// Con RequestBody llamo y con el Valid lo convierto en entityVehiculo
 
 	@PutMapping("/vehiculo")
-	public boolean agregarVehiculo(@RequestBody Vehiculo vehiculo) {
+	public boolean agregarVehiculo(@RequestBody ModelVehiculo vehiculo) {
 		return serviceVehiculo.crear(vehiculo);
 	}
 
 	@PostMapping("/vehiculo")
-	public boolean actualizarVehiculo(@RequestBody EntityVehiculo vehiculo) {
+	public boolean actualizarVehiculo(@RequestBody ModelVehiculo vehiculo) {
 		return serviceVehiculo.actualizar(vehiculo);
 	}
 
@@ -45,12 +44,17 @@ public class ControllerVehiculo {
 	}
 
 	@GetMapping("/vehiculo")
-	public List<Vehiculo> obtenerVehiculos() {
+	public List<ModelVehiculo> obtenerVehiculos() {
 		return serviceVehiculo.obtenerVehiculos();
 	}
 
 	@GetMapping("/vehiculos")
-	public List<Vehiculo> obtenerVehiculosPorPaginacion(Pageable pageable) {
+	public List<ModelVehiculo> obtenerVehiculosPorPaginacion(Pageable pageable) {
 		return serviceVehiculo.obtenerVehiculosPorPaginacion(pageable);
+	}
+	
+	@GetMapping("/vehiculos/{id}")
+	public List<ModelVehiculo> obtenerVehiculosPorTipoVehiculo(@PathVariable("id") int idTipoVehiculo) {
+		return serviceVehiculo.obtenerPorTipoVehiculo(idTipoVehiculo);
 	}
 }
