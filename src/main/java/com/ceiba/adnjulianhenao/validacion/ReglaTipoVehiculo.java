@@ -31,9 +31,10 @@ public class ReglaTipoVehiculo implements Validaciones{
 		String tiposVehiculos = ""; 
 		
 		for(ModeloTipoVehiculo modeloTipoVehiculo: modeloTipoVehiculos){
-			tiposVehiculos +=  "\n {" + modeloTipoVehiculo.getDescripcion() + "}";
-			if(modelVehiculo.getTipoVehiculo().getDescripcion().equals(modeloTipoVehiculo.getDescripcion())){
+			tiposVehiculos = tiposVehiculos +  "\n {" + modeloTipoVehiculo.getDescripcion() + "}";
+			if( modeloTipoVehiculo.getId() == modelVehiculo.getTipoVehiculo().getId()){
 				vehiculoValido = true;
+				break;
 			}
 		}
 						

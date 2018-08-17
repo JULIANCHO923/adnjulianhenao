@@ -23,18 +23,6 @@ public class EntidadTipoVehiculo implements Serializable {
 		
 	}
 	
-/*
-	 * localhost:8080/v2/tipovehiculo
-	{	
-		"id":2,
-		"descripcion": "Moto"
-	},
-	{	
-		"id":1,
-		"descripcion": "Automovil"
-	}
-*/
-	
 	public EntidadTipoVehiculo(int id, String descripcion){
 		this.id = id;
 		this.descripcion = descripcion;

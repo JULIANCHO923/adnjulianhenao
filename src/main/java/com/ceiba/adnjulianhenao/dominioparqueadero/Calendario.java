@@ -1,6 +1,8 @@
-package com.ceiba.adnjulianhenao.parqueadero;
+package com.ceiba.adnjulianhenao.dominioparqueadero;
 
 import java.util.Calendar;
+
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -11,6 +13,7 @@ import java.util.Calendar;
  * @author julian.henao
  *
  */
+@Component("calendario")
 public class Calendario {
 
 	public int obtenerDiaActual() {

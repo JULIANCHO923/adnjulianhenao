@@ -1,6 +1,6 @@
 package com.ceiba.adnjulianhenao.servicio;
 
-import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -18,22 +18,19 @@ import com.ceiba.adnjulianhenao.repositorio.IRepositorioParqueaderoRegistro;
 
 @Service("servicioParqueaderoRegistro")
 public class ServicioParqueaderoRegistro {
-
+	 
 	@Autowired
-	@Qualifier("repositorioParqueaderoRegistro") // Inyecta el bean
 	private IRepositorioParqueaderoRegistro iRepositorioParqueaderoRegistro;
 
 	@Autowired
-	@Qualifier("convertidorParqueaderoRegistro") // Inyecta el bean
 	private ConvertidorParqueaderoRegistro convertidorParqueaderoRegistro;
 	
 	@Autowired
-	@Qualifier("convertidorVehiculo") // Inyecta el bean
 	private ConvertidorVehiculo convertidorVehiculo;
 	
 	private static final Logger log = LoggerFactory.getLogger(ServicioParqueaderoRegistro.class);
 
-	public void crear(ModeloParqueaderoRegistro modeloParqueaderoRegistro) {
+	public void insertar(ModeloParqueaderoRegistro modeloParqueaderoRegistro) {
 		log.info("Creando ParqueaderoRegistro");		
 		iRepositorioParqueaderoRegistro.save(convertidorParqueaderoRegistro.convertirModeloAEntidad(modeloParqueaderoRegistro));
 		log.info("El ParqueaderoRegistro se creó exitosamente");					
@@ -63,7 +60,7 @@ public class ServicioParqueaderoRegistro {
 		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findByVehiculoId(idVehiculo));
 	}
 	
-	public List<ModeloParqueaderoRegistro> obtenerRegistrosPorVehiculosSinSalir(Date fechaEntrada){
+	public List<ModeloParqueaderoRegistro> obtenerRegistrosPorVehiculosSinSalir(Calendar fechaEntrada){
 		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findByFechaEntradaAndFechaSalidaIsNull(fechaEntrada));
 	}		
 	
@@ -71,7 +68,7 @@ public class ServicioParqueaderoRegistro {
 		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findAll(pageable).getContent());
 	}
 
-	public ModeloParqueaderoRegistro obtenerRegistrosPorVehiculosPorPlacaSinSalir(String placa) {
-		return convertidorParqueaderoRegistro.convertirEntidadAModelo(iRepositorioParqueaderoRegistro.findByPlacaAndFechaSalidaIsNull(placa));
+	public ModeloParqueaderoRegistro obtenerRegistrosPorVehiculosPorIdSinSalir(int id) {
+		return convertidorParqueaderoRegistro.convertirEntidadAModelo(iRepositorioParqueaderoRegistro.findByVehiculoIdAndFechaSalidaIsNull(id));
 	}	
 }

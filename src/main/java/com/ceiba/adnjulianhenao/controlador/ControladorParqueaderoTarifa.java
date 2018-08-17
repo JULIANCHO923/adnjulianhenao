@@ -30,14 +30,14 @@ public class ControladorParqueaderoTarifa {
 	// Por cada peticion nos trae un header y un body del tipo Json
 	// Con RequestBody llamo y con el Valid lo convierto en entityVehiculo
 	
-	@RequestMapping(value="", method=RequestMethod.PUT)
+	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<String> agregarTarifa(@RequestBody ModeloParqueaderoTarifa modeloParqueaderoTarifa){
 		servicioParqueaderoTarifa.crear(modeloParqueaderoTarifa);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Tarifa Ingresada exitosamente");
 	}
    
        
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="", method=RequestMethod.PUT)
 	public ResponseEntity<String> actualizarTarifa(@RequestBody ModeloParqueaderoTarifa tarifa){
 		servicioParqueaderoTarifa.actualizar(tarifa);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Tarifa Actualizada exitosamente");

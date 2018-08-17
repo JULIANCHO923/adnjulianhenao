@@ -1,6 +1,6 @@
 package com.ceiba.adnjulianhenao.controlador;
 
-import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +31,13 @@ public class ControladorParqueaderoRegistro {
 	// Con RequestBody llamo y con el Valid lo convierto en entityParqueaderoRegistro
 
 	
-	@RequestMapping(value="", method=RequestMethod.PUT)
+	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<String> agregar(@RequestBody ModeloParqueaderoRegistro modeloParqueaderoRegistro) {
-		servicioParqueaderoRegistro.crear(modeloParqueaderoRegistro);
+		servicioParqueaderoRegistro.insertar(modeloParqueaderoRegistro);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Registro Ingresado exitosamente");
 	}
 
-	@RequestMapping(value="", method=RequestMethod.POST)
+	@RequestMapping(value="", method=RequestMethod.PUT)
 	public ResponseEntity<String> actualizar(@RequestBody ModeloParqueaderoRegistro modeloParqueaderoRegistro) {
 		servicioParqueaderoRegistro.actualizar(modeloParqueaderoRegistro);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Registro Actualizado exitosamente");
@@ -55,7 +55,7 @@ public class ControladorParqueaderoRegistro {
 	}
 
 	@RequestMapping(value="/todos/{fechaEntrada}", method=RequestMethod.GET)
-	public ResponseEntity<List<ModeloParqueaderoRegistro>> obtenerRegistroPorVehiculosSinSalir(@PathVariable("fechaEntrada") Date fechaEntrada) {
+	public ResponseEntity<List<ModeloParqueaderoRegistro>> obtenerRegistroPorVehiculosSinSalir(@PathVariable("fechaEntrada") Calendar fechaEntrada) {
 		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistrosPorVehiculosSinSalir(fechaEntrada));
 	}
 	
@@ -63,10 +63,10 @@ public class ControladorParqueaderoRegistro {
 	public ResponseEntity<List<ModeloParqueaderoRegistro>> obtenerRegistrosPorPaginacion(Pageable pageable) {
 		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistrosPorPaginacion(pageable));
 	}
-	
+	/*
 	@RequestMapping(value="/{placa}", method=RequestMethod.GET)
 	public ResponseEntity<ModeloParqueaderoRegistro> obtenerRegistroPorVehiculosSinSalirPorPaginacion(@PathVariable("placa") String placa) {
 		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistrosPorVehiculosPorPlacaSinSalir(placa));
-	}
+	}*/
 		
 }

@@ -18,8 +18,9 @@ import com.ceiba.adnjulianhenao.repositorio.IRepositorioTipoVehiculo;
 @Service("servicioTipoVehiculo")
 public class ServicioTipoVehiculo {
 
+	 
 	@Autowired
-	@Qualifier("repositorioTipoVehiculo") // Inyecta el bean
+	@Qualifier("repositorioTipoVehiculo")
 	private IRepositorioTipoVehiculo iRepositorioTipoVehiculo;
 
 	@Autowired

@@ -41,6 +41,9 @@ public class EntidadParqueaderoRegistro implements Serializable {
 	@Column(name = "fecha_salida")
 	private Calendar fechaSalida;
 	
+	@Column(name = "horas_parqueo")
+	private int horasParqueo;
+	
 	@Column(name = "dias_parqueadero")
 	private int diasParqueadero;
 	
@@ -52,16 +55,16 @@ public class EntidadParqueaderoRegistro implements Serializable {
 
 	public EntidadParqueaderoRegistro(){}
 	
-	public EntidadParqueaderoRegistro(int id, EntidadVehiculo vehiculo, Calendar fechaEntrada, Calendar fechaSalida,  int diasParqueadero,
-			int horasParqueadero, long costoTotal) {		
-		this.id = id;
+	public EntidadParqueaderoRegistro(EntidadVehiculo vehiculo, Calendar fechaEntrada) {				
 		this.vehiculo = vehiculo;
 		this.fechaEntrada = fechaEntrada;
-		this.fechaSalida = fechaSalida;		
-		this.diasParqueadero = diasParqueadero;
-		this.horasParqueadero = horasParqueadero;
-		this.costoTotal = costoTotal;
+		this.fechaSalida = null;		
+		this.horasParqueo = 0;
+		this.diasParqueadero = 0;
+		this.horasParqueadero = 0;
+		this.costoTotal = 0;
 	}
+	
 
 	public int getId() {
 		return id;
@@ -93,6 +96,14 @@ public class EntidadParqueaderoRegistro implements Serializable {
 
 	public void setFechaSalida(Calendar fechaSalida) {
 		this.fechaSalida = fechaSalida;
+	}		
+
+	public int getHorasParqueo() {
+		return horasParqueo;
+	}
+
+	public void setHorasParqueo(int horasParqueo) {
+		this.horasParqueo = horasParqueo;
 	}
 
 	public int getDiasParqueadero() {

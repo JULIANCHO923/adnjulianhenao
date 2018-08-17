@@ -17,50 +17,50 @@ import com.ceiba.adnjulianhenao.repositorio.IRepositorioParqueaderoEspacioDispon
 
 @Service("servicioParqueaderoEspacioDisponible")
 public class ServicioParqueaderoEspacioDisponible {
+	
+	@Autowired
+	@Qualifier("repositorioParqueaderoEspacioDisponible")
+	private IRepositorioParqueaderoEspacioDisponible irepositorioParquederoEspacioDisponible;
 
 	@Autowired
-	@Qualifier("repositorioParqueaderoEspacioDisponible") // Inyecta el bean
-	private IRepositorioParqueaderoEspacioDisponible repositorioParquederoEspacioDisponible;
-
-	@Autowired
-	@Qualifier("convertidorParqueaderoEspacioDisponible") // Inyecta el bean
-	private ConvertidorParqueaderoEspacioDisponible converterParquederoEspacioDisponible;
+	@Qualifier("convertidorParqueaderoEspacioDisponible") 
+	private ConvertidorParqueaderoEspacioDisponible convertidorParquederoEspacioDisponible;
 
 	private static final Logger log = LoggerFactory.getLogger(ServicioParqueaderoEspacioDisponible.class);
 
 	public void crear(ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible) {
 		log.info("Creando Espacio");
-		repositorioParquederoEspacioDisponible
-				.save(converterParquederoEspacioDisponible.convertirModeloAEntidad(modeloParqueaderoEspacioDisponible));
+		irepositorioParquederoEspacioDisponible
+				.save(convertidorParquederoEspacioDisponible.convertirModeloAEntidad(modeloParqueaderoEspacioDisponible));
 		log.info("El espacio se creó exitosamente");
 	}
 
 	public void actualizar(ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible) {
-		if (repositorioParquederoEspacioDisponible.findById(modeloParqueaderoEspacioDisponible.getId()) != null) {
-			repositorioParquederoEspacioDisponible.save(
-					converterParquederoEspacioDisponible.convertirModeloAEntidad(modeloParqueaderoEspacioDisponible));
+		if (irepositorioParquederoEspacioDisponible.findById(modeloParqueaderoEspacioDisponible.getId()) != null) {
+			irepositorioParquederoEspacioDisponible.save(
+					convertidorParquederoEspacioDisponible.convertirModeloAEntidad(modeloParqueaderoEspacioDisponible));
 		}
 	}
 
 	public void borrar(int id) {
-		EntidadParqueaderoEspacioDisponible tarifa = repositorioParquederoEspacioDisponible.findById(id);
-		repositorioParquederoEspacioDisponible.delete(tarifa);
+		EntidadParqueaderoEspacioDisponible tarifa = irepositorioParquederoEspacioDisponible.findById(id);
+		irepositorioParquederoEspacioDisponible.delete(tarifa);
 	}
 
 	public List<ModeloParqueaderoEspacioDisponible> obtenerTarifas() {
 		log.info("Listando Espacios");
-		return converterParquederoEspacioDisponible.convertirLista(repositorioParquederoEspacioDisponible.findAll());
+		return convertidorParquederoEspacioDisponible.convertirLista(irepositorioParquederoEspacioDisponible.findAll());
 	}
 
 	public ModeloParqueaderoEspacioDisponible obtenerporId(int id) {
-		return converterParquederoEspacioDisponible
-				.convertirEntidadAModelo(repositorioParquederoEspacioDisponible.findById(id));
+		return convertidorParquederoEspacioDisponible
+				.convertirEntidadAModelo(irepositorioParquederoEspacioDisponible.findById(id));
 	}
 
 	public ModeloParqueaderoEspacioDisponible obtenerEspacioDisponiblePorTipoVehiculo(int idTipoVehiculo) {
 		log.info("Listando Tarifas por tipo vehiculo");
-		return converterParquederoEspacioDisponible
-				.convertirEntidadAModelo(repositorioParquederoEspacioDisponible.findByTipoVehiculoId(idTipoVehiculo));
+		return convertidorParquederoEspacioDisponible
+				.convertirEntidadAModelo(irepositorioParquederoEspacioDisponible.findByTipoVehiculoId(idTipoVehiculo));
 	}
 
 }

@@ -48,11 +48,6 @@ public class ControladorVehiculo {
 		return ResponseEntity.status(HttpStatus.CONTINUE).body("Vehiculo Eliminado exitosamente");
 	}
 
-	/*
-	public List<ModeloVehiculo> obtenerVehiculos() {
-		return servicioVehiculo.obtenerVehiculos();
-	}*/
-
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public ResponseEntity<List<ModeloVehiculo>> obtenerVehiculosPorPaginacion(Pageable pageable) {
 		return ResponseEntity.status(HttpStatus.OK).body(servicioVehiculo.obtenerVehiculosPorPaginacion(pageable));

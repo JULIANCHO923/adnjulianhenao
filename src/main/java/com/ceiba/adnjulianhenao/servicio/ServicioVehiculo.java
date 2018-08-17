@@ -11,16 +11,17 @@ import org.springframework.stereotype.Service;
 
 import com.ceiba.adnjulianhenao.convertidor.ConvertidorTipoVehiculo;
 import com.ceiba.adnjulianhenao.convertidor.ConvertidorVehiculo;
+import com.ceiba.adnjulianhenao.dominioparqueadero.Vigilante;
 import com.ceiba.adnjulianhenao.entidad.EntidadVehiculo;
 import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
-import com.ceiba.adnjulianhenao.parqueadero.Vigilante;
 import com.ceiba.adnjulianhenao.repositorio.IRepositorioVehiculo;
 
 @Service("servicioVehiculo")
 public class ServicioVehiculo {
 
+	
 	@Autowired
-	@Qualifier("repositorioVehiculo") // Inyecta el bean
+	@Qualifier("repositorioVehiculo")
 	private IRepositorioVehiculo iRepositorioVehiculo;
 
 	@Autowired
@@ -32,22 +33,29 @@ public class ServicioVehiculo {
 	private ConvertidorTipoVehiculo convertidorTipoVehiculo;
 
 	@Autowired
+	@Qualifier("vigilante")
 	private Vigilante vigilante;
 
 	private static final Logger log = LoggerFactory.getLogger(ServicioVehiculo.class);
 
 	public void crear(ModeloVehiculo modeloVehiculo) {				
-		log.info("Creando Vehiculo");		
-		
-		
-		iRepositorioVehiculo.save(convertidorVehiculo.convertirModeloAEntidad(modeloVehiculo));
+		log.info("Creando Vehiculo");						
+		vigilante.registrarEntrada(modeloVehiculo);		
 		log.info("El vehiculo se creó exitosamente");	
 	}
 
+	public void insertar(ModeloVehiculo modeloVehiculo) {				
+		log.info("Creando Vehiculo");						
+		iRepositorioVehiculo.save(convertidorVehiculo.convertirModeloAEntidad(modeloVehiculo));
+		log.info("El vehiculo se creó exitosamente");	
+	}
+	
 	public void actualizar(ModeloVehiculo modeloVehiculo) {
+		log.info("Actualizando vehiculo.... Enlaza la salida");			
 		if (iRepositorioVehiculo.findById(modeloVehiculo.getId()) != null) {
-			iRepositorioVehiculo.save(convertidorVehiculo.convertirModeloAEntidad(modeloVehiculo));
+			vigilante.registrarSalida(iRepositorioVehiculo.findById(modeloVehiculo.getId()).getId());			
 		}
+		log.info("Salida realizada exitosamente");	
 	}
 
 	public void borrar(int idVehiculo) {
@@ -64,20 +72,18 @@ public class ServicioVehiculo {
 		return convertidorVehiculo.convertirEntidadAModelo(iRepositorioVehiculo.findById(idVehiculo));
 	}
 
-	public List<ModeloVehiculo> obtenerPorPlaca(String placa) {
-		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findByPlaca(placa));
+	public ModeloVehiculo obtenerPorPlaca(String placa) {
+		EntidadVehiculo entidadVehiculo = iRepositorioVehiculo.findByPlaca(placa);
+		if(entidadVehiculo == null){
+			return null;
+		}else{
+			return convertidorVehiculo.convertirEntidadAModelo(entidadVehiculo);
+		}
 	}
 
 	public List<ModeloVehiculo> obtenerPorTipoVehiculo(int idTipoVehiculo) {
 		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findByTipoVehiculoId(idTipoVehiculo));
 	}
-
-	/*
-	 * public List<Vehiculo> obtenerPorIdTipoVehiculo(EntityTipoVehiculo
-	 * tipoVehiculo){ return
-	 * converterVehiculo.convertirLista(repositoryVehiculo.findByTipoVehiculo(
-	 * tipoVehiculo)); }
-	 */
 
 	public List<ModeloVehiculo> obtenerPorCilindraje(int cilindraje) {
 		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findByCilindraje(cilindraje));

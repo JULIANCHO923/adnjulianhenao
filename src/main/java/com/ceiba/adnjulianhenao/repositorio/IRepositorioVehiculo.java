@@ -17,11 +17,13 @@ import com.ceiba.adnjulianhenao.entidad.EntidadVehiculo;
  * @author julian.henao
  *
  */
+
+
 @Repository("repositorioVehiculo")
 public interface IRepositorioVehiculo extends JpaRepository<EntidadVehiculo, Serializable>, PagingAndSortingRepository<EntidadVehiculo, Serializable>{ 
 	
 	public abstract EntidadVehiculo findById(int idVehiculo);	
-	public abstract List<EntidadVehiculo> findByPlaca(String placa);
+	public abstract EntidadVehiculo findByPlaca(String placa);
 	
 	public abstract List<EntidadVehiculo> findByCilindraje(int cilindraje);		
 	public abstract Page<EntidadVehiculo> findAll(Pageable pageable);

@@ -30,13 +30,13 @@ public class ConvertidorVehiculo {
 		return modeloVehiculo;
 	}
 
-	public EntidadVehiculo convertirModeloAEntidad(ModeloVehiculo vehiculoModel) {
+	public EntidadVehiculo convertirModeloAEntidad(ModeloVehiculo modeloVehiculo) {
 		EntidadVehiculo entidadVehiculo = new EntidadVehiculo();
 		ConvertidorTipoVehiculo convertidorTipoVehiculo = new ConvertidorTipoVehiculo();
-		entidadVehiculo.setCilindraje(vehiculoModel.getCilindraje());
-		entidadVehiculo.setId(vehiculoModel.getId());
-		entidadVehiculo.setPlaca(vehiculoModel.getPlaca());
-		entidadVehiculo.setTipoVehiculo(convertidorTipoVehiculo.convertirModeloAEntidad(vehiculoModel.getTipoVehiculo()));
+		entidadVehiculo.setCilindraje(modeloVehiculo.getCilindraje());
+		entidadVehiculo.setId(modeloVehiculo.getId());
+		entidadVehiculo.setPlaca(modeloVehiculo.getPlaca());
+		entidadVehiculo.setTipoVehiculo(convertidorTipoVehiculo.convertirModeloAEntidad(modeloVehiculo.getTipoVehiculo()));
 		return entidadVehiculo;
 	}
 

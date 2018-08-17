@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.ceiba.adnjulianhenao.entidad.EntidadParqueaderoEspacioDisponible;
 
+
+
 @Repository("repositorioParqueaderoEspacioDisponible")
 public interface IRepositorioParqueaderoEspacioDisponible extends JpaRepository<EntidadParqueaderoEspacioDisponible, Serializable>{
 	

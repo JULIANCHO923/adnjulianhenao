@@ -16,10 +16,16 @@ public class ModeloParqueaderoEspacioDisponible {
 		this.tipoVehiculo = tipoVehiculo;
 		this.limiteEspacio = limiteEspacio;
 		this.espacioActual = espacioActual;
+	}	
+	
+	public void aumentarEspacio(){
+		this.espacioActual++;
 	}
-
-
-
+	
+	public void disminuirEspacio(){
+		this.espacioActual--;
+	}
+	
 	public int getId() {
 		return id;
 	}

@@ -3,17 +3,19 @@ package com.ceiba.adnjulianhenao.validacion;
 import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import com.ceiba.adnjulianhenao.dominioparqueadero.Calendario;
 import com.ceiba.adnjulianhenao.excepcion.ExcepcionParametroInvalido;
 import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
-import com.ceiba.adnjulianhenao.parqueadero.Calendario;
 
 @Component
 public class ReglaDiaHabil implements Validaciones{
 
 	
 	@Autowired
+	@Qualifier("calendario")
 	Calendario calendario;
 	
 	@Override

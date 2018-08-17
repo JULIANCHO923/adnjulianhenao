@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ceiba.adnjulianhenao.entidad.EntidadTipoVehiculo;
 
+
 @Repository("repositorioTipoVehiculo")
 public interface IRepositorioTipoVehiculo extends JpaRepository<EntidadTipoVehiculo, Serializable>{
 	

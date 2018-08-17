@@ -18,11 +18,11 @@ import com.ceiba.adnjulianhenao.repositorio.IRepositorioParqueaderoTarifa;
 public class ServicioParqueaderoTarifa {
 
 	@Autowired
-	@Qualifier("repositorioParqueaderoTarifa") // Inyecta el bean
+	@Qualifier("repositorioParqueaderoTarifa") 
 	private IRepositorioParqueaderoTarifa repositorioParquederoTarifa;
 
 	@Autowired
-	@Qualifier("convertidorParqueaderoTarifa") // Inyecta el bean
+	@Qualifier("convertidorParqueaderoTarifa") 
 	private ConvertidorParqueaderoTarifa converterParquederoTarifa;
 
 	private static final Logger log = LoggerFactory.getLogger(ServicioParqueaderoTarifa.class);

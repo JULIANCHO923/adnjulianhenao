@@ -8,24 +8,36 @@ public class ModeloParqueaderoRegistro {
 	private ModeloVehiculo vehiculo;
 	private Calendar fechaEntrada;
 	private Calendar fechaSalida;
+	private int horasParqueo;
 	private int diasParqueadero;
 	private int horasParqueadero;
 	private long costoTotal;
 	
-	public ModeloParqueaderoRegistro(){}
+	public ModeloParqueaderoRegistro(){}		
 	
-	public ModeloParqueaderoRegistro(int id, ModeloVehiculo vehiculo, Calendar fechaEntrada, Calendar fechaSalida,  int diasParqueadero,
-			int horasParqueadero, long costoTotal) {		
-		this.id = id;
+	public ModeloParqueaderoRegistro(ModeloVehiculo vehiculo, Calendar fechaEntrada, Calendar fechaSalida,
+			int horasParqueo, int diasParqueadero, int horasParqueadero, long costoTotal) {		
 		this.vehiculo = vehiculo;
 		this.fechaEntrada = fechaEntrada;
-		this.fechaSalida = fechaSalida;		
+		this.fechaSalida = fechaSalida;
+		this.horasParqueo = horasParqueo;
 		this.diasParqueadero = diasParqueadero;
 		this.horasParqueadero = horasParqueadero;
 		this.costoTotal = costoTotal;
 	}
 
-	public int getId() {
+	public ModeloParqueaderoRegistro(ModeloVehiculo vehiculo, Calendar fechaEntrada) {				
+		this.vehiculo = vehiculo;
+		this.fechaEntrada = fechaEntrada;
+		this.fechaSalida = null;		
+		this.horasParqueo = 0;
+		this.diasParqueadero = 0;
+		this.horasParqueadero = 0;
+		this.costoTotal = 0;
+	}
+
+
+		public int getId() {
 		return id;
 	}
 
@@ -55,6 +67,14 @@ public class ModeloParqueaderoRegistro {
 
 	public void setFechaSalida(Calendar fechaSalida) {
 		this.fechaSalida = fechaSalida;
+	}		
+
+	public int getHorasParqueo() {
+		return horasParqueo;
+	}
+
+	public void setHorasParqueo(int horasParqueo) {
+		this.horasParqueo = horasParqueo;
 	}
 
 	public int getDiasParqueadero() {

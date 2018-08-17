@@ -1,9 +1,11 @@
 package com.ceiba.adnjulianhenao.validacion;
 
+import org.springframework.stereotype.Component;
+
 import com.ceiba.adnjulianhenao.excepcion.ExcepcionSobreCosto;
 import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
 
-
+@Component("reglaSobreCostoCilindraje")
 public class ReglaSobreCostoCilindraje implements Validaciones{
 	
 	@Override

@@ -27,6 +27,7 @@ public class ConvertidorParqueaderoRegistro {
 	    modeloParqueaderoRegistro.setVehiculo(convertidorVehiculo.convertirEntidadAModelo(entidadParqueaderoRegistro.getVehiculo()));
 	    modeloParqueaderoRegistro.setFechaEntrada(entidadParqueaderoRegistro.getFechaEntrada());
 	    modeloParqueaderoRegistro.setFechaSalida(entidadParqueaderoRegistro.getFechaSalida());
+	    modeloParqueaderoRegistro.setHorasParqueo(entidadParqueaderoRegistro.getHorasParqueo());
 	    modeloParqueaderoRegistro.setDiasParqueadero(entidadParqueaderoRegistro.getDiasParqueadero());
 	    modeloParqueaderoRegistro.setHorasParqueadero(entidadParqueaderoRegistro.getHorasParqueadero());
 	    modeloParqueaderoRegistro.setCostoTotal(entidadParqueaderoRegistro.getCostoTotal());	    
@@ -40,6 +41,7 @@ public class ConvertidorParqueaderoRegistro {
 		entidadParqueaderoRegistro.setVehiculo(convertidorVehiculo.convertirModeloAEntidad(modeloParqueaderoRegistro.getVehiculo()));
 		entidadParqueaderoRegistro.setFechaEntrada(modeloParqueaderoRegistro.getFechaEntrada());
 		entidadParqueaderoRegistro.setFechaSalida(modeloParqueaderoRegistro.getFechaSalida());
+		entidadParqueaderoRegistro.setHorasParqueo(modeloParqueaderoRegistro.getHorasParqueo());
 		entidadParqueaderoRegistro.setDiasParqueadero(modeloParqueaderoRegistro.getDiasParqueadero());
 		entidadParqueaderoRegistro.setHorasParqueadero(modeloParqueaderoRegistro.getHorasParqueadero());
 		entidadParqueaderoRegistro.setCostoTotal(modeloParqueaderoRegistro.getCostoTotal());
