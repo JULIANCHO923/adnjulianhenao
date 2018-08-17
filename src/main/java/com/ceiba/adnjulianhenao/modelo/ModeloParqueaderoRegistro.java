@@ -1,13 +1,13 @@
 package com.ceiba.adnjulianhenao.modelo;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
 
 public class ModeloParqueaderoRegistro {
 
 	private int id;
 	private ModeloVehiculo vehiculo;
-	private Calendar fechaEntrada;
-	private Calendar fechaSalida;
+	private LocalDateTime fechaEntrada;
+	private LocalDateTime fechaSalida;
 	private int horasParqueo;
 	private int diasParqueadero;
 	private int horasParqueadero;
@@ -15,7 +15,7 @@ public class ModeloParqueaderoRegistro {
 	
 	public ModeloParqueaderoRegistro(){}		
 	
-	public ModeloParqueaderoRegistro(ModeloVehiculo vehiculo, Calendar fechaEntrada, Calendar fechaSalida,
+	public ModeloParqueaderoRegistro(ModeloVehiculo vehiculo, LocalDateTime fechaEntrada, LocalDateTime fechaSalida,
 			int horasParqueo, int diasParqueadero, int horasParqueadero, long costoTotal) {		
 		this.vehiculo = vehiculo;
 		this.fechaEntrada = fechaEntrada;
@@ -26,7 +26,7 @@ public class ModeloParqueaderoRegistro {
 		this.costoTotal = costoTotal;
 	}
 
-	public ModeloParqueaderoRegistro(ModeloVehiculo vehiculo, Calendar fechaEntrada) {				
+	public ModeloParqueaderoRegistro(ModeloVehiculo vehiculo, LocalDateTime fechaEntrada) {				
 		this.vehiculo = vehiculo;
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = null;		
@@ -53,19 +53,19 @@ public class ModeloParqueaderoRegistro {
 		this.vehiculo = vehiculo;
 	}
 
-	public Calendar getFechaEntrada() {
+	public LocalDateTime getFechaEntrada() {
 		return fechaEntrada;
 	}
 
-	public void setFechaEntrada(Calendar fechaEntrada) {
+	public void setFechaEntrada(LocalDateTime fechaEntrada) {
 		this.fechaEntrada = fechaEntrada;
 	}
 
-	public Calendar getFechaSalida() {
+	public LocalDateTime getFechaSalida() {
 		return fechaSalida;
 	}
 
-	public void setFechaSalida(Calendar fechaSalida) {
+	public void setFechaSalida(LocalDateTime fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}		
 

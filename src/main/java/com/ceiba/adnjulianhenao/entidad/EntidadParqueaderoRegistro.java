@@ -1,7 +1,7 @@
 package com.ceiba.adnjulianhenao.entidad;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,10 +36,10 @@ public class EntidadParqueaderoRegistro implements Serializable {
 	private EntidadVehiculo vehiculo;
 	
 	@Column(name = "fecha_entrada")
-	private Calendar fechaEntrada;
+	private LocalDateTime fechaEntrada;
 
 	@Column(name = "fecha_salida")
-	private Calendar fechaSalida;
+	private LocalDateTime fechaSalida;
 	
 	@Column(name = "horas_parqueo")
 	private int horasParqueo;
@@ -55,7 +55,7 @@ public class EntidadParqueaderoRegistro implements Serializable {
 
 	public EntidadParqueaderoRegistro(){}
 	
-	public EntidadParqueaderoRegistro(EntidadVehiculo vehiculo, Calendar fechaEntrada) {				
+	public EntidadParqueaderoRegistro(EntidadVehiculo vehiculo, LocalDateTime fechaEntrada) {				
 		this.vehiculo = vehiculo;
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = null;		
@@ -82,19 +82,19 @@ public class EntidadParqueaderoRegistro implements Serializable {
 		this.vehiculo = vehiculo;
 	}
 
-	public Calendar getFechaEntrada() {
+	public LocalDateTime getFechaEntrada() {
 		return fechaEntrada;
 	}
 
-	public void setFechaEntrada(Calendar fechaEntrada) {
+	public void setFechaEntrada(LocalDateTime fechaEntrada) {
 		this.fechaEntrada = fechaEntrada;
 	}
 
-	public Calendar getFechaSalida() {
+	public LocalDateTime getFechaSalida() {
 		return fechaSalida;
 	}
 
-	public void setFechaSalida(Calendar fechaSalida) {
+	public void setFechaSalida(LocalDateTime fechaSalida) {
 		this.fechaSalida = fechaSalida;
 	}		
 

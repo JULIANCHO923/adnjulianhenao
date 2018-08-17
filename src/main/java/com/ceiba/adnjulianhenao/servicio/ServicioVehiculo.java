@@ -51,9 +51,11 @@ public class ServicioVehiculo {
 	}
 	
 	public void actualizar(ModeloVehiculo modeloVehiculo) {
-		log.info("Actualizando vehiculo.... Enlaza la salida");			
-		if (iRepositorioVehiculo.findById(modeloVehiculo.getId()) != null) {
-			vigilante.registrarSalida(iRepositorioVehiculo.findById(modeloVehiculo.getId()).getId());			
+		log.info("Actualizando vehiculo.... Enlaza la salida");	
+		
+		// Faltaria validar que si el vehiculo no se encuentra en los registros 
+		if (iRepositorioVehiculo.findByPlaca(modeloVehiculo.getPlaca()) != null) {
+			vigilante.registrarSalida(iRepositorioVehiculo.findByPlaca(modeloVehiculo.getPlaca()).getId());			
 		}
 		log.info("Salida realizada exitosamente");	
 	}
@@ -81,8 +83,8 @@ public class ServicioVehiculo {
 		}
 	}
 
-	public List<ModeloVehiculo> obtenerPorTipoVehiculo(int idTipoVehiculo) {
-		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findByTipoVehiculoId(idTipoVehiculo));
+	public List<ModeloVehiculo> obtenerPorTipoVehiculo(int idTipoVehiculo, Pageable pageable) {
+		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findByTipoVehiculoId(idTipoVehiculo, pageable).getContent());
 	}
 
 	public List<ModeloVehiculo> obtenerPorCilindraje(int cilindraje) {

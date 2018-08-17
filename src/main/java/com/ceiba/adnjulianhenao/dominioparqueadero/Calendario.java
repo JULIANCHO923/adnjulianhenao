@@ -1,6 +1,8 @@
 package com.ceiba.adnjulianhenao.dominioparqueadero;
 
-import java.util.Calendar;
+
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 import org.springframework.stereotype.Component;
 
@@ -16,12 +18,18 @@ import org.springframework.stereotype.Component;
 @Component("calendario")
 public class Calendario {
 
-	public int obtenerDiaActual() {
-		return obtenerFechaActual().get(Calendar.DAY_OF_WEEK);
+	/**
+	 * Lista de nombres de zonas horarias https://www.mkyong.com/java8/java-display-all-zoneid-and-its-utc-offset/
+	 * "Pacific/Norfolk" "America/St_Johns"
+	 */	  	
+	public static final String zonaHoraria =  "America/Bogota";
+	
+	public int obtenerDiaActual() {		
+		return obtenerFechaActual().getDayOfWeek().getValue();
 	}
 
-	public Calendar obtenerFechaActual() {
-		return Calendar.getInstance();
+	public LocalDateTime obtenerFechaActual() {		 
+		return LocalDateTime.now(ZoneId.of(zonaHoraria));
 	}
 
 }

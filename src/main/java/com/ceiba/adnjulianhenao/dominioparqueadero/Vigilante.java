@@ -57,16 +57,21 @@ public class Vigilante {
 	 * @param modeloVehiculo
 	 *            vehiculo que envia el frontend
 	 */
- public void registrarEntrada(ModeloVehiculo modeloVehiculo) {
-		for (Validaciones validacion : validacionesEntrada.validacionesEntrada()) {
-			validacion.validar(modeloVehiculo);
-		}
+	public void registrarEntrada(ModeloVehiculo modeloVehiculo) {
 
-		if (servicioVehiculo.obtenerPorPlaca(modeloVehiculo.getPlaca()) == null) {
-			// No se encuentra registrado así que se debe de crear
-			servicioVehiculo.insertar(modeloVehiculo);
-		}
-		crearRegistro(modeloVehiculo.getPlaca(), modeloVehiculo.getTipoVehiculo().getId());
+
+			for (Validaciones validacion : validacionesEntrada.validacionesEntrada()) {
+				validacion.validar(modeloVehiculo);
+			}
+
+			if (servicioVehiculo.obtenerPorPlaca(modeloVehiculo.getPlaca()) == null) {
+				// No se encuentra registrado así que se debe de crear
+				servicioVehiculo.insertar(modeloVehiculo);
+			}
+
+			crearRegistro(modeloVehiculo.getPlaca(), modeloVehiculo.getTipoVehiculo().getId());
+		
+
 	}
 
 	/**
@@ -78,15 +83,17 @@ public class Vigilante {
 	public void crearRegistro(String placa, int idTipoVehiculo) {
 		servicioParqueaderoRegistro.insertar(new ModeloParqueaderoRegistro(servicioVehiculo.obtenerPorPlaca(placa),
 				calendario.obtenerFechaActual()));
-		ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible = servicioParqueaderoEspacioDisponible.obtenerEspacioDisponiblePorTipoVehiculo(idTipoVehiculo);
+		ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible = servicioParqueaderoEspacioDisponible
+				.obtenerEspacioDisponiblePorTipoVehiculo(idTipoVehiculo);
 		modeloParqueaderoEspacioDisponible.aumentarEspacio();
 		servicioParqueaderoEspacioDisponible.actualizar(modeloParqueaderoEspacioDisponible);
 	}
 
-	public void registrarSalida(int id) {		
-		ModeloParqueaderoRegistro modeloParqueaderoRegistro = (servicioParqueaderoRegistro.obtenerRegistrosPorVehiculosPorIdSinSalir(id));
+	public void registrarSalida(int idVehiculo) {
+		ModeloParqueaderoRegistro modeloParqueaderoRegistro = (servicioParqueaderoRegistro
+				.obtenerRegistrosPorVehiculosPorIdSinSalir(idVehiculo));
 		modeloParqueaderoRegistro.setFechaSalida(calendario.obtenerFechaActual());
-		
+
 		calculadora.calcularCostoParqueadero(modeloParqueaderoRegistro, calculadora.calcularHorasParqueadero(
 				modeloParqueaderoRegistro.getFechaEntrada(), modeloParqueaderoRegistro.getFechaSalida()));
 
@@ -99,9 +106,11 @@ public class Vigilante {
 		} finally {
 			// Registrar Salida y descontar vehiculo
 			servicioParqueaderoRegistro.insertar(modeloParqueaderoRegistro);
-			ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible = servicioParqueaderoEspacioDisponible.obtenerEspacioDisponiblePorTipoVehiculo(modeloParqueaderoRegistro.getVehiculo().getTipoVehiculo().getId());
+			ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible = servicioParqueaderoEspacioDisponible
+					.obtenerEspacioDisponiblePorTipoVehiculo(
+							modeloParqueaderoRegistro.getVehiculo().getTipoVehiculo().getId());
 			modeloParqueaderoEspacioDisponible.disminuirEspacio();
-			servicioParqueaderoEspacioDisponible.actualizar(modeloParqueaderoEspacioDisponible);	
+			servicioParqueaderoEspacioDisponible.actualizar(modeloParqueaderoEspacioDisponible);
 		}
 	}
 

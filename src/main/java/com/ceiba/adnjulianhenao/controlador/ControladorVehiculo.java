@@ -28,8 +28,7 @@ public class ControladorVehiculo {
 	private ServicioVehiculo servicioVehiculo;
 
 	// Por cada peticion nos trae un header y un body del tipo Json
-	// Con RequestBody llamo y con el Valid lo convierto en entityVehiculo
-	
+	// Con RequestBody llamo y con el Valid lo convierto en entityVehiculo	
 	@RequestMapping(value="", method=RequestMethod.POST)
 	public ResponseEntity<String> crear(@RequestBody ModeloVehiculo vehiculo) {
 		servicioVehiculo.crear(vehiculo);
@@ -54,8 +53,8 @@ public class ControladorVehiculo {
 	}
 	
 	@RequestMapping(value="{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<ModeloVehiculo>> obtenerVehiculosPorTipoVehiculo(@PathVariable("id") int idTipoVehiculo) {
-		return ResponseEntity.status(HttpStatus.OK).body(servicioVehiculo.obtenerPorTipoVehiculo(idTipoVehiculo));
+	public ResponseEntity<List<ModeloVehiculo>> obtenerVehiculosPorTipoVehiculo(@PathVariable("id") int idTipoVehiculo, Pageable pageable) {
+		return ResponseEntity.status(HttpStatus.OK).body(servicioVehiculo.obtenerPorTipoVehiculo(idTipoVehiculo, pageable));
 	}
 	
 }

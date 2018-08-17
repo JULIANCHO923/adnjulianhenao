@@ -1,17 +1,14 @@
 package com.ceiba.adnjulianhenao.servicio;
 
-import java.util.Calendar;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ceiba.adnjulianhenao.convertidor.ConvertidorParqueaderoRegistro;
-import com.ceiba.adnjulianhenao.convertidor.ConvertidorVehiculo;
 import com.ceiba.adnjulianhenao.entidad.EntidadParqueaderoRegistro;
 import com.ceiba.adnjulianhenao.modelo.ModeloParqueaderoRegistro;
 import com.ceiba.adnjulianhenao.repositorio.IRepositorioParqueaderoRegistro;
@@ -24,9 +21,6 @@ public class ServicioParqueaderoRegistro {
 
 	@Autowired
 	private ConvertidorParqueaderoRegistro convertidorParqueaderoRegistro;
-	
-	@Autowired
-	private ConvertidorVehiculo convertidorVehiculo;
 	
 	private static final Logger log = LoggerFactory.getLogger(ServicioParqueaderoRegistro.class);
 
@@ -47,9 +41,9 @@ public class ServicioParqueaderoRegistro {
 		iRepositorioParqueaderoRegistro.delete(entidadParqueaderoRegistro);		
 	}
 
-	public List<ModeloParqueaderoRegistro> obtenerRegistros() {
+	public List<ModeloParqueaderoRegistro> obtenerRegistros(Pageable pageable) {
 		log.info("Listando ParqueaderoRegistros");
-		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findAll());
+		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findAll(pageable).getContent());
 	}
 
 	public ModeloParqueaderoRegistro obtenerPorId(int idParqueaderoRegistro) {
@@ -58,10 +52,6 @@ public class ServicioParqueaderoRegistro {
 
 	public List<ModeloParqueaderoRegistro> obtenerRegistrosPorVehiculo(int idVehiculo) {
 		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findByVehiculoId(idVehiculo));
-	}
-	
-	public List<ModeloParqueaderoRegistro> obtenerRegistrosPorVehiculosSinSalir(Calendar fechaEntrada){
-		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findByFechaEntradaAndFechaSalidaIsNull(fechaEntrada));
 	}		
 	
 	public List<ModeloParqueaderoRegistro> obtenerRegistrosPorPaginacion(Pageable pageable) {
@@ -69,6 +59,12 @@ public class ServicioParqueaderoRegistro {
 	}
 
 	public ModeloParqueaderoRegistro obtenerRegistrosPorVehiculosPorIdSinSalir(int id) {
-		return convertidorParqueaderoRegistro.convertirEntidadAModelo(iRepositorioParqueaderoRegistro.findByVehiculoIdAndFechaSalidaIsNull(id));
+		EntidadParqueaderoRegistro entidadParqueaderoRegistro = iRepositorioParqueaderoRegistro.findByVehiculoIdAndFechaSalidaIsNull(id);
+		if(entidadParqueaderoRegistro == null){
+			return null;
+		}else{
+			return convertidorParqueaderoRegistro.convertirEntidadAModelo(entidadParqueaderoRegistro);
+		}
+		
 	}	
 }

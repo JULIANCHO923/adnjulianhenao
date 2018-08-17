@@ -1,6 +1,5 @@
 package com.ceiba.adnjulianhenao.controlador;
 
-import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,19 +49,10 @@ public class ControladorParqueaderoRegistro {
 	}
 
 	@RequestMapping(value="", method=RequestMethod.GET)
-	public ResponseEntity<List<ModeloParqueaderoRegistro>> obtenerRegistros() {
-		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistros());
-	}
-
-	@RequestMapping(value="/todos/{fechaEntrada}", method=RequestMethod.GET)
-	public ResponseEntity<List<ModeloParqueaderoRegistro>> obtenerRegistroPorVehiculosSinSalir(@PathVariable("fechaEntrada") Calendar fechaEntrada) {
-		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistrosPorVehiculosSinSalir(fechaEntrada));
+	public ResponseEntity<List<ModeloParqueaderoRegistro>> obtenerRegistros(Pageable pageable) {
+		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistros(pageable));
 	}
 	
-	@RequestMapping(value="/paginacion", method=RequestMethod.GET)
-	public ResponseEntity<List<ModeloParqueaderoRegistro>> obtenerRegistrosPorPaginacion(Pageable pageable) {
-		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistrosPorPaginacion(pageable));
-	}
 	/*
 	@RequestMapping(value="/{placa}", method=RequestMethod.GET)
 	public ResponseEntity<ModeloParqueaderoRegistro> obtenerRegistroPorVehiculosSinSalirPorPaginacion(@PathVariable("placa") String placa) {
