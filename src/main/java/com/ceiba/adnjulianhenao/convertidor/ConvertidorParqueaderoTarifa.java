@@ -13,12 +13,20 @@ import java.util.List;
 public class ConvertidorParqueaderoTarifa {
 
 	
-	public List<ModeloParqueaderoTarifa> convertirLista(List<EntidadParqueaderoTarifa> entityParquederoTarifas) {
+	public List<ModeloParqueaderoTarifa> convertirLista(List<EntidadParqueaderoTarifa> entidadParquederoTarifas) {
 		List<ModeloParqueaderoTarifa> parquederoTarifas = new ArrayList<>();
-		for (EntidadParqueaderoTarifa entidadParqueaderoTarifa : entityParquederoTarifas) {
+		for (EntidadParqueaderoTarifa entidadParqueaderoTarifa : entidadParquederoTarifas) {
 			parquederoTarifas.add(convertirEntidadAModelo( entidadParqueaderoTarifa));
 		}
 		return parquederoTarifas;
+	}
+	
+	public List<EntidadParqueaderoTarifa> convertirLista2(List<ModeloParqueaderoTarifa> modeloParquederoTarifas) {
+		List<EntidadParqueaderoTarifa> entidadParquederoTarifas = new ArrayList<>();
+		for (ModeloParqueaderoTarifa modeloParqueaderoTarifa : modeloParquederoTarifas) {
+			entidadParquederoTarifas.add(convertirModeloAEntidad(modeloParqueaderoTarifa));
+		}
+		return entidadParquederoTarifas;
 	}
 
 	public ModeloParqueaderoTarifa convertirEntidadAModelo(EntidadParqueaderoTarifa entidadParqueaderoTarifa) {

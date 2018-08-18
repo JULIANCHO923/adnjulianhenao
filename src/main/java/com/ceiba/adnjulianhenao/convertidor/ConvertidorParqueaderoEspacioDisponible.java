@@ -18,6 +18,14 @@ public class ConvertidorParqueaderoEspacioDisponible {
 		}
 		return parqueaderoEspacioDisponible;		
 	}
+	
+	public List<EntidadParqueaderoEspacioDisponible> convertirLista2(List<ModeloParqueaderoEspacioDisponible> modeloParqueaderoEspaciosDisponibles) {
+		List<EntidadParqueaderoEspacioDisponible> entidadParqueaderoEspacioDisponible = new ArrayList<>();
+		for (ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible : modeloParqueaderoEspaciosDisponibles) {
+			entidadParqueaderoEspacioDisponible.add(convertirModeloAEntidad(modeloParqueaderoEspacioDisponible));
+		}
+		return entidadParqueaderoEspacioDisponible;		
+	}
 
 	public ModeloParqueaderoEspacioDisponible convertirEntidadAModelo(EntidadParqueaderoEspacioDisponible entidadParqueaderoEspacioDisponible) {
 		ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible = new ModeloParqueaderoEspacioDisponible();

@@ -32,6 +32,12 @@ public class ServicioParqueaderoTarifa {
 		repositorioParquederoTarifa.save(converterParquederoTarifa.convertirModeloAEntidad(modeloParqueaderoTarifa));
 		log.info("La tarifa se creó exitosamente");
 	}
+	
+	public void crear(List<ModeloParqueaderoTarifa> modeloParqueaderoTarifas) {
+		log.info("Creando Tarifas");
+		repositorioParquederoTarifa.saveAll(converterParquederoTarifa.convertirLista2(modeloParqueaderoTarifas));
+		log.info("La tarifa se creó exitosamente");
+	}
 
 	public void actualizar(ModeloParqueaderoTarifa modeloParqueaderoTarifa) {
 		if (repositorioParquederoTarifa.findById(modeloParqueaderoTarifa.getId()) != null) {

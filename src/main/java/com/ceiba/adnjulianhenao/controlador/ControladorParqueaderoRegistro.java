@@ -31,15 +31,15 @@ public class ControladorParqueaderoRegistro {
 
 	
 	@RequestMapping(value="", method=RequestMethod.POST)
-	public ResponseEntity<String> agregar(@RequestBody ModeloParqueaderoRegistro modeloParqueaderoRegistro) {
+	public ResponseEntity<String> crear(@RequestBody ModeloParqueaderoRegistro modeloParqueaderoRegistro) {
 		servicioParqueaderoRegistro.insertar(modeloParqueaderoRegistro);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Registro Ingresado exitosamente");
 	}
 
-	@RequestMapping(value="", method=RequestMethod.PUT)
+	@RequestMapping(value="/all", method=RequestMethod.PUT)
 	public ResponseEntity<String> actualizar(@RequestBody ModeloParqueaderoRegistro modeloParqueaderoRegistro) {
 		servicioParqueaderoRegistro.actualizar(modeloParqueaderoRegistro);
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Registro Actualizado exitosamente");
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Registros Actualizados exitosamente");
 	}
 
 	@RequestMapping(value="{id}", method=RequestMethod.DELETE)

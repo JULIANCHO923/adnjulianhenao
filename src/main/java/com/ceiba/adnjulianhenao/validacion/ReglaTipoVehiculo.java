@@ -31,7 +31,7 @@ public class ReglaTipoVehiculo implements Validaciones{
 		String tiposVehiculos = ""; 
 		
 		for(ModeloTipoVehiculo modeloTipoVehiculo: modeloTipoVehiculos){
-			tiposVehiculos = tiposVehiculos +  "\n {" + modeloTipoVehiculo.getDescripcion() + "}";
+			tiposVehiculos = tiposVehiculos +  " {("+ modeloTipoVehiculo.getId() +")," + modeloTipoVehiculo.getDescripcion() + "}";
 			if( modeloTipoVehiculo.getId() == modelVehiculo.getTipoVehiculo().getId()){
 				vehiculoValido = true;
 				break;
@@ -40,7 +40,7 @@ public class ReglaTipoVehiculo implements Validaciones{
 						
 		/* Si no encuentra algún tipo de vehiculo que coincida con el ingresado vehiculoValido = false */
 		if(!vehiculoValido){
-			throw new ExcepcionParametroInvalido("El tipo de vehiculo ingresado no es Valido: "+ tiposVehiculos );
+			throw new ExcepcionParametroInvalido("El tipo de vehiculo ingresado no es Valido - Los tipos aceptados son: "+ tiposVehiculos );
 		}		
 		
 	}

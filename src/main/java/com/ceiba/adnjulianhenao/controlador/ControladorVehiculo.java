@@ -30,11 +30,17 @@ public class ControladorVehiculo {
 	// Por cada peticion nos trae un header y un body del tipo Json
 	// Con RequestBody llamo y con el Valid lo convierto en entityVehiculo	
 	@RequestMapping(value="", method=RequestMethod.POST)
-	public ResponseEntity<String> crear(@RequestBody ModeloVehiculo vehiculo) {
-		servicioVehiculo.crear(vehiculo);
+	public ResponseEntity<String> crear(@RequestBody ModeloVehiculo modeloVehiculo) {
+		servicioVehiculo.crear(modeloVehiculo);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Vehiculo Ingresado exitosamente");					
 	}
 
+	@RequestMapping(value="/all", method=RequestMethod.POST)
+	public ResponseEntity<String> crear(@RequestBody List<ModeloVehiculo> modeloVehiculos) {
+		servicioVehiculo.crear(modeloVehiculos);
+		return ResponseEntity.status(HttpStatus.CREATED).body("Vehiculos Ingresados exitosamente");					
+	}
+	
 	@RequestMapping(value="", method=RequestMethod.PUT)
 	public ResponseEntity<String> actualizar(@RequestBody ModeloVehiculo vehiculo) {
 		servicioVehiculo.actualizar(vehiculo);

@@ -44,6 +44,12 @@ public class ServicioVehiculo {
 		log.info("El vehiculo se creó exitosamente");	
 	}
 
+	public void crear(List<ModeloVehiculo> modeloVehiculos) {				
+		log.info("Creando Vehiculo");						
+		iRepositorioVehiculo.saveAll(convertidorVehiculo.convertirLista2(modeloVehiculos));		
+		log.info("El vehiculo se creó exitosamente");	
+	}
+	
 	public void insertar(ModeloVehiculo modeloVehiculo) {				
 		log.info("Creando Vehiculo");						
 		iRepositorioVehiculo.save(convertidorVehiculo.convertirModeloAEntidad(modeloVehiculo));

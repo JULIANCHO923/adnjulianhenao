@@ -31,11 +31,17 @@ public class ControladorParqueaderoEspacioDisponible {
 	// Con RequestBody llamo y con el Valid lo convierto en entityVehiculo
 	
 	@RequestMapping(value="", method=RequestMethod.POST)
-	public ResponseEntity<String> agregar(@RequestBody ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible){
+	public ResponseEntity<String> crear(@RequestBody ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible){
 		servicioParqueaderoEspacioDisponible.crear(modeloParqueaderoEspacioDisponible);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Espacio Ingresado exitosamente");
 	}
-          
+     
+	@RequestMapping(value="/all", method=RequestMethod.POST)
+	public ResponseEntity<String> crear(@RequestBody List<ModeloParqueaderoEspacioDisponible> modeloParqueaderoEspacioDisponibles){
+		servicioParqueaderoEspacioDisponible.crear(modeloParqueaderoEspacioDisponibles);
+		return ResponseEntity.status(HttpStatus.CREATED).body("Espacios Ingresados exitosamente");
+	}
+	
 	@RequestMapping(value="", method=RequestMethod.PUT)
 	public ResponseEntity<String> actualizar(@RequestBody ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible){
 		servicioParqueaderoEspacioDisponible.actualizar(modeloParqueaderoEspacioDisponible);

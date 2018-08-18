@@ -30,19 +30,25 @@ public class ControladorTipoVehiculo {
 	// Por cada peticion nos trae un header y un body del tipo Json
 	// Con RequestBody llamo y con el Valid lo convierto en entityVehiculo	
 	@RequestMapping(value="", method=RequestMethod.POST)
-	public ResponseEntity<String> agregarTipoVehiculo(@RequestBody ModeloTipoVehiculo vehiculo){
+	public ResponseEntity<String> crear(@RequestBody ModeloTipoVehiculo vehiculo){
 		servicioTipoVehiculo.crear(vehiculo);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Tipo de vehiculo Ingresado exitosamente");
 	}
-          
+    
+	@RequestMapping(value="/all", method=RequestMethod.POST)
+	public ResponseEntity<String> crear(@RequestBody List<ModeloTipoVehiculo> vehiculo){
+		servicioTipoVehiculo.crear(vehiculo);
+		return ResponseEntity.status(HttpStatus.CREATED).body("Tipos de vehiculos Ingresados exitosamente");
+	}
+	
 	@RequestMapping(value="", method=RequestMethod.PUT)
-	public ResponseEntity<String> actualizarTipoVehiculo(@RequestBody ModeloTipoVehiculo vehiculo){
+	public ResponseEntity<String> actualizar(@RequestBody ModeloTipoVehiculo vehiculo){
 		servicioTipoVehiculo.actualizar(vehiculo);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Tipo de vehiculo Actualizado exitosamente");
 	}
 	
 	@RequestMapping(value="{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<String> borrarTipoVehiculo(@PathVariable("id") int id){
+	public ResponseEntity<String> borrar(@PathVariable("id") int id){
 		servicioTipoVehiculo.borrar(id);
 		return ResponseEntity.status(HttpStatus.CONTINUE).body("Tipo de vehiculo Eliminado exitosamente");
 	}

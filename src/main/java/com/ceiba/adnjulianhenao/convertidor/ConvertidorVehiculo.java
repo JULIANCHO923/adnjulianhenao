@@ -13,13 +13,21 @@ import java.util.List;
 public class ConvertidorVehiculo {
 		
 	public List<ModeloVehiculo> convertirLista(List<EntidadVehiculo> entidadVehiculos) {
-		List<ModeloVehiculo> vehiculos = new ArrayList<>();
+		List<ModeloVehiculo> modeloVehiculos = new ArrayList<>();
 		for (EntidadVehiculo entidadVehiculo : entidadVehiculos) {
-			vehiculos.add(convertirEntidadAModelo(entidadVehiculo));
+			modeloVehiculos.add(convertirEntidadAModelo(entidadVehiculo));
 		}
-		return vehiculos;
+		return modeloVehiculos;
 	}
 
+	public List<EntidadVehiculo> convertirLista2(List<ModeloVehiculo> modeloVehiculos) {
+		List<EntidadVehiculo> entidadVehiculos = new ArrayList<>();
+		for (ModeloVehiculo modeloVehiculo : modeloVehiculos) {
+			entidadVehiculos.add(convertirModeloAEntidad(modeloVehiculo));
+		}
+		return entidadVehiculos;
+	}
+	
 	public ModeloVehiculo convertirEntidadAModelo(EntidadVehiculo entidadVehiculo) {
 		ModeloVehiculo modeloVehiculo = new ModeloVehiculo();
 		ConvertidorTipoVehiculo convertidorTipoVehiculo = new ConvertidorTipoVehiculo();

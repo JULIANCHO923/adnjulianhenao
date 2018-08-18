@@ -21,6 +21,14 @@ public class ConvertidorTipoVehiculo {
 		return tipoVehiculos;			
 	}
 	
+	public List<EntidadTipoVehiculo> convertirLista2(List<ModeloTipoVehiculo> modeloTipoVehiculos){
+		List<EntidadTipoVehiculo> tipoVehiculos = new ArrayList<>();
+		for(ModeloTipoVehiculo etv : modeloTipoVehiculos ){
+			tipoVehiculos.add(convertirModeloAEntidad(etv));
+		}
+		return tipoVehiculos;			
+	}
+	
 	public ModeloTipoVehiculo convertirEntidadAModelo(EntidadTipoVehiculo entidadTipoVehiculo) {
 		ModeloTipoVehiculo tv = new ModeloTipoVehiculo();
 		tv.setId(entidadTipoVehiculo.getId());

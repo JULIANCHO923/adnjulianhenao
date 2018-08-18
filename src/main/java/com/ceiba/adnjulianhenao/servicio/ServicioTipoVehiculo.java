@@ -35,6 +35,12 @@ public class ServicioTipoVehiculo {
 		log.info("El Tipo vehiculo se creó exitosamente");
 	}
 
+	public void crear(List<ModeloTipoVehiculo> modeloTipoVehiculo) {
+		log.info("Creando Tipo Vehiculo");
+		iRepositorioTipoVehiculo.saveAll(convertidorTipoVehiculo.convertirLista2(modeloTipoVehiculo));
+		log.info("El Tipo vehiculo se creó exitosamente");
+	}
+	
 	public void actualizar(ModeloTipoVehiculo modeloTipoVehiculo) {
 		if (iRepositorioTipoVehiculo.findById(modeloTipoVehiculo.getId()) != null) {
 			iRepositorioTipoVehiculo.save(convertidorTipoVehiculo.convertirModeloAEntidad(modeloTipoVehiculo));

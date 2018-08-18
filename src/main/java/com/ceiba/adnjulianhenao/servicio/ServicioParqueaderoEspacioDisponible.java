@@ -35,6 +35,13 @@ public class ServicioParqueaderoEspacioDisponible {
 		log.info("El espacio se creó exitosamente");
 	}
 
+	public void crear(List<ModeloParqueaderoEspacioDisponible> modeloParqueaderoEspacioDisponibles) {
+		log.info("Creando Espacios");
+		irepositorioParquederoEspacioDisponible
+				.saveAll(convertidorParquederoEspacioDisponible.convertirLista2(modeloParqueaderoEspacioDisponibles));
+		log.info("Los espacios se crearon exitosamente");
+	}
+	
 	public void actualizar(ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible) {
 		if (irepositorioParquederoEspacioDisponible.findById(modeloParqueaderoEspacioDisponible.getId()) != null) {
 			irepositorioParquederoEspacioDisponible.save(
