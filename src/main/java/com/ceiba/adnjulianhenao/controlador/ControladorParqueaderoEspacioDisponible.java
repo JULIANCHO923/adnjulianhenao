@@ -26,7 +26,6 @@ public class ControladorParqueaderoEspacioDisponible {
 	@Qualifier("servicioParqueaderoEspacioDisponible")
 	private ServicioParqueaderoEspacioDisponible servicioParqueaderoEspacioDisponible; 
 	
-	
 	// Por cada peticion nos trae un header y un body del tipo Json
 	// Con RequestBody llamo y con el Valid lo convierto en entityVehiculo
 	
@@ -48,18 +47,18 @@ public class ControladorParqueaderoEspacioDisponible {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Espacio Actualizado exitosamente");
 	}
 	
-	@RequestMapping(value="{id}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<String> borrar(@PathVariable("id") int id){
 		servicioParqueaderoEspacioDisponible.borrar(id);
 		return ResponseEntity.status(HttpStatus.CONTINUE).body("Espacio Eliminado exitosamente");
 	}
 	
 	@RequestMapping(value="", method=RequestMethod.GET)
-	public ResponseEntity<List<ModeloParqueaderoEspacioDisponible>> obtenerTarifas(){
-		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoEspacioDisponible.obtenerTarifas());
+	public ResponseEntity<List<ModeloParqueaderoEspacioDisponible>> obtenerEspacios(){
+		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoEspacioDisponible.obtenerEspacios());
 	}
 	
-	@RequestMapping(value="{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<ModeloParqueaderoEspacioDisponible> obtenerEspacioDisponiblePorTipoVehiculo(@PathVariable("id") int idTipoVehiculo){
 		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoEspacioDisponible.obtenerEspacioDisponiblePorTipoVehiculo(idTipoVehiculo));
 	}

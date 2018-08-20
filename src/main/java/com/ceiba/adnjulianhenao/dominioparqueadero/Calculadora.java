@@ -46,17 +46,17 @@ public class Calculadora {
 			b = horas;
 			costoTotal = costodia * (a + 1);
 			modeloParqueaderoRegistro.setDiasParqueadero(a+1);
-			modeloParqueaderoRegistro.setHorasParqueo(b);
+			
 		} else {
 			b = (horas / inicioCobroDia);
 			c = (horas % inicioCobroDia);
 			costoTotal = (a + b) * costodia + c * costohora;
 			modeloParqueaderoRegistro.setDiasParqueadero(a+b);
 			modeloParqueaderoRegistro.setHorasParqueadero(c);
-			modeloParqueaderoRegistro.setHorasParqueo((a) * 24 + b + c);
+			
 		}
 		
-		
+		modeloParqueaderoRegistro.setHorasParqueo(horasACalcular);
 		modeloParqueaderoRegistro.setCostoTotal(costoTotal);
 
 	}

@@ -1,4 +1,4 @@
-package com.ceiba.adnjulianhenao.validacion;
+package com.ceiba.adnjulianhenao.validacion.salida;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +15,15 @@ public class ValidacionesSalida {
 	@Autowired
 	@Qualifier("reglaSobreCostoCilindraje")
 	private ReglaSobreCostoCilindraje reglaSobreCostoCilindraje;	
-	
-	public List<Validaciones> validacionesSalida() {
-		List<Validaciones> validaciones = new ArrayList<>();				
+		
+	@Autowired
+	@Qualifier("reglaPlacaYRegistroCoinciden")
+	private ReglaPlacaYRegistroCoinciden registroCoincide;
+		
+	public List<ValidacionSalida> validacionesSalida() {
+		List<ValidacionSalida> validaciones = new ArrayList<>();				
+		validaciones.add(registroCoincide);
 		validaciones.add(reglaSobreCostoCilindraje);			
 		return validaciones;
 	}	
-	
 }

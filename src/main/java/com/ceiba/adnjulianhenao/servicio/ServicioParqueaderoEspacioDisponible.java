@@ -54,7 +54,7 @@ public class ServicioParqueaderoEspacioDisponible {
 		irepositorioParquederoEspacioDisponible.delete(tarifa);
 	}
 
-	public List<ModeloParqueaderoEspacioDisponible> obtenerTarifas() {
+	public List<ModeloParqueaderoEspacioDisponible> obtenerEspacios() {
 		log.info("Listando Espacios");
 		return convertidorParquederoEspacioDisponible.convertirLista(irepositorioParquederoEspacioDisponible.findAll());
 	}

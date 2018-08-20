@@ -1,4 +1,4 @@
-package com.ceiba.adnjulianhenao.validacion;
+package com.ceiba.adnjulianhenao.validacion.entrada;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,12 +11,13 @@ import com.ceiba.adnjulianhenao.servicio.ServicioParqueaderoEspacioDisponible;
 
 
 @Component
-public class ReglaDisponibilidadEspacio implements Validaciones{
+public class ReglaDisponibilidadEspacio implements ValidacionEntrada{
 
 	
 	@Autowired
 	@Qualifier("servicioParqueaderoEspacioDisponible")
 	private ServicioParqueaderoEspacioDisponible servicioParqueaderoEspacioDisponible;
+	
 	
 	@Override
 	public void validar(ModeloVehiculo modeloVehiculo) {
@@ -24,7 +25,7 @@ public class ReglaDisponibilidadEspacio implements Validaciones{
 		ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible = servicioParqueaderoEspacioDisponible.obtenerEspacioDisponiblePorTipoVehiculo(modeloVehiculo.getTipoVehiculo().getId());
 		
 		if(modeloParqueaderoEspacioDisponible.getEspacioActual() == modeloParqueaderoEspacioDisponible.getLimiteEspacio()){
-			throw new ExcepcionConflicto("No hay espacio disponible en el parqueadero para "+ modeloVehiculo.getTipoVehiculo().getDescripcion() + "\n Espacio Actual: " + modeloParqueaderoEspacioDisponible.getEspacioActual() + "\n Espacio Limite: " + modeloParqueaderoEspacioDisponible.getLimiteEspacio() );
+			throw new ExcepcionConflicto("No hay espacio disponible en el parqueadero para este tipo de Vehiculo \n Espacio Actual: " + modeloParqueaderoEspacioDisponible.getEspacioActual() + "\n Espacio Limite: " + modeloParqueaderoEspacioDisponible.getLimiteEspacio() );
 		}
 		
 	}

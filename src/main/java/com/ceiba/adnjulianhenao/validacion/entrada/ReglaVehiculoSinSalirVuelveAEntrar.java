@@ -1,4 +1,4 @@
-package com.ceiba.adnjulianhenao.validacion;
+package com.ceiba.adnjulianhenao.validacion.entrada;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,7 +10,7 @@ import com.ceiba.adnjulianhenao.servicio.ServicioParqueaderoRegistro;
 import com.ceiba.adnjulianhenao.servicio.ServicioVehiculo;
 
 @Component("reglaVehiculoSinSalirVuelveAEntrar")
-public class ReglaVehiculoSinSalirVuelveAEntrar implements Validaciones {
+public class ReglaVehiculoSinSalirVuelveAEntrar implements ValidacionEntrada {
 
 	@Autowired
 	@Qualifier("servicioVehiculo")
@@ -25,7 +25,7 @@ public class ReglaVehiculoSinSalirVuelveAEntrar implements Validaciones {
 		ModeloVehiculo modeloVehiculoAux = servicioVehiculo.obtenerPorPlaca(modeloVehiculo.getPlaca());
 		if (modeloVehiculoAux != null && servicioParqueaderoRegistro
 				.obtenerRegistrosPorVehiculosPorIdSinSalir(modeloVehiculoAux.getId()) != null) {
-			throw new ExcepcionConflicto("La Placa ingresada se encuentra en el parqueadero y NO ha salido");
+			throw new ExcepcionConflicto("El vehiculo con la PLACA ingresada se encuentra en el parqueadero y NO ha salido");
 		}
 	}
 

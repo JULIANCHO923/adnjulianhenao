@@ -11,9 +11,10 @@ import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
 import com.ceiba.adnjulianhenao.servicio.ServicioParqueaderoEspacioDisponible;
 import com.ceiba.adnjulianhenao.servicio.ServicioParqueaderoRegistro;
 import com.ceiba.adnjulianhenao.servicio.ServicioVehiculo;
-import com.ceiba.adnjulianhenao.validacion.Validaciones;
-import com.ceiba.adnjulianhenao.validacion.ValidacionesEntrada;
-import com.ceiba.adnjulianhenao.validacion.ValidacionesSalida;
+import com.ceiba.adnjulianhenao.validacion.entrada.ValidacionEntrada;
+import com.ceiba.adnjulianhenao.validacion.entrada.ValidacionesEntrada;
+import com.ceiba.adnjulianhenao.validacion.salida.ValidacionesSalida;
+import com.ceiba.adnjulianhenao.validacion.salida.ValidacionSalida;
 
 /**
  * Valida la entrada de vehiculo Registra la entrada Registra la salida
@@ -59,18 +60,16 @@ public class Vigilante {
 	 */
 	public void registrarEntrada(ModeloVehiculo modeloVehiculo) {
 
+		for (ValidacionEntrada validacion : validacionesEntrada.validacionesEntrada()) {
+			validacion.validar(modeloVehiculo);
+		}
 
-			for (Validaciones validacion : validacionesEntrada.validacionesEntrada()) {
-				validacion.validar(modeloVehiculo);
-			}
+		if (servicioVehiculo.obtenerPorPlaca(modeloVehiculo.getPlaca()) == null) {
+			// No se encuentra registrado así que se debe de crear
+			servicioVehiculo.insertar(modeloVehiculo);
+		}
 
-			if (servicioVehiculo.obtenerPorPlaca(modeloVehiculo.getPlaca()) == null) {
-				// No se encuentra registrado así que se debe de crear
-				servicioVehiculo.insertar(modeloVehiculo);
-			}
-
-			crearRegistro(modeloVehiculo.getPlaca(), modeloVehiculo.getTipoVehiculo().getId());
-		
+		crearRegistro(modeloVehiculo.getPlaca(), modeloVehiculo.getTipoVehiculo().getId());
 
 	}
 
@@ -89,28 +88,44 @@ public class Vigilante {
 		servicioParqueaderoEspacioDisponible.actualizar(modeloParqueaderoEspacioDisponible);
 	}
 
-	public void registrarSalida(int idVehiculo) {
-		ModeloParqueaderoRegistro modeloParqueaderoRegistro = (servicioParqueaderoRegistro
-				.obtenerRegistrosPorVehiculosPorIdSinSalir(idVehiculo));
-		modeloParqueaderoRegistro.setFechaSalida(calendario.obtenerFechaActual());
-
-		calculadora.calcularCostoParqueadero(modeloParqueaderoRegistro, calculadora.calcularHorasParqueadero(
-				modeloParqueaderoRegistro.getFechaEntrada(), modeloParqueaderoRegistro.getFechaSalida()));
-
+	public void registrarSalida(int idRegistro, String placa) {
+		ModeloParqueaderoRegistro modeloParqueaderoRegistro = null;
 		try {
-			for (Validaciones validacion : validacionesSalida.validacionesSalida()) {
-				validacion.validar(modeloParqueaderoRegistro.getVehiculo());
+
+			for (ValidacionSalida validacion : validacionesSalida.validacionesSalida()) {
+				validacion.validar(idRegistro, placa);
 			}
+			
+			
+			modeloParqueaderoRegistro = (servicioParqueaderoRegistro.obtenerRegistroPorIdYPorPlacaSinSalir(idRegistro,
+					placa));
+
+			modeloParqueaderoRegistro.setFechaSalida(calendario.obtenerFechaActual());
+
+			calculadora.calcularCostoParqueadero(modeloParqueaderoRegistro, calculadora.calcularHorasParqueadero(
+					modeloParqueaderoRegistro.getFechaEntrada(), modeloParqueaderoRegistro.getFechaSalida()));
+
 		} catch (ExcepcionSobreCosto esc) {
+			
+			modeloParqueaderoRegistro = (servicioParqueaderoRegistro.obtenerRegistroPorIdYPorPlacaSinSalir(idRegistro,
+					placa));
+
+			modeloParqueaderoRegistro.setFechaSalida(calendario.obtenerFechaActual());
+
+			calculadora.calcularCostoParqueadero(modeloParqueaderoRegistro, calculadora.calcularHorasParqueadero(
+					modeloParqueaderoRegistro.getFechaEntrada(), modeloParqueaderoRegistro.getFechaSalida()));
+
 			modeloParqueaderoRegistro.setCostoTotal(modeloParqueaderoRegistro.getCostoTotal() + 2000);
 		} finally {
-			// Registrar Salida y descontar vehiculo
-			servicioParqueaderoRegistro.insertar(modeloParqueaderoRegistro);
-			ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible = servicioParqueaderoEspacioDisponible
-					.obtenerEspacioDisponiblePorTipoVehiculo(
-							modeloParqueaderoRegistro.getVehiculo().getTipoVehiculo().getId());
-			modeloParqueaderoEspacioDisponible.disminuirEspacio();
-			servicioParqueaderoEspacioDisponible.actualizar(modeloParqueaderoEspacioDisponible);
+			// Registrar Salida y descontar vehiculo solo si el registro y la placa coinciden
+			if (modeloParqueaderoRegistro != null) {
+				servicioParqueaderoRegistro.insertar(modeloParqueaderoRegistro);
+				ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible = servicioParqueaderoEspacioDisponible
+						.obtenerEspacioDisponiblePorTipoVehiculo(
+								modeloParqueaderoRegistro.getVehiculo().getTipoVehiculo().getId());
+				modeloParqueaderoEspacioDisponible.disminuirEspacio();
+				servicioParqueaderoEspacioDisponible.actualizar(modeloParqueaderoEspacioDisponible);
+			}
 		}
 	}
 

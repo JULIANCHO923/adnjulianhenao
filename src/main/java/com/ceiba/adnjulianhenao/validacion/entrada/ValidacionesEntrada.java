@@ -1,4 +1,4 @@
-package com.ceiba.adnjulianhenao.validacion;
+package com.ceiba.adnjulianhenao.validacion.entrada;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +34,13 @@ public class ValidacionesEntrada {
 	private ReglaVehiculoSinSalirVuelveAEntrar reglaVehiculoSinSalirVuelveAEntrar;
 	
 	
-	public List<Validaciones> validacionesEntrada() {
-		List<Validaciones> validaciones = new ArrayList<>();		
+	@Autowired
+	@Qualifier("reglaIngresaPlaca")
+	private ReglaIngresaPlaca reglaIngresaPlaca;
+	
+	public List<ValidacionEntrada> validacionesEntrada() {
+		List<ValidacionEntrada> validaciones = new ArrayList<>();		
+		validaciones.add(reglaIngresaPlaca);
 		validaciones.add(reglaTipoVehiculo);
 		validaciones.add(reglaDiaHabil);
 		validaciones.add(reglaVehiculoSinSalirVuelveAEntrar);

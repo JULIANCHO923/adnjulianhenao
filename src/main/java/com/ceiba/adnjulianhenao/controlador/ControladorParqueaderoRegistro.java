@@ -36,27 +36,38 @@ public class ControladorParqueaderoRegistro {
 		return ResponseEntity.status(HttpStatus.CREATED).body("Registro Ingresado exitosamente");
 	}
 
+	
 	@RequestMapping(value="/all", method=RequestMethod.PUT)
 	public ResponseEntity<String> actualizar(@RequestBody ModeloParqueaderoRegistro modeloParqueaderoRegistro) {
 		servicioParqueaderoRegistro.actualizar(modeloParqueaderoRegistro);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Registros Actualizados exitosamente");
 	}
 
-	@RequestMapping(value="{id}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public  ResponseEntity<String> borrar(@PathVariable("id") int idParqueaderoRegistro) {
 		servicioParqueaderoRegistro.borrar(idParqueaderoRegistro);
 		return ResponseEntity.status(HttpStatus.CONTINUE).body("Registro Eliminado exitosamente");
 	}
 
-	@RequestMapping(value="", method=RequestMethod.GET)
-	public ResponseEntity<List<ModeloParqueaderoRegistro>> obtenerRegistros(Pageable pageable) {
+	@RequestMapping(value="/reciente/{id}", method=RequestMethod.GET)
+	public ResponseEntity<ModeloParqueaderoRegistro> obtenerRegistros(@PathVariable("id") int idRegistro) {
+		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistroPoId(idRegistro));
+	}
+	
+	@RequestMapping(value="/antes", method=RequestMethod.GET)
+	public ResponseEntity<List<ModeloParqueaderoRegistro>> obtenerRegistrosAnteriores() {
+		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistrosAnteriores());
+	}
+	
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	public ResponseEntity<List<ModeloParqueaderoRegistro>> obtenerRegistrosPorTipoVehiculoSinSalir(@PathVariable("id") int idTipoVehiculo) {
+		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistrosPorTipoVehiculoSinSalir(idTipoVehiculo));
+	}
+	
+	@RequestMapping(value="/all", method=RequestMethod.GET)
+	public ResponseEntity<List<ModeloParqueaderoRegistro>> obtenerRegistrosPorPaginacion(Pageable pageable) {
 		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistros(pageable));
 	}
 	
-	/*
-	@RequestMapping(value="/{placa}", method=RequestMethod.GET)
-	public ResponseEntity<ModeloParqueaderoRegistro> obtenerRegistroPorVehiculosSinSalirPorPaginacion(@PathVariable("placa") String placa) {
-		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistrosPorVehiculosPorPlacaSinSalir(placa));
-	}*/
 		
 }

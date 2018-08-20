@@ -1,8 +1,9 @@
-package com.ceiba.adnjulianhenao.validacion;
+package com.ceiba.adnjulianhenao.validacion.entrada;
 
 import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
 
-public interface Validaciones {
+public interface ValidacionEntrada {
 	
 	public void validar(ModeloVehiculo vehiculo);
+	
 }

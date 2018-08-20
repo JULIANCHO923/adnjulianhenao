@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import com.ceiba.adnjulianhenao.repositorio.IRepositorioParqueaderoRegistro;
 public class ServicioParqueaderoRegistro {
 	 
 	@Autowired
+	@Qualifier("repositorioParqueaderoRegistro")
 	private IRepositorioParqueaderoRegistro iRepositorioParqueaderoRegistro;
 
 	@Autowired
@@ -46,6 +48,26 @@ public class ServicioParqueaderoRegistro {
 		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findAll(pageable).getContent());
 	}
 
+	public ModeloParqueaderoRegistro obtenerRegistroPoId(int id) {
+		log.info("Listando ParqueaderoRegistros");
+		return convertidorParqueaderoRegistro.convertirEntidadAModelo(iRepositorioParqueaderoRegistro.findById(id));
+	}
+	
+	public List<ModeloParqueaderoRegistro> obtenerRegistros() {
+		log.info("Listando ParqueaderoRegistros");
+		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findAll());
+	}
+	
+	public List<ModeloParqueaderoRegistro> obtenerRegistrosAnteriores() {
+		log.info("Listando ParqueaderoRegistros");
+		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findByFechaSalidaIsNotNull());
+	}
+	
+	public List<ModeloParqueaderoRegistro> obtenerRegistrosPorTipoVehiculoSinSalir(int idTipoVehiculo) {
+		log.info("Listando ParqueaderoRegistros");
+		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findByVehiculoTipoVehiculoIdAndFechaSalidaIsNull(idTipoVehiculo));
+	}
+	
 	public ModeloParqueaderoRegistro obtenerPorId(int idParqueaderoRegistro) {
 		return convertidorParqueaderoRegistro.convertirEntidadAModelo(iRepositorioParqueaderoRegistro.findById(idParqueaderoRegistro));
 	}
@@ -65,6 +87,15 @@ public class ServicioParqueaderoRegistro {
 		}else{
 			return convertidorParqueaderoRegistro.convertirEntidadAModelo(entidadParqueaderoRegistro);
 		}
+	}
+	
+	public ModeloParqueaderoRegistro obtenerRegistroPorIdYPorPlacaSinSalir(int id, String placa) {	
+		EntidadParqueaderoRegistro entidadParqueaderoRegistro = iRepositorioParqueaderoRegistro.findByIdAndVehiculoPlacaAndFechaSalidaIsNull(id, placa);
+		if(entidadParqueaderoRegistro == null){
+			return null;
+		}else{
+			return convertidorParqueaderoRegistro.convertirEntidadAModelo(entidadParqueaderoRegistro);
+		}
+	}
 		
-	}	
 }

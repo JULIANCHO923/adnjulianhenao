@@ -47,7 +47,7 @@ public class ControladorTipoVehiculo {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Tipo de vehiculo Actualizado exitosamente");
 	}
 	
-	@RequestMapping(value="{id}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<String> borrar(@PathVariable("id") int id){
 		servicioTipoVehiculo.borrar(id);
 		return ResponseEntity.status(HttpStatus.CONTINUE).body("Tipo de vehiculo Eliminado exitosamente");

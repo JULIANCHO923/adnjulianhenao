@@ -1,4 +1,4 @@
-package com.ceiba.adnjulianhenao.validacion;
+package com.ceiba.adnjulianhenao.validacion.entrada;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
 import com.ceiba.adnjulianhenao.servicio.ServicioTipoVehiculo;
 
 @Component
-public class ReglaTipoVehiculo implements Validaciones{
+public class ReglaTipoVehiculo implements ValidacionEntrada{
 
 	@Autowired
 	@Qualifier("servicioTipoVehiculo")

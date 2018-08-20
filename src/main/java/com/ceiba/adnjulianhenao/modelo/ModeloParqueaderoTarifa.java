@@ -3,7 +3,7 @@ package com.ceiba.adnjulianhenao.modelo;
 public class ModeloParqueaderoTarifa {
 
 	private int id;
-	private ModeloTipoVehiculo tipovehiculo;
+	private ModeloTipoVehiculo tipoVehiculo;
 	private long costoHora;
 	private long costoDia;
 	private int horasCobroDia;
@@ -12,7 +12,7 @@ public class ModeloParqueaderoTarifa {
 		
 	public ModeloParqueaderoTarifa(int id, ModeloTipoVehiculo tipoVehiculo, long costoHora, long costoDia, int horasCobroDia) {	
 		this.id = id;
-		this.tipovehiculo = tipoVehiculo;
+		this.tipoVehiculo = tipoVehiculo;
 		this.costoHora = costoHora;
 		this.costoDia = costoDia;
 		this.horasCobroDia = horasCobroDia;
@@ -25,10 +25,10 @@ public class ModeloParqueaderoTarifa {
 		this.id = id;
 	}
 	public ModeloTipoVehiculo getTipoVehiculo() {
-		return tipovehiculo;
+		return tipoVehiculo;
 	}
 	public void setTipoVehiculo(ModeloTipoVehiculo tipoVehiculo) {
-		this.tipovehiculo = tipoVehiculo;
+		this.tipoVehiculo = tipoVehiculo;
 	}
 	public long getCostoHora() {
 		return costoHora;

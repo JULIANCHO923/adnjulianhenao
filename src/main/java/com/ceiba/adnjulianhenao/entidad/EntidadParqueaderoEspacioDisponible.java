@@ -14,11 +14,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name="disponibilidad")
+@Table(name="espacio")
 public class EntidadParqueaderoEspacioDisponible implements Serializable{
 
 	@Id
-	@Column(name = "id_disponibilidad")
+	@Column(name = "id_espacio")
 	private int id;
 	
 	@JsonManagedReference

@@ -20,9 +20,13 @@ public interface IRepositorioParqueaderoRegistro extends JpaRepository<EntidadPa
 	
 	public abstract EntidadParqueaderoRegistro findById(int id);
 	public abstract List<EntidadParqueaderoRegistro> findByVehiculoId(int id);
-
+	public abstract List<EntidadParqueaderoRegistro> findAll();	
 	
 	public abstract Page<EntidadParqueaderoRegistro> findAll(Pageable pageable);	
 	public abstract EntidadParqueaderoRegistro findByVehiculoIdAndFechaSalidaIsNull(int id);
+	public abstract List<EntidadParqueaderoRegistro> findByFechaSalidaIsNotNull();
+	public abstract List<EntidadParqueaderoRegistro> findByVehiculoTipoVehiculoIdAndFechaSalidaIsNull(int id);
+	
+	public abstract EntidadParqueaderoRegistro findByIdAndVehiculoPlacaAndFechaSalidaIsNull(int id, String placa);
 	
 }

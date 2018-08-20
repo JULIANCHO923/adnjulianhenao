@@ -49,7 +49,7 @@ public class ControladorParqueaderoTarifa {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Tarifa Actualizada exitosamente");
 	}
 	
-	@RequestMapping(value="{id}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<String> borrar(@PathVariable("id") int id){
 		servicioParqueaderoTarifa.borrar(id);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Tarifa Eliminada exitosamente");
@@ -60,7 +60,7 @@ public class ControladorParqueaderoTarifa {
 		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoTarifa.obtenerTarifas());
 	}
 	
-	@RequestMapping(value="{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/{id}", method=RequestMethod.GET)
 	public ResponseEntity<ModeloParqueaderoTarifa> obtenerTarifasPorTipoVehiculo(@PathVariable("id") int idTipoVehiculo){
 		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoTarifa.obtenerTarifasPorTipoVehiculo(idTipoVehiculo));
 	}

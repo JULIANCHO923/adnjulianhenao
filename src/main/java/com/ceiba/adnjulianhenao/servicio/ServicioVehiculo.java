@@ -57,18 +57,23 @@ public class ServicioVehiculo {
 	}
 	
 	public void actualizar(ModeloVehiculo modeloVehiculo) {
-		log.info("Actualizando vehiculo.... Enlaza la salida");	
+		log.info("Actualizando vehiculo");	
 		
 		// Faltaria validar que si el vehiculo no se encuentra en los registros 
 		if (iRepositorioVehiculo.findByPlaca(modeloVehiculo.getPlaca()) != null) {
-			vigilante.registrarSalida(iRepositorioVehiculo.findByPlaca(modeloVehiculo.getPlaca()).getId());			
+			iRepositorioVehiculo.save(convertidorVehiculo.convertirModeloAEntidad(modeloVehiculo));		
 		}
-		log.info("Salida realizada exitosamente");	
+			
 	}
 
-	public void borrar(int idVehiculo) {
-		EntidadVehiculo entidadVehiculo = iRepositorioVehiculo.findById(idVehiculo);
-		iRepositorioVehiculo.delete(entidadVehiculo);
+	public void borrar(int idRegistro, String placa) {
+		//EntidadVehiculo entidadVehiculo = iRepositorioVehiculo.findById(idVehiculo);
+		//iRepositorioVehiculo.delete(entidadVehiculo);
+		log.info(".... Enlaza la salida");
+		
+			vigilante.registrarSalida(idRegistro, placa);			
+		
+		log.info("Salida realizada exitosamente");
 	}
 
 	public List<ModeloVehiculo> obtenerVehiculos() {
@@ -97,8 +102,9 @@ public class ServicioVehiculo {
 		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findByCilindraje(cilindraje));
 	}
 
+	
 	public List<ModeloVehiculo> obtenerVehiculosPorPaginacion(Pageable pageable) {
 		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findAll(pageable).getContent());
 	}
-
+	
 }

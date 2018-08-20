@@ -20,16 +20,16 @@ public class Calendario {
 
 	/**
 	 * Lista de nombres de zonas horarias https://www.mkyong.com/java8/java-display-all-zoneid-and-its-utc-offset/
-	 * "Pacific/Norfolk" "America/St_Johns"
+	 * "Pacific/Norfolk" "America/St_Johns"   "Etc/GMT+12"  "America/Bogota"
 	 */	  	
-	public static final String zonaHoraria =  "America/Bogota";
+	public static final String zonaHoraria = "America/Bogota" ;
 	
 	public int obtenerDiaActual() {		
 		return obtenerFechaActual().getDayOfWeek().getValue();
 	}
 
 	public LocalDateTime obtenerFechaActual() {		 
-		return LocalDateTime.now(ZoneId.of(zonaHoraria));
+		return LocalDateTime.now(ZoneId.of(zonaHoraria)); 
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.ceiba.adnjulianhenao.validacion;
+package com.ceiba.adnjulianhenao.validacion.entrada;
 
 import java.util.Calendar;
 
@@ -11,7 +11,7 @@ import com.ceiba.adnjulianhenao.excepcion.ExcepcionParametroInvalido;
 import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
 
 @Component
-public class ReglaDiaHabil implements Validaciones{
+public class ReglaDiaHabil implements ValidacionEntrada{
 
 	
 	@Autowired

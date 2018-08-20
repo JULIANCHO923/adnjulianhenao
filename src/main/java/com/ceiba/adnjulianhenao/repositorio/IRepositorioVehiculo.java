@@ -27,7 +27,7 @@ public interface IRepositorioVehiculo extends JpaRepository<EntidadVehiculo, Ser
 	
 	public abstract List<EntidadVehiculo> findByCilindraje(int cilindraje);		
 	public abstract Page<EntidadVehiculo> findAll(Pageable pageable);
-
+	public abstract List<EntidadVehiculo> findAll();
 	public abstract Page<EntidadVehiculo> findByTipoVehiculoId(int id, Pageable pageable);
 	
 }
