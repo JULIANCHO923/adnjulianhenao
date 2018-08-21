@@ -38,19 +38,6 @@ public class ControladorVehiculo {
 		return ResponseEntity.status(HttpStatus.CREATED).body("Vehiculo Ingresado exitosamente");
 	}
 
-	@RequestMapping(value="/all", method=RequestMethod.POST)
-	public ResponseEntity<String> crear(@RequestBody List<ModeloVehiculo> modeloVehiculos) {
-		servicioVehiculo.crear(modeloVehiculos);
-		return ResponseEntity.status(HttpStatus.OK).body("Vehiculos Ingresados exitosamente");					
-	}
-	
-	@RequestMapping(value="", method=RequestMethod.PUT)
-	public ResponseEntity<String> actualizar(@RequestBody ModeloVehiculo vehiculo) {
-		servicioVehiculo.actualizar(vehiculo);
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Vehiculo Actualizado exitosamente");
-	}
-
-	
 	/**
 	 * La solicitud de Delete será utilizada para registrar la salida del vehiculo sin eliminarlo
 	 * @param modeloVehiculo
@@ -65,16 +52,6 @@ public class ControladorVehiculo {
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public ResponseEntity<List<ModeloVehiculo>> obtenerVehiculos() {
 		return ResponseEntity.status(HttpStatus.OK).body(servicioVehiculo.obtenerVehiculos());
-	}
-	
-	@RequestMapping(value="/all", method=RequestMethod.GET)
-	public ResponseEntity<List<ModeloVehiculo>> obtenerVehiculosPorPaginacion(Pageable pageable) {
-		return ResponseEntity.status(HttpStatus.OK).body(servicioVehiculo.obtenerVehiculosPorPaginacion(pageable));
-	}
-	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
-	public ResponseEntity<List<ModeloVehiculo>> obtenerVehiculosPorTipoVehiculo(@PathVariable("id") int idTipoVehiculo, Pageable pageable) {
-		return ResponseEntity.status(HttpStatus.OK).body(servicioVehiculo.obtenerPorTipoVehiculo(idTipoVehiculo, pageable));
 	}
 	
 }

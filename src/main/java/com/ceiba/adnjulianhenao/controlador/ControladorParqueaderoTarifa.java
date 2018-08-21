@@ -34,26 +34,7 @@ public class ControladorParqueaderoTarifa {
 	public ResponseEntity<String> crear(@RequestBody ModeloParqueaderoTarifa modeloParqueaderoTarifa){
 		servicioParqueaderoTarifa.crear(modeloParqueaderoTarifa);
 		return ResponseEntity.status(HttpStatus.CREATED).body("Tarifa Ingresada exitosamente");
-	}
-   
-	@RequestMapping(value="/all", method=RequestMethod.POST)
-	public ResponseEntity<String> crear(@RequestBody List<ModeloParqueaderoTarifa> modeloParqueaderoTarifas){
-		servicioParqueaderoTarifa.crear(modeloParqueaderoTarifas);
-		return ResponseEntity.status(HttpStatus.CREATED).body("Tarifas Ingresadas exitosamente");
-	}
-   
-       
-	@RequestMapping(value="", method=RequestMethod.PUT)
-	public ResponseEntity<String> actualizar(@RequestBody ModeloParqueaderoTarifa tarifa){
-		servicioParqueaderoTarifa.actualizar(tarifa);
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Tarifa Actualizada exitosamente");
-	}
-	
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<String> borrar(@PathVariable("id") int id){
-		servicioParqueaderoTarifa.borrar(id);
-		return ResponseEntity.status(HttpStatus.CREATED).body("Tarifa Eliminada exitosamente");
-	}
+	}  
 	
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public ResponseEntity<List<ModeloParqueaderoTarifa>> obtenerTarifas(){

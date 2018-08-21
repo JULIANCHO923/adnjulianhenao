@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ceiba.adnjulianhenao.convertidor.ConvertidorTipoVehiculo;
@@ -40,11 +39,6 @@ public class ServicioVehiculo {
 	public void crear(ModeloVehiculo modeloVehiculo) {
 		log.info("_Entrando a la validación por el vigilante ");
 		vigilante.registrarEntrada(modeloVehiculo);
-	}
-
-	public void crear(List<ModeloVehiculo> modeloVehiculos) {
-		log.info("Ingresando varios Vehiculos sin realizar validaciones");
-		iRepositorioVehiculo.saveAll(convertidorVehiculo.convertirLista2(modeloVehiculos));
 	}
 
 	public void insertar(ModeloVehiculo modeloVehiculo) {
@@ -89,19 +83,6 @@ public class ServicioVehiculo {
 		} else {
 			return convertidorVehiculo.convertirEntidadAModelo(entidadVehiculo);
 		}
-	}
-
-	public List<ModeloVehiculo> obtenerPorTipoVehiculo(int idTipoVehiculo, Pageable pageable) {
-		return convertidorVehiculo
-				.convertirLista(iRepositorioVehiculo.findByTipoVehiculoId(idTipoVehiculo, pageable).getContent());
-	}
-
-	public List<ModeloVehiculo> obtenerPorCilindraje(int cilindraje) {
-		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findByCilindraje(cilindraje));
-	}
-
-	public List<ModeloVehiculo> obtenerVehiculosPorPaginacion(Pageable pageable) {
-		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findAll(pageable).getContent());
 	}
 
 }

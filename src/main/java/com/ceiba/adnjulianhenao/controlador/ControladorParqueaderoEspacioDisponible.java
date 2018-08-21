@@ -1,7 +1,5 @@
 package com.ceiba.adnjulianhenao.controlador;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -35,27 +33,10 @@ public class ControladorParqueaderoEspacioDisponible {
 		return ResponseEntity.status(HttpStatus.CREATED).body("Espacio Ingresado exitosamente");
 	}
      
-	@RequestMapping(value="/all", method=RequestMethod.POST)
-	public ResponseEntity<String> crear(@RequestBody List<ModeloParqueaderoEspacioDisponible> modeloParqueaderoEspacioDisponibles){
-		servicioParqueaderoEspacioDisponible.crear(modeloParqueaderoEspacioDisponibles);
-		return ResponseEntity.status(HttpStatus.CREATED).body("Espacios Ingresados exitosamente");
-	}
-	
 	@RequestMapping(value="", method=RequestMethod.PUT)
 	public ResponseEntity<String> actualizar(@RequestBody ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible){
 		servicioParqueaderoEspacioDisponible.actualizar(modeloParqueaderoEspacioDisponible);
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Espacio Actualizado exitosamente");
-	}
-	
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<String> borrar(@PathVariable("id") int id){
-		servicioParqueaderoEspacioDisponible.borrar(id);
-		return ResponseEntity.status(HttpStatus.CONTINUE).body("Espacio Eliminado exitosamente");
-	}
-	
-	@RequestMapping(value="", method=RequestMethod.GET)
-	public ResponseEntity<List<ModeloParqueaderoEspacioDisponible>> obtenerEspacios(){
-		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoEspacioDisponible.obtenerEspacios());
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.GET)

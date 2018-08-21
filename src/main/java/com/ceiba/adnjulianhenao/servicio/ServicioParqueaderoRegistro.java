@@ -47,14 +47,9 @@ public class ServicioParqueaderoRegistro {
 		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findAll(pageable).getContent());
 	}
 
-	public ModeloParqueaderoRegistro obtenerRegistroPoId(int id) {
+	public ModeloParqueaderoRegistro obtenerRegistroPoId(int id) { ///
 		log.info("Listando Parqueadero Registros por ID");
 		return convertidorParqueaderoRegistro.convertirEntidadAModelo(iRepositorioParqueaderoRegistro.findById(id));
-	}
-	
-	public List<ModeloParqueaderoRegistro> obtenerRegistros() {
-		log.info("Listando todos los registros del Parqueadero");
-		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findAll());
 	}
 	
 	public List<ModeloParqueaderoRegistro> obtenerRegistrosAnteriores() {

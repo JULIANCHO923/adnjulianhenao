@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -36,19 +35,6 @@ public class ControladorParqueaderoRegistro {
 		return ResponseEntity.status(HttpStatus.CREATED).body("Registro Ingresado exitosamente");
 	}
 
-	
-	@RequestMapping(value="/all", method=RequestMethod.PUT)
-	public ResponseEntity<String> actualizar(@RequestBody ModeloParqueaderoRegistro modeloParqueaderoRegistro) {
-		servicioParqueaderoRegistro.actualizar(modeloParqueaderoRegistro);
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body("Registros Actualizados exitosamente");
-	}
-
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
-	public  ResponseEntity<String> borrar(@PathVariable("id") int idParqueaderoRegistro) {
-		servicioParqueaderoRegistro.borrar(idParqueaderoRegistro);
-		return ResponseEntity.status(HttpStatus.CONTINUE).body("Registro Eliminado exitosamente");
-	}
-
 	@RequestMapping(value="/reciente/{id}", method=RequestMethod.GET)
 	public ResponseEntity<ModeloParqueaderoRegistro> obtenerRegistros(@PathVariable("id") int idRegistro) {
 		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistroPoId(idRegistro));
@@ -63,11 +49,5 @@ public class ControladorParqueaderoRegistro {
 	public ResponseEntity<List<ModeloParqueaderoRegistro>> obtenerRegistrosPorTipoVehiculoSinSalir(@PathVariable("id") int idTipoVehiculo) {
 		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistrosPorTipoVehiculoSinSalir(idTipoVehiculo));
 	}
-	
-	@RequestMapping(value="/all", method=RequestMethod.GET)
-	public ResponseEntity<List<ModeloParqueaderoRegistro>> obtenerRegistrosPorPaginacion(Pageable pageable) {
-		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistros(pageable));
-	}
-	
 		
 }

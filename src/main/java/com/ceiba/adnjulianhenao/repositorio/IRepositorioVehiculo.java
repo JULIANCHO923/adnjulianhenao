@@ -3,8 +3,6 @@ package com.ceiba.adnjulianhenao.repositorio;
 import java.io.Serializable;
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -23,11 +21,7 @@ public interface IRepositorioVehiculo extends JpaRepository<EntidadVehiculo, Ser
 	
 	
 	public abstract EntidadVehiculo findById(int idVehiculo);	
-	public abstract EntidadVehiculo findByPlaca(String placa);
-	
-	public abstract List<EntidadVehiculo> findByCilindraje(int cilindraje);		
-	public abstract Page<EntidadVehiculo> findAll(Pageable pageable);
+	public abstract EntidadVehiculo findByPlaca(String placa);	
 	public abstract List<EntidadVehiculo> findAll();
-	public abstract Page<EntidadVehiculo> findByTipoVehiculoId(int id, Pageable pageable);
 	
 }

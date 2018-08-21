@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.ceiba.adnjulianhenao.convertidor.ConvertidorParqueaderoTarifa;
-import com.ceiba.adnjulianhenao.entidad.EntidadParqueaderoTarifa;
 import com.ceiba.adnjulianhenao.modelo.ModeloParqueaderoTarifa;
 import com.ceiba.adnjulianhenao.repositorio.IRepositorioParqueaderoTarifa;
 
@@ -31,24 +30,6 @@ public class ServicioParqueaderoTarifa {
 		log.info("Creando Tarifa");
 		repositorioParquederoTarifa.save(converterParquederoTarifa.convertirModeloAEntidad(modeloParqueaderoTarifa));
 		log.info("La tarifa se creó exitosamente");
-	}
-	
-	public void crear(List<ModeloParqueaderoTarifa> modeloParqueaderoTarifas) {
-		log.info("Creando Tarifas");
-		repositorioParquederoTarifa.saveAll(converterParquederoTarifa.convertirLista2(modeloParqueaderoTarifas));
-		log.info("La tarifa se creó exitosamente");
-	}
-
-	public void actualizar(ModeloParqueaderoTarifa modeloParqueaderoTarifa) {
-		if (repositorioParquederoTarifa.findById(modeloParqueaderoTarifa.getId()) != null) {
-			repositorioParquederoTarifa
-					.save(converterParquederoTarifa.convertirModeloAEntidad(modeloParqueaderoTarifa));
-		}
-	}
-
-	public void borrar(int id) {
-		EntidadParqueaderoTarifa entidadParqueaderoTarifa = repositorioParquederoTarifa.findById(id);
-		repositorioParquederoTarifa.delete(entidadParqueaderoTarifa);
 	}
 
 	public List<ModeloParqueaderoTarifa> obtenerTarifas() {

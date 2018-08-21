@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.ceiba.adnjulianhenao.convertidor.ConvertidorTipoVehiculo;
-import com.ceiba.adnjulianhenao.entidad.EntidadTipoVehiculo;
 import com.ceiba.adnjulianhenao.modelo.ModeloTipoVehiculo;
 import com.ceiba.adnjulianhenao.repositorio.IRepositorioTipoVehiculo;
 
@@ -24,7 +23,7 @@ public class ServicioTipoVehiculo {
 	private IRepositorioTipoVehiculo iRepositorioTipoVehiculo;
 
 	@Autowired
-	@Qualifier("convertidorTipoVehiculo") // Inyecta el bean
+	@Qualifier("convertidorTipoVehiculo") 
 	private ConvertidorTipoVehiculo convertidorTipoVehiculo;
 
 	private static final Logger log = LoggerFactory.getLogger(ServicioTipoVehiculo.class);
@@ -33,23 +32,6 @@ public class ServicioTipoVehiculo {
 		log.info("Creando Tipo Vehiculo");
 		iRepositorioTipoVehiculo.save(convertidorTipoVehiculo.convertirModeloAEntidad(modeloTipoVehiculo));
 		log.info("El Tipo vehiculo se creó exitosamente");
-	}
-
-	public void crear(List<ModeloTipoVehiculo> modeloTipoVehiculo) {
-		log.info("Creando Tipo Vehiculo");
-		iRepositorioTipoVehiculo.saveAll(convertidorTipoVehiculo.convertirLista2(modeloTipoVehiculo));
-		log.info("El Tipo vehiculo se creó exitosamente");
-	}
-	
-	public void actualizar(ModeloTipoVehiculo modeloTipoVehiculo) {
-		if (iRepositorioTipoVehiculo.findById(modeloTipoVehiculo.getId()) != null) {
-			iRepositorioTipoVehiculo.save(convertidorTipoVehiculo.convertirModeloAEntidad(modeloTipoVehiculo));
-		}
-	}
-
-	public void borrar(int id) {
-		EntidadTipoVehiculo entidadTipoVehiculo = iRepositorioTipoVehiculo.findById(id);
-		iRepositorioTipoVehiculo.delete(entidadTipoVehiculo);
 	}
 
 	public List<ModeloTipoVehiculo> obtenerTipoVehiculos() {
