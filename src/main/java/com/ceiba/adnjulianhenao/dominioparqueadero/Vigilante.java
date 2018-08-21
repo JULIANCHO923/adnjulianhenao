@@ -97,9 +97,10 @@ public class Vigilante {
 				validacion.validar(idRegistro, placa);
 			}
 			/**
-			 * En las validaciones se tiene en cuenta si el registro y la placa coinciden 
+			 * En las validaciones se tiene en cuenta si el registro y la placa
+			 * coinciden
 			 */
-			
+
 			modeloParqueaderoRegistro = (servicioParqueaderoRegistro.obtenerRegistroPorIdYPorPlacaSinSalir(idRegistro,
 					placa));
 
@@ -110,10 +111,11 @@ public class Vigilante {
 
 		} catch (ExcepcionSobreCosto e) {
 			esc = e;
-			
+
 			/**
-			 * El sobrecosto genera una excepción y como en esta excepción ya se ha 
-			 * validado la existencia del registro, este se busca para manejarlo 
+			 * El sobrecosto genera una excepción y como en esta excepción ya se
+			 * ha validado la existencia del registro, este se busca para
+			 * manejarlo
 			 */
 			modeloParqueaderoRegistro = (servicioParqueaderoRegistro.obtenerRegistroPorIdYPorPlacaSinSalir(idRegistro,
 					placa));
@@ -125,7 +127,8 @@ public class Vigilante {
 
 			modeloParqueaderoRegistro.setCostoTotal(modeloParqueaderoRegistro.getCostoTotal() + 2000);
 		} finally {
-			// Registrar Salida y descontar vehiculo solo si el registro y la placa coinciden
+			// Registrar Salida y descontar vehiculo solo si el registro y la
+			// placa coinciden
 			if (modeloParqueaderoRegistro != null) {
 				servicioParqueaderoRegistro.insertar(modeloParqueaderoRegistro);
 				ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible = servicioParqueaderoEspacioDisponible
@@ -134,11 +137,11 @@ public class Vigilante {
 				modeloParqueaderoEspacioDisponible.disminuirEspacio();
 				servicioParqueaderoEspacioDisponible.actualizar(modeloParqueaderoEspacioDisponible);
 			}
-			
-			// En caso de sobre costo, lance la excepción
-			if(esc != null){
-				throw esc;
-			}
+		}
+
+		// En caso de sobre costo, lance la excepción
+		if (esc != null) {
+			throw esc;
 		}
 	}
 
