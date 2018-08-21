@@ -25,7 +25,7 @@ pipeline {
         echo "------------>Checkout<------------"
 	      checkout([$class: 'GitSCM', branches: [[name: '*/master']],
 			doGenerateSubmoduleConfigurations: false, extensions: [], gitTool:
-			'Git_Centos', submoduleCfg: [], userRemoteConfigs: [[credentialsId:'GitHub_juliancho923',url:'https://github.com/JULIANCHO923/ceibaEstacionamiento/']]])
+			'Git_Centos', submoduleCfg: [], userRemoteConfigs: [[credentialsId:'GitHub_juliancho923',url:'https://github.com/JULIANCHO923/adnjulianhenao/']]])
       }
     }
     
