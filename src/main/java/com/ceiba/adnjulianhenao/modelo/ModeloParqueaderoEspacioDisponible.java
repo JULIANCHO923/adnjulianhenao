@@ -11,7 +11,6 @@ public class ModeloParqueaderoEspacioDisponible {
 
 	public ModeloParqueaderoEspacioDisponible(int id, ModeloTipoVehiculo tipoVehiculo, int limiteEspacio,
 			int espacioActual) {
-		super();
 		this.id = id;
 		this.tipoVehiculo = tipoVehiculo;
 		this.limiteEspacio = limiteEspacio;

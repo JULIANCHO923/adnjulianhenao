@@ -6,7 +6,7 @@ import com.ceiba.adnjulianhenao.excepcion.ExcepcionParametroInvalido;
 import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
 
 
-@Component
+@Component("reglaIngresaPlaca")
 public class ReglaIngresaPlaca implements ValidacionEntrada{
 
 	

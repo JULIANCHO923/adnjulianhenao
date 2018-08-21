@@ -12,7 +12,6 @@ import com.ceiba.adnjulianhenao.servicio.ServicioVehiculo;
 public class ReglaSobreCostoCilindraje implements ValidacionSalida{
 	
 	
-	
 	@Autowired
 	@Qualifier("reglaPlacaExiste")
 	private ReglaPlacaExiste reglaPlacaExiste;
@@ -26,8 +25,7 @@ public class ReglaSobreCostoCilindraje implements ValidacionSalida{
 		reglaPlacaExiste.validar(idRegistro, placa);
 			ModeloVehiculo modelVehiculo = servicioVehiculo.obtenerPorPlaca(placa);		
 			if(modelVehiculo.getTipoVehiculo().getDescripcion().equals("Moto") && modelVehiculo.getCilindraje() > 500){
-				throw new ExcepcionSobreCosto("Valor de cilindraje supera los 500 CC, esto genera un sobreCosto");
+				throw new ExcepcionSobreCosto("Valor de cilindraje supera los 500 CC, esto genera un sobre costo de 2000 sobre el valor total");
 			}		
 	}
-
 }

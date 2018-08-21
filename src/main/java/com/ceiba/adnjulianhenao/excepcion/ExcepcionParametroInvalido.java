@@ -11,8 +11,6 @@ public class ExcepcionParametroInvalido extends RuntimeException{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ExcepcionParametroInvalido(){}
-	
 	public ExcepcionParametroInvalido(String mensaje){
 		super(mensaje);		
 	}

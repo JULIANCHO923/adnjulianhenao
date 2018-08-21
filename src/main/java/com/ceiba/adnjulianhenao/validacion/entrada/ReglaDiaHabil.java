@@ -1,5 +1,6 @@
 package com.ceiba.adnjulianhenao.validacion.entrada;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
 @Component
 public class ReglaDiaHabil implements ValidacionEntrada{
 
+	
 	
 	@Autowired
 	@Qualifier("calendario")

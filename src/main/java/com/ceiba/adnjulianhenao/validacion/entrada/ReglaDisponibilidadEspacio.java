@@ -10,7 +10,7 @@ import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
 import com.ceiba.adnjulianhenao.servicio.ServicioParqueaderoEspacioDisponible;
 
 
-@Component
+@Component("reglaDisponibilidadEspacio")
 public class ReglaDisponibilidadEspacio implements ValidacionEntrada{
 
 	

@@ -12,7 +12,7 @@ import com.ceiba.adnjulianhenao.modelo.ModeloTipoVehiculo;
 import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
 import com.ceiba.adnjulianhenao.servicio.ServicioTipoVehiculo;
 
-@Component
+@Component("reglaTipoVehiculo")
 public class ReglaTipoVehiculo implements ValidacionEntrada{
 
 	@Autowired

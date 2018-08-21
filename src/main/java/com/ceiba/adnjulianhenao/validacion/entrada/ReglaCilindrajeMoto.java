@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import com.ceiba.adnjulianhenao.excepcion.ExcepcionParametroInvalido;
 import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
 
-@Component
+@Component("reglaCilindrajeMoto")
 public class ReglaCilindrajeMoto implements ValidacionEntrada{
 
 	@Override

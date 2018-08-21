@@ -38,20 +38,26 @@ public class EntidadVehiculo implements Serializable {
 	private EntidadTipoVehiculo tipoVehiculo;
 
 	@Column(name = "cilindraje")
-	private int cilindraje;
+	private long cilindraje;
 
 	public EntidadVehiculo() {
 		super();
 	}
 
-	public EntidadVehiculo(int id, String placa, EntidadTipoVehiculo tipoVehiculo, int cilindraje) {
-		super();
+	public EntidadVehiculo(int id, String placa, EntidadTipoVehiculo tipoVehiculo, long cilindraje) {
+		
 		this.id = id;
 		this.placa = placa;
 		this.tipoVehiculo = tipoVehiculo;
 		this.cilindraje = cilindraje;
 	}
 
+	public EntidadVehiculo(String placa, EntidadTipoVehiculo tipoVehiculo, long cilindraje) {
+		this.placa = placa;
+		this.tipoVehiculo = tipoVehiculo;
+		this.cilindraje = cilindraje;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -76,11 +82,11 @@ public class EntidadVehiculo implements Serializable {
 		this.tipoVehiculo = tipoVehiculo;
 	}
 
-	public int getCilindraje() {
+	public long getCilindraje() {
 		return cilindraje;
 	}
 
-	public void setCilindraje(int cilindraje) {
+	public void setCilindraje(long cilindraje) {
 		this.cilindraje = cilindraje;
 	}
 

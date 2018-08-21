@@ -5,12 +5,18 @@ public class ModeloVehiculo {
 	private int id;
 	private String placa;
 	private ModeloTipoVehiculo tipoVehiculo; // String
-	private int cilindraje;
+	private long cilindraje;
 
 	public ModeloVehiculo() {
-		super();
+		
 	}
 
+	public ModeloVehiculo(String placa, ModeloTipoVehiculo tipoVehiculo, long cilindraje) {
+		this.placa = placa;
+		this.tipoVehiculo = tipoVehiculo;
+		this.cilindraje = cilindraje;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -35,11 +41,11 @@ public class ModeloVehiculo {
 		this.tipoVehiculo = tipoVehiculo;
 	}
 
-	public int getCilindraje() {
+	public long getCilindraje() {
 		return cilindraje;
 	}
 
-	public void setCilindraje(int cilindraje) {
+	public void setCilindraje(long cilindraje) {
 		this.cilindraje = cilindraje;
 	}
 
