@@ -19,15 +19,7 @@ public class ConvertidorParqueaderoTarifa {
 			parquederoTarifas.add(convertirEntidadAModelo( entidadParqueaderoTarifa));
 		}
 		return parquederoTarifas;
-	}
-	
-	public List<EntidadParqueaderoTarifa> convertirLista2(List<ModeloParqueaderoTarifa> modeloParquederoTarifas) {
-		List<EntidadParqueaderoTarifa> entidadParquederoTarifas = new ArrayList<>();
-		for (ModeloParqueaderoTarifa modeloParqueaderoTarifa : modeloParquederoTarifas) {
-			entidadParquederoTarifas.add(convertirModeloAEntidad(modeloParqueaderoTarifa));
-		}
-		return entidadParquederoTarifas;
-	}
+	}	
 
 	public ModeloParqueaderoTarifa convertirEntidadAModelo(EntidadParqueaderoTarifa entidadParqueaderoTarifa) {
 		ModeloParqueaderoTarifa modeloParqueaderoTarifa = new ModeloParqueaderoTarifa();

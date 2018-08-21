@@ -37,7 +37,7 @@ public class ParqueaderoEspacioDisponibleBuilder {
 		return this;
 	}
 	
-	public ParqueaderoEspacioDisponibleBuilder conCostoDia(int espacioActual) {
+	public ParqueaderoEspacioDisponibleBuilder conEspacioActual(int espacioActual) {
 		this.espacioActual = espacioActual;
 		return this;
 	}

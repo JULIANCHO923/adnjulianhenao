@@ -23,8 +23,9 @@ public class ReglaSobreCostoCilindraje implements ValidacionSalida{
 	@Override
 	public void validar(int idRegistro, String placa) {
 		reglaPlacaExiste.validar(idRegistro, placa);
-			ModeloVehiculo modelVehiculo = servicioVehiculo.obtenerPorPlaca(placa);		
-			if(modelVehiculo.getTipoVehiculo().getDescripcion().equals("Moto") && modelVehiculo.getCilindraje() > 500){
+			ModeloVehiculo modelVehiculo = servicioVehiculo.obtenerPorPlaca(placa);	
+			
+			if(modelVehiculo.getTipoVehiculo().getId() == 2 && modelVehiculo.getCilindraje() > 500){
 				throw new ExcepcionSobreCosto("Valor de cilindraje supera los 500 CC, esto genera un sobre costo de 2000 sobre el valor total");
 			}		
 	}

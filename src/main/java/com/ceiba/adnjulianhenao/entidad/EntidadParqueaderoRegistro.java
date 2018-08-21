@@ -55,17 +55,6 @@ public class EntidadParqueaderoRegistro implements Serializable {
 
 	public EntidadParqueaderoRegistro(){}
 	
-	public EntidadParqueaderoRegistro(EntidadVehiculo vehiculo, LocalDateTime fechaEntrada) {				
-		this.vehiculo = vehiculo;
-		this.fechaEntrada = fechaEntrada;
-		this.fechaSalida = null;		
-		this.horasParqueo = 0;
-		this.diasParqueadero = 0;
-		this.horasParqueadero = 0;
-		this.costoTotal = 0;
-	}
-	
-
 	public int getId() {
 		return id;
 	}

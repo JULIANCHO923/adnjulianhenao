@@ -40,14 +40,6 @@ public class EntidadParqueaderoTarifa implements Serializable {
 		
 	public EntidadParqueaderoTarifa(){}
 	
-	public EntidadParqueaderoTarifa(int id, EntidadTipoVehiculo tipoVehiculo, long costoHora, long costoDia, int horasCobroDia) {	
-		this.id = id;
-		this.tipoVehiculo = tipoVehiculo;
-		this.costoHora = costoHora;
-		this.costoDia = costoDia;
-		this.horasCobroDia = horasCobroDia;
-	}
-	
 	public int getId() {
 		return id;
 	}

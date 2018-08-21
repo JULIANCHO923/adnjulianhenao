@@ -22,11 +22,6 @@ public class EntidadTipoVehiculo implements Serializable {
 	public EntidadTipoVehiculo(){
 		
 	}
-	
-	public EntidadTipoVehiculo(int id, String descripcion){
-		this.id = id;
-		this.descripcion = descripcion;
-	}
 
 	public int getId() {
 		return id;

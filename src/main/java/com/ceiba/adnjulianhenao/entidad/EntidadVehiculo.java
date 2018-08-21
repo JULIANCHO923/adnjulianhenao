@@ -44,20 +44,6 @@ public class EntidadVehiculo implements Serializable {
 		super();
 	}
 
-	public EntidadVehiculo(int id, String placa, EntidadTipoVehiculo tipoVehiculo, long cilindraje) {
-		
-		this.id = id;
-		this.placa = placa;
-		this.tipoVehiculo = tipoVehiculo;
-		this.cilindraje = cilindraje;
-	}
-
-	public EntidadVehiculo(String placa, EntidadTipoVehiculo tipoVehiculo, long cilindraje) {
-		this.placa = placa;
-		this.tipoVehiculo = tipoVehiculo;
-		this.cilindraje = cilindraje;
-	}
-	
 	public int getId() {
 		return id;
 	}

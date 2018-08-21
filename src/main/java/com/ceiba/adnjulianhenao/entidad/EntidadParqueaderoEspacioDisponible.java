@@ -33,14 +33,6 @@ public class EntidadParqueaderoEspacioDisponible implements Serializable{
 	private int espacioActual;		
 	
 	public EntidadParqueaderoEspacioDisponible(){}
-	
-	public EntidadParqueaderoEspacioDisponible(int id, EntidadTipoVehiculo tipoVehiculo, int limiteEspacio,
-			int espacioActual) {	
-		this.id = id;
-		this.tipoVehiculo = tipoVehiculo;
-		this.limiteEspacio = limiteEspacio;
-		this.espacioActual = espacioActual;
-	}
 
 	public int getId() {
 		return id;

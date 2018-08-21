@@ -34,10 +34,10 @@ public class TestReglaCilindrajeMoto {
 	public void ReglaEntradaMotoCilindrajeCero() {				
 		ModeloTipoVehiculo tipoVehiculoMoto = new TipoVehiculoBuilder().conId(2).conDescripcion("Moto").build();
 		long cilindrajeCero = 0;
-		ModeloVehiculo vehiculo1 = new VehiculoBuilder().conPlaca("ABC123").conTipoVehiculo(tipoVehiculoMoto).conCilindraje(cilindrajeCero).build();		
+		ModeloVehiculo vehiculo = new VehiculoBuilder().conPlaca("ABC123").conTipoVehiculo(tipoVehiculoMoto).conCilindraje(cilindrajeCero).build();		
 		exceptionRule.expect(ExcepcionParametroInvalido.class);
 		exceptionRule.expectMessage("Valor de cilindraje invalido para la Moto");		
-		reglaCilindrajeMoto.validar(vehiculo1);			
+		reglaCilindrajeMoto.validar(vehiculo);			
 	}
 	
 	
@@ -45,8 +45,8 @@ public class TestReglaCilindrajeMoto {
 	public void ReglaEntradaMotoCilindrajeMayoraCero() {				
 		ModeloTipoVehiculo tipoVehiculoMoto = new TipoVehiculoBuilder().conId(2).conDescripcion("Moto").build();
 		long cilindrajeMayoraCero = 1;
-		ModeloVehiculo vehiculo1 = new VehiculoBuilder().conPlaca("ABC123").conTipoVehiculo(tipoVehiculoMoto).conCilindraje(cilindrajeMayoraCero).build();						
-		reglaCilindrajeMoto.validar(vehiculo1);			
+		ModeloVehiculo vehiculo = new VehiculoBuilder().conPlaca("ABC123").conTipoVehiculo(tipoVehiculoMoto).conCilindraje(cilindrajeMayoraCero).build();						
+		reglaCilindrajeMoto.validar(vehiculo);			
 	}
 
 	/**
