@@ -1,7 +1,5 @@
 package com.ceiba.adnjulianhenao.validacion.entrada;
 
-import java.util.Calendar;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -29,12 +27,22 @@ public class ReglaDiaHabil implements ValidacionEntrada{
 		
 	}
 		
+	/**
+	 * En el formato LocalDateTime manejado en el calendario Lunes = 1, Martes = 2...
+	 * @param diaActual
+	 * @return
+	 */
 	private boolean diaNoHabilLunesPlacaA(int diaActual){
-		return diaActual == Calendar.MONDAY;		
+		return diaActual == 1;		
 	}
 	
+	/**
+	 * En el formato LocalDateTime manejado en el calendario Sabado = 6, Domingo = 7, Lunes = 1, Martes = 2...
+	 * @param diaActual
+	 * @return
+	 */
 	private boolean diaNoHabilDomingoPlacaA(int diaActual){
-		return diaActual == Calendar.SUNDAY;
+		return diaActual == 7;
 	}
 
 }

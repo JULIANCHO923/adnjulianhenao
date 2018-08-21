@@ -57,8 +57,8 @@ public class ControladorVehiculo {
 	 * @return
 	 */
 	@RequestMapping(value="/{id}/{placa}", method=RequestMethod.DELETE)
-	public ResponseEntity<String> borrar(@PathVariable("id") int idRegistro, @PathVariable("placa")String placa ) {
-		servicioVehiculo.borrar(idRegistro, placa);
+	public ResponseEntity<String> generarSalidaVehiculo(@PathVariable("id") int idRegistro, @PathVariable("placa")String placa ) {
+		servicioVehiculo.generarSalidaVehiculo(idRegistro, placa);
 		return ResponseEntity.status(HttpStatus.CONTINUE).body("El vehiculo registro su salida exitosamente");
 	}
 	

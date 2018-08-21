@@ -44,27 +44,26 @@ public class ServicioParqueaderoRegistro {
 	}
 
 	public List<ModeloParqueaderoRegistro> obtenerRegistros(Pageable pageable) {
-		log.info("Listando ParqueaderoRegistros");
 		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findAll(pageable).getContent());
 	}
 
 	public ModeloParqueaderoRegistro obtenerRegistroPoId(int id) {
-		log.info("Listando ParqueaderoRegistros");
+		log.info("Listando Parqueadero Registros por ID");
 		return convertidorParqueaderoRegistro.convertirEntidadAModelo(iRepositorioParqueaderoRegistro.findById(id));
 	}
 	
 	public List<ModeloParqueaderoRegistro> obtenerRegistros() {
-		log.info("Listando ParqueaderoRegistros");
+		log.info("Listando todos los registros del Parqueadero");
 		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findAll());
 	}
 	
 	public List<ModeloParqueaderoRegistro> obtenerRegistrosAnteriores() {
-		log.info("Listando ParqueaderoRegistros");
+		log.info("Listando los Registros del parqueadero que ya salieron");
 		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findByFechaSalidaIsNotNull());
 	}
 	
 	public List<ModeloParqueaderoRegistro> obtenerRegistrosPorTipoVehiculoSinSalir(int idTipoVehiculo) {
-		log.info("Listando ParqueaderoRegistros");
+		log.info("Listando los Registros del parqueadero según el tipo de dato");
 		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findByVehiculoTipoVehiculoIdAndFechaSalidaIsNull(idTipoVehiculo));
 	}
 	

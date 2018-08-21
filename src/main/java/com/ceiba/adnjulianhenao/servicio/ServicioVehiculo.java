@@ -19,17 +19,16 @@ import com.ceiba.adnjulianhenao.repositorio.IRepositorioVehiculo;
 @Service("servicioVehiculo")
 public class ServicioVehiculo {
 
-	
 	@Autowired
 	@Qualifier("repositorioVehiculo")
 	private IRepositorioVehiculo iRepositorioVehiculo;
 
 	@Autowired
-	@Qualifier("convertidorVehiculo") // Inyecta el bean
+	@Qualifier("convertidorVehiculo") 
 	private ConvertidorVehiculo convertidorVehiculo;
 
 	@Autowired
-	@Qualifier("convertidorTipoVehiculo") // Inyecta el bean
+	@Qualifier("convertidorTipoVehiculo")
 	private ConvertidorTipoVehiculo convertidorTipoVehiculo;
 
 	@Autowired
@@ -38,41 +37,34 @@ public class ServicioVehiculo {
 
 	private static final Logger log = LoggerFactory.getLogger(ServicioVehiculo.class);
 
-	public void crear(ModeloVehiculo modeloVehiculo) {				
-		log.info("Creando Vehiculo");						
-		vigilante.registrarEntrada(modeloVehiculo);		
-		log.info("El vehiculo se creó exitosamente");	
+	public void crear(ModeloVehiculo modeloVehiculo) {
+		log.info("_Entrando a la validación por el vigilante ");
+		vigilante.registrarEntrada(modeloVehiculo);
 	}
 
-	public void crear(List<ModeloVehiculo> modeloVehiculos) {				
-		log.info("Creando Vehiculo");						
-		iRepositorioVehiculo.saveAll(convertidorVehiculo.convertirLista2(modeloVehiculos));		
-		log.info("El vehiculo se creó exitosamente");	
+	public void crear(List<ModeloVehiculo> modeloVehiculos) {
+		log.info("Ingresando varios Vehiculos sin realizar validaciones");
+		iRepositorioVehiculo.saveAll(convertidorVehiculo.convertirLista2(modeloVehiculos));
 	}
-	
-	public void insertar(ModeloVehiculo modeloVehiculo) {				
-		log.info("Creando Vehiculo");						
+
+	public void insertar(ModeloVehiculo modeloVehiculo) {
+		log.info("Creando Vehiculo");
 		iRepositorioVehiculo.save(convertidorVehiculo.convertirModeloAEntidad(modeloVehiculo));
-		log.info("El vehiculo se creó exitosamente");	
-	}
-	
-	public void actualizar(ModeloVehiculo modeloVehiculo) {
-		log.info("Actualizando vehiculo");	
-		
-		// Faltaria validar que si el vehiculo no se encuentra en los registros 
-		if (iRepositorioVehiculo.findByPlaca(modeloVehiculo.getPlaca()) != null) {
-			iRepositorioVehiculo.save(convertidorVehiculo.convertirModeloAEntidad(modeloVehiculo));		
-		}
-			
+		log.info("El vehiculo se creó exitosamente");
 	}
 
-	public void borrar(int idRegistro, String placa) {
-		//EntidadVehiculo entidadVehiculo = iRepositorioVehiculo.findById(idVehiculo);
-		//iRepositorioVehiculo.delete(entidadVehiculo);
+	public void actualizar(ModeloVehiculo modeloVehiculo) {
+		log.info("Actualizando vehiculo");
+		// Faltaria validar que si el vehiculo no se encuentra en los registros
+		if (iRepositorioVehiculo.findByPlaca(modeloVehiculo.getPlaca()) != null) {
+			iRepositorioVehiculo.save(convertidorVehiculo.convertirModeloAEntidad(modeloVehiculo));
+		}
+
+	}
+
+	public void generarSalidaVehiculo(int idRegistro, String placa) {
 		log.info(".... Enlaza la salida");
-		
-			vigilante.registrarSalida(idRegistro, placa);			
-		
+		vigilante.registrarSalida(idRegistro, placa);
 		log.info("Salida realizada exitosamente");
 	}
 
@@ -82,29 +74,34 @@ public class ServicioVehiculo {
 	}
 
 	public ModeloVehiculo obtenerporId(int idVehiculo) {
-		return convertidorVehiculo.convertirEntidadAModelo(iRepositorioVehiculo.findById(idVehiculo));
+		EntidadVehiculo entidadVehiculo = iRepositorioVehiculo.findById(idVehiculo);
+		if (entidadVehiculo == null) {
+			return null;
+		} else {
+			return convertidorVehiculo.convertirEntidadAModelo(entidadVehiculo);
+		}
 	}
 
 	public ModeloVehiculo obtenerPorPlaca(String placa) {
 		EntidadVehiculo entidadVehiculo = iRepositorioVehiculo.findByPlaca(placa);
-		if(entidadVehiculo == null){
+		if (entidadVehiculo == null) {
 			return null;
-		}else{
+		} else {
 			return convertidorVehiculo.convertirEntidadAModelo(entidadVehiculo);
 		}
 	}
 
 	public List<ModeloVehiculo> obtenerPorTipoVehiculo(int idTipoVehiculo, Pageable pageable) {
-		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findByTipoVehiculoId(idTipoVehiculo, pageable).getContent());
+		return convertidorVehiculo
+				.convertirLista(iRepositorioVehiculo.findByTipoVehiculoId(idTipoVehiculo, pageable).getContent());
 	}
 
 	public List<ModeloVehiculo> obtenerPorCilindraje(int cilindraje) {
 		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findByCilindraje(cilindraje));
 	}
 
-	
 	public List<ModeloVehiculo> obtenerVehiculosPorPaginacion(Pageable pageable) {
 		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findAll(pageable).getContent());
 	}
-	
+
 }

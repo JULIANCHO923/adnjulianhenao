@@ -43,7 +43,6 @@ public class Calculadora {
 		int c = 0;
 
 		if (horas >= inicioCobroDia && horas <= 24) {
-			b = horas;
 			costoTotal = costodia * (a + 1);
 			modeloParqueaderoRegistro.setDiasParqueadero(a+1);
 			
@@ -63,8 +62,6 @@ public class Calculadora {
 
 	public int calcularHorasParqueadero(LocalDateTime fechaEntrada, LocalDateTime fechaSalida) {
 		long millis = Duration.between(fechaEntrada, fechaSalida).toMillis();
-		double horas = Math.ceil(TimeUnit.MILLISECONDS.toHours(millis) + (TimeUnit.MILLISECONDS.toMinutes(millis)/5000.0));
-		int ho = (int) horas;
-        return ho;
+		return (int) Math.ceil(TimeUnit.MILLISECONDS.toHours(millis) + (TimeUnit.MILLISECONDS.toMinutes(millis)/5000.0));
 	}
 }
