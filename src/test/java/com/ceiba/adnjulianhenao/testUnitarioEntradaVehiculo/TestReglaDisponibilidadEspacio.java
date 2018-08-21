@@ -1,4 +1,4 @@
-package com.ceiba.adnjulianhenao.vehiculo.testUnitarioEntradaVehiculo;
+package com.ceiba.adnjulianhenao.testUnitarioEntradaVehiculo;
 
 import static org.mockito.Mockito.when;
 

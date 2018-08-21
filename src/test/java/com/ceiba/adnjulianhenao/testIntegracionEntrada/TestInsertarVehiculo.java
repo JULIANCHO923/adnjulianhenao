@@ -1,4 +1,4 @@
-package com.ceiba.adnjulianhenao.vehiculo.testIntegracionEntrada;
+package com.ceiba.adnjulianhenao.testIntegracionEntrada;
 
 import static org.junit.Assert.fail;
 
