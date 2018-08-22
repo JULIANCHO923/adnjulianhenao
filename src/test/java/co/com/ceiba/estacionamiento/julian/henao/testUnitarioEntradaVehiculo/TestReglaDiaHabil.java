@@ -80,6 +80,34 @@ public class TestReglaDiaHabil {
 	}
 	
 	
+	@Test(expected = Test.None.class)
+	public void ReglaEntradaVehiculoPlacaADiaDiferente() {
+		int martes = 2;
+		String placaNoIniciaEnA = "ABC123";
+
+		ModeloTipoVehiculo tipoVehiculoMoto = new TipoVehiculoBuilder().conId(2).conDescripcion("Moto").build();
+		ModeloVehiculo vehiculo = new VehiculoBuilder().conPlaca(placaNoIniciaEnA).conTipoVehiculo(tipoVehiculoMoto)
+				.conCilindraje(100).build();
+
+		when(calendario.obtenerDiaActual()).thenReturn(martes);
+		
+		reglaDiaHabil.validar(vehiculo);		
+	}
+	
+	@Test(expected = Test.None.class)
+	public void ReglaEntradaVehiculoPlacaYDiaDiferente() {
+		int miercoles = 3;
+		String placaNoIniciaEnA = "TTC123";
+
+		ModeloTipoVehiculo tipoVehiculoMoto = new TipoVehiculoBuilder().conId(2).conDescripcion("Moto").build();
+		ModeloVehiculo vehiculo = new VehiculoBuilder().conPlaca(placaNoIniciaEnA).conTipoVehiculo(tipoVehiculoMoto)
+				.conCilindraje(100).build();
+
+		when(calendario.obtenerDiaActual()).thenReturn(miercoles);
+		
+		reglaDiaHabil.validar(vehiculo);		
+	}
+	
 	@Test
 	public void ReglaEntradaVehiculoPlacaDiferenteDeASiPuedeEntrarLunes() {
 		int lunes = 1;

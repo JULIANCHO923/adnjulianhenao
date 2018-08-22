@@ -108,6 +108,9 @@ public class Vigilante {
 
 			calculadora.calcularCostoParqueadero(modeloParqueaderoRegistro, calculadora.calcularHorasParqueadero(
 					modeloParqueaderoRegistro.getFechaEntrada(), modeloParqueaderoRegistro.getFechaSalida()));
+			
+			
+			
 
 		} catch (ExcepcionSobreCosto e) {
 			esc = e;

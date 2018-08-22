@@ -35,21 +35,21 @@ public class Calculadora {
 		int inicioCobroDia = modeloParqueaderoTarifa.getHorasCobroDia();
 		long costoTotal;
 
-		int a = (horasACalcular / 24);
+		int cuantosDiasFueron = (horasACalcular / 24);
 		int horas = (horasACalcular % 24);
 
-		int b = 0;
+		int horasRestantesMenoresDia = 0;
 		int c = 0;
 
 		if (horas >= inicioCobroDia && horas <= 24) {
-			costoTotal = costodia * (a + 1);
-			modeloParqueaderoRegistro.setDiasParqueadero(a+1);
+			costoTotal = costodia * (cuantosDiasFueron + 1);
+			modeloParqueaderoRegistro.setDiasParqueadero(cuantosDiasFueron+1);
 			
 		} else {
-			b = (horas / inicioCobroDia);
+			horasRestantesMenoresDia = (horas / inicioCobroDia);
 			c = (horas % inicioCobroDia);
-			costoTotal = (a + b) * costodia + c * costohora;
-			modeloParqueaderoRegistro.setDiasParqueadero(a+b);
+			costoTotal = (cuantosDiasFueron + horasRestantesMenoresDia) * costodia + c * costohora;
+			modeloParqueaderoRegistro.setDiasParqueadero(cuantosDiasFueron+horasRestantesMenoresDia);
 			modeloParqueaderoRegistro.setHorasParqueadero(c);
 			
 		}
