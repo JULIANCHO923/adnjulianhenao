@@ -13,8 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
+import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ceiba.adnjulianhenao.builderstest.TipoVehiculoBuilder;
@@ -85,7 +85,8 @@ public class TestRegistrarVehiculo {
 	 * nuevos. Como se mencionó anteriormente, no hacia parte de las historia de
 	 * usuario
 	 */
-	@Test(expected = Test.None.class)
+	/*@Test(expected = Test.None.class)
+	@SqlGroup(@Sql(executionPhase = ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:preparandoBD.sql"))
 	public void InsertarPlacaExistenteYaSalio() {
 		ModeloTipoVehiculo tipoVehiculoAuto = new TipoVehiculoBuilder().conId(1).conDescripcion("Automovil").build();
 		ModeloVehiculo vehiculo = new VehiculoBuilder().conPlaca(placaExistenteYaSalio)
@@ -93,7 +94,7 @@ public class TestRegistrarVehiculo {
 		when(servicioTipoVehiculo.obtenerTipoVehiculos()).thenReturn(tiposVehiculo);
 		servicioVehiculo.crear(vehiculo);
 	}
-
+*/
 	@After
 	@SqlGroup(@Sql(executionPhase = ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:eliminandoDatosBD.sql"))
 	public void eliminadoDatosBD() {

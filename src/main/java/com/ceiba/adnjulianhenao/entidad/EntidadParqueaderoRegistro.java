@@ -26,7 +26,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "registro")
 public class EntidadParqueaderoRegistro implements Serializable {
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	@Id
 	@Column(name = "id_registro")
 	private int id;
