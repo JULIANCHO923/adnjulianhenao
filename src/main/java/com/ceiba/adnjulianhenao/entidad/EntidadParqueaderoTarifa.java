@@ -38,7 +38,9 @@ public class EntidadParqueaderoTarifa implements Serializable {
 	@Column(name="horas_cobro_dia")
 	private int horasCobroDia;
 		
-	public EntidadParqueaderoTarifa(){}
+	public EntidadParqueaderoTarifa(){
+		// Construtor creado para el uso de la conversión de entidad a Modelo
+	}
 	
 	public int getId() {
 		return id;

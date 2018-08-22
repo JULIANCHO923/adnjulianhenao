@@ -65,7 +65,7 @@ public class Vigilante {
 		}
 
 		if (servicioVehiculo.obtenerPorPlaca(modeloVehiculo.getPlaca()) == null) {
-			// No se encuentra registrado así que se debe de crear
+			// Si NO se encuentra registrado se debe de crear el Vehiculo
 			servicioVehiculo.insertar(modeloVehiculo);
 		}
 

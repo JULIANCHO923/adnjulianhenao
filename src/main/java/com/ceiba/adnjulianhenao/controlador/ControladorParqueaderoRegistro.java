@@ -37,7 +37,7 @@ public class ControladorParqueaderoRegistro {
 
 	@RequestMapping(value="/reciente/{id}", method=RequestMethod.GET)
 	public ResponseEntity<ModeloParqueaderoRegistro> obtenerRegistros(@PathVariable("id") int idRegistro) {
-		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistroPoId(idRegistro));
+		return ResponseEntity.status(HttpStatus.OK).body(servicioParqueaderoRegistro.obtenerRegistroPorId(idRegistro));
 	}
 	
 	@RequestMapping(value="/antes", method=RequestMethod.GET)

@@ -18,7 +18,7 @@ public class ReglaPlacaExiste implements ValidacionSalida{
 	public void validar(int idRegistro, String placa) {
 				
 		if(servicioVehiculo.obtenerPorPlaca(placa) == null){
-			throw new ExcepcionParametroInvalido("La placa ingresada para salir no se encuentra registrada");
+			throw new ExcepcionParametroInvalido("La Placa ingresada para salir no se encuentra registrada");
 		}
 	}
 

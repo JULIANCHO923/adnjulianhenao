@@ -2,7 +2,6 @@ package com.ceiba.adnjulianhenao.dominioparqueadero;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -62,6 +61,6 @@ public class Calculadora {
 
 	public int calcularHorasParqueadero(LocalDateTime fechaEntrada, LocalDateTime fechaSalida) {
 		long millis = Duration.between(fechaEntrada, fechaSalida).toMillis();
-		return (int) Math.ceil(TimeUnit.MILLISECONDS.toHours(millis) + (TimeUnit.MILLISECONDS.toMinutes(millis)/5000.0));
+		return (int) Math.ceil(millis/3600000.0);
 	}
 }

@@ -32,7 +32,9 @@ public class EntidadParqueaderoEspacioDisponible implements Serializable{
 	@Column(name = "espacio_actual")
 	private int espacioActual;		
 	
-	public EntidadParqueaderoEspacioDisponible(){}
+	public EntidadParqueaderoEspacioDisponible(){
+		// Construtor creado para el uso de la conversión de entidad a Modelo
+	}
 
 	public int getId() {
 		return id;

@@ -1,9 +1,5 @@
 package com.ceiba.adnjulianhenao.servicio;
 
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -24,13 +20,9 @@ public class ServicioParqueaderoEspacioDisponible {
 	@Qualifier("convertidorParqueaderoEspacioDisponible") 
 	private ConvertidorParqueaderoEspacioDisponible convertidorParquederoEspacioDisponible;
 
-	private static final Logger log = LoggerFactory.getLogger(ServicioParqueaderoEspacioDisponible.class);
-
 	public void crear(ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible) {
-		log.info("Creando Espacio");
 		irepositorioParquederoEspacioDisponible
 				.save(convertidorParquederoEspacioDisponible.convertirModeloAEntidad(modeloParqueaderoEspacioDisponible));
-		log.info("El espacio se creó exitosamente");
 	}
 
 	
@@ -43,7 +35,6 @@ public class ServicioParqueaderoEspacioDisponible {
 
 
 	public ModeloParqueaderoEspacioDisponible obtenerEspacioDisponiblePorTipoVehiculo(int idTipoVehiculo) {
-		log.info("Listando Tarifas por tipo vehiculo");
 		return convertidorParquederoEspacioDisponible
 				.convertirEntidadAModelo(irepositorioParquederoEspacioDisponible.findByTipoVehiculoId(idTipoVehiculo));
 	}

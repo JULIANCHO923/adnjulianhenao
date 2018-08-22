@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "vehiculo")
 public class EntidadVehiculo implements Serializable {
 
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	@Column(name = "id_vehiculo")
 	private int id;
@@ -41,7 +42,7 @@ public class EntidadVehiculo implements Serializable {
 	private long cilindraje;
 
 	public EntidadVehiculo() {
-		super();
+		// Construtor creado para el uso de la conversión de entidad a Modelo
 	}
 
 	public int getId() {

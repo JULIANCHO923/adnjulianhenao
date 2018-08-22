@@ -1,9 +1,6 @@
 package com.ceiba.adnjulianhenao.servicio;
 
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -24,16 +21,11 @@ public class ServicioParqueaderoTarifa {
 	@Qualifier("convertidorParqueaderoTarifa") 
 	private ConvertidorParqueaderoTarifa converterParquederoTarifa;
 
-	private static final Logger log = LoggerFactory.getLogger(ServicioParqueaderoTarifa.class);
-
 	public void crear(ModeloParqueaderoTarifa modeloParqueaderoTarifa) {
-		log.info("Creando Tarifa");
 		repositorioParquederoTarifa.save(converterParquederoTarifa.convertirModeloAEntidad(modeloParqueaderoTarifa));
-		log.info("La tarifa se creó exitosamente");
 	}
 
 	public List<ModeloParqueaderoTarifa> obtenerTarifas() {
-		log.info("Listando Tarifas");
 		return converterParquederoTarifa.convertirLista(repositorioParquederoTarifa.findAll());
 	}
 
@@ -42,7 +34,6 @@ public class ServicioParqueaderoTarifa {
 	}
 
 	public ModeloParqueaderoTarifa obtenerTarifasPorTipoVehiculo(int idTipoVehiculo) {
-		log.info("Listando Tarifas por tipo vehiculo");
 		return converterParquederoTarifa
 				.convertirEntidadAModelo(repositorioParquederoTarifa.findByTipoVehiculoId(idTipoVehiculo));
 	}

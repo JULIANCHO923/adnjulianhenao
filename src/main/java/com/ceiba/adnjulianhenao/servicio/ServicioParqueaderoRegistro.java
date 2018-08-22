@@ -2,11 +2,8 @@ package com.ceiba.adnjulianhenao.servicio;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ceiba.adnjulianhenao.convertidor.ConvertidorParqueaderoRegistro;
@@ -22,14 +19,10 @@ public class ServicioParqueaderoRegistro {
 	private IRepositorioParqueaderoRegistro iRepositorioParqueaderoRegistro;
 
 	@Autowired
-	private ConvertidorParqueaderoRegistro convertidorParqueaderoRegistro;
-	
-	private static final Logger log = LoggerFactory.getLogger(ServicioParqueaderoRegistro.class);
+	private ConvertidorParqueaderoRegistro convertidorParqueaderoRegistro;	
 
 	public void insertar(ModeloParqueaderoRegistro modeloParqueaderoRegistro) {
-		log.info("Creando ParqueaderoRegistro");		
-		iRepositorioParqueaderoRegistro.save(convertidorParqueaderoRegistro.convertirModeloAEntidad(modeloParqueaderoRegistro));
-		log.info("El ParqueaderoRegistro se creó exitosamente");					
+		iRepositorioParqueaderoRegistro.save(convertidorParqueaderoRegistro.convertirModeloAEntidad(modeloParqueaderoRegistro));				
 	}
 
 	public void actualizar(ModeloParqueaderoRegistro modeloParqueaderoRegistro) {		
@@ -43,36 +36,21 @@ public class ServicioParqueaderoRegistro {
 		iRepositorioParqueaderoRegistro.delete(entidadParqueaderoRegistro);		
 	}
 
-	public List<ModeloParqueaderoRegistro> obtenerRegistros(Pageable pageable) {
-		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findAll(pageable).getContent());
-	}
-
-	public ModeloParqueaderoRegistro obtenerRegistroPoId(int id) { ///
-		log.info("Listando Parqueadero Registros por ID");
+	public ModeloParqueaderoRegistro obtenerRegistroPorId(int id) { 
 		return convertidorParqueaderoRegistro.convertirEntidadAModelo(iRepositorioParqueaderoRegistro.findById(id));
 	}
 	
 	public List<ModeloParqueaderoRegistro> obtenerRegistrosAnteriores() {
-		log.info("Listando los Registros del parqueadero que ya salieron");
 		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findByFechaSalidaIsNotNull());
 	}
 	
 	public List<ModeloParqueaderoRegistro> obtenerRegistrosPorTipoVehiculoSinSalir(int idTipoVehiculo) {
-		log.info("Listando los Registros del parqueadero según el tipo de dato");
 		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findByVehiculoTipoVehiculoIdAndFechaSalidaIsNull(idTipoVehiculo));
 	}
 	
-	public ModeloParqueaderoRegistro obtenerPorId(int idParqueaderoRegistro) {
-		return convertidorParqueaderoRegistro.convertirEntidadAModelo(iRepositorioParqueaderoRegistro.findById(idParqueaderoRegistro));
-	}
-
 	public List<ModeloParqueaderoRegistro> obtenerRegistrosPorVehiculo(int idVehiculo) {
 		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findByVehiculoId(idVehiculo));
 	}		
-	
-	public List<ModeloParqueaderoRegistro> obtenerRegistrosPorPaginacion(Pageable pageable) {
-		return convertidorParqueaderoRegistro.convertirLista(iRepositorioParqueaderoRegistro.findAll(pageable).getContent());
-	}
 
 	public ModeloParqueaderoRegistro obtenerRegistrosPorVehiculosPorIdSinSalir(int id) {
 		EntidadParqueaderoRegistro entidadParqueaderoRegistro = iRepositorioParqueaderoRegistro.findByVehiculoIdAndFechaSalidaIsNull(id);

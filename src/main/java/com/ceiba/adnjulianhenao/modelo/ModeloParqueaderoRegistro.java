@@ -26,6 +26,17 @@ public class ModeloParqueaderoRegistro {
 		this.costoTotal = costoTotal;
 	}
 
+	public ModeloParqueaderoRegistro(int id, ModeloVehiculo vehiculo, LocalDateTime fechaEntrada) {				
+		this.id=id;
+		this.vehiculo = vehiculo;
+		this.fechaEntrada = fechaEntrada;
+		this.fechaSalida = null;		
+		this.horasParqueo = 0;
+		this.diasParqueadero = 0;
+		this.horasParqueadero = 0;
+		this.costoTotal = 0;
+	}
+	
 	public ModeloParqueaderoRegistro(ModeloVehiculo vehiculo, LocalDateTime fechaEntrada) {				
 		this.vehiculo = vehiculo;
 		this.fechaEntrada = fechaEntrada;

@@ -23,6 +23,7 @@ public class ReglaTipoVehiculo implements ValidacionEntrada{
 	 *  El metodo recorre la lista de tipo de vehiculos registrados en la BD
 	 *  si no encuentra algun vehiculoValido que consisa con el ingresado, lanzará la excepción
 	 */
+	
 	@Override
 	public void validar(ModeloVehiculo modelVehiculo) {
 		

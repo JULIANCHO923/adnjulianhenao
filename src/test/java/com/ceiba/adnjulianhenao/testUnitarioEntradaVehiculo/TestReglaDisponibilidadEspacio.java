@@ -45,14 +45,14 @@ public class TestReglaDisponibilidadEspacio {
 	
 	@Test(expected = ExcepcionConflicto.class)
 	public void ReglaNOHayDisponibilidadEspacioParaVehiculo(){
-		ModeloTipoVehiculo tipoVehiculoVehiculo = new TipoVehiculoBuilder().conId(1).conDescripcion("Automovil").build();
+		ModeloTipoVehiculo tipoVehiculoAuto = new TipoVehiculoBuilder().conId(1).conDescripcion("Automovil").build();
 		
-		ModeloVehiculo vehiculo = new VehiculoBuilder().conPlaca("ABC123").conTipoVehiculo(tipoVehiculoVehiculo).conCilindraje(100).build();	 
+		ModeloVehiculo vehiculo = new VehiculoBuilder().conPlaca("ABC123").conTipoVehiculo(tipoVehiculoAuto).conCilindraje(100).build();	 
 		int espacioActual = 20;
 		int limiteEspacio = 20;
-		ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible = new ParqueaderoEspacioDisponibleBuilder().conId(1).conTipoVehiculo(tipoVehiculoVehiculo).conEspacioActual(espacioActual).conLimiteEspacio(limiteEspacio).build();	
+		ModeloParqueaderoEspacioDisponible modeloParqueaderoEspacioDisponible = new ParqueaderoEspacioDisponibleBuilder().conId(1).conTipoVehiculo(tipoVehiculoAuto).conEspacioActual(espacioActual).conLimiteEspacio(limiteEspacio).build();	
 		
-		when(servicioParqueaderoEspacioDisponible.obtenerEspacioDisponiblePorTipoVehiculo(tipoVehiculoVehiculo.getId())).thenReturn(modeloParqueaderoEspacioDisponible);
+		when(servicioParqueaderoEspacioDisponible.obtenerEspacioDisponiblePorTipoVehiculo(tipoVehiculoAuto.getId())).thenReturn(modeloParqueaderoEspacioDisponible);
 		ReglaDisponibilidadEspacio.validar(vehiculo);
 	}
 	

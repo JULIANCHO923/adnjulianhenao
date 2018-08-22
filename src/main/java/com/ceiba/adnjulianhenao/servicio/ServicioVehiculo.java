@@ -2,8 +2,6 @@ package com.ceiba.adnjulianhenao.servicio;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -34,36 +32,25 @@ public class ServicioVehiculo {
 	@Qualifier("vigilante")
 	private Vigilante vigilante;
 
-	private static final Logger log = LoggerFactory.getLogger(ServicioVehiculo.class);
-
 	public void crear(ModeloVehiculo modeloVehiculo) {
-		log.info("_Entrando a la validación por el vigilante ");
 		vigilante.registrarEntrada(modeloVehiculo);
 	}
 
 	public void insertar(ModeloVehiculo modeloVehiculo) {
-		log.info("Creando Vehiculo");
 		iRepositorioVehiculo.save(convertidorVehiculo.convertirModeloAEntidad(modeloVehiculo));
-		log.info("El vehiculo se creó exitosamente");
 	}
 
-	public void actualizar(ModeloVehiculo modeloVehiculo) {
-		log.info("Actualizando vehiculo");
-		// Faltaria validar que si el vehiculo no se encuentra en los registros
+	public void actualizar(ModeloVehiculo modeloVehiculo) {		
 		if (iRepositorioVehiculo.findByPlaca(modeloVehiculo.getPlaca()) != null) {
 			iRepositorioVehiculo.save(convertidorVehiculo.convertirModeloAEntidad(modeloVehiculo));
 		}
-
 	}
 
 	public void generarSalidaVehiculo(int idRegistro, String placa) {
-		log.info(".... Enlaza la salida");
 		vigilante.registrarSalida(idRegistro, placa);
-		log.info("Salida realizada exitosamente");
 	}
 
 	public List<ModeloVehiculo> obtenerVehiculos() {
-		log.info("Listando Vehiculos");
 		return convertidorVehiculo.convertirLista(iRepositorioVehiculo.findAll());
 	}
 

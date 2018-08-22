@@ -11,10 +11,6 @@ import com.ceiba.adnjulianhenao.servicio.ServicioParqueaderoRegistro;
 public class ReglaPlacaYRegistroCoinciden implements ValidacionSalida{
 	
 	@Autowired
-	@Qualifier("reglaPlacaExiste")
-	private ReglaPlacaExiste reglaPlacaExiste;
-	
-	@Autowired
 	@Qualifier("servicioParqueaderoRegistro")
 	private ServicioParqueaderoRegistro servicioParqueaderoRegistro;
 	

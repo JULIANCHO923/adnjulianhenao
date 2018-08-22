@@ -20,7 +20,7 @@ public class EntidadTipoVehiculo implements Serializable {
 	private String descripcion;
 	
 	public EntidadTipoVehiculo(){
-		
+		// Construtor creado para el uso de la conversión de entidad a Modelo
 	}
 
 	public int getId() {

@@ -5,7 +5,6 @@ import com.ceiba.adnjulianhenao.modelo.ModeloVehiculo;
 
 public class VehiculoBuilder {
 
-	
 	private String placa;
 	private ModeloTipoVehiculo tipoVehiculo;
 	private long cilindraje;

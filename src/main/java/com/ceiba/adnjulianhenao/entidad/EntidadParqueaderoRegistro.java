@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "registro")
 public class EntidadParqueaderoRegistro implements Serializable {
 
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
 	@Column(name = "id_registro")
 	private int id;
@@ -53,7 +54,9 @@ public class EntidadParqueaderoRegistro implements Serializable {
 	@Column(name = "costo_total")
 	private long costoTotal;
 
-	public EntidadParqueaderoRegistro(){}
+	public EntidadParqueaderoRegistro(){
+		// Construtor creado para el uso de la conversión de entidad a Modelo
+	}
 	
 	public int getId() {
 		return id;
