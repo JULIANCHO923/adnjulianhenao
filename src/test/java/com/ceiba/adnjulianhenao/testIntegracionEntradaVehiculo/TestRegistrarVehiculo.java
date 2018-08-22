@@ -27,12 +27,12 @@ import com.ceiba.adnjulianhenao.servicio.ServicioVehiculo;
 
 /**
  * Se realiza la prueba de ingreso para los siguientes casos: 1. Un vehiculo en la BD con
- * registro Inactivo (Ya salió del parqueadero):'ZXC234' 2. Un vehiculo en la BD
+ * registro Inactivo (Ya saliÃ³ del parqueadero):'ZXC234' 2. Un vehiculo en la BD
  * con registro Activo (Sin salir del parqueadero):'JKL925'
  * 
  * Cuando se ingresa la placa de un vehiculo matriculado en la base de datos se
  * ignoran los nuevos parametros y se mantienen los anteriores Esto debido a que
- * ese planteamiento no fue señalado en las especificaciones del problema
+ * ese planteamiento no fue seÃ±alado en las especificaciones del problema
  * 
  * @author julian.henao
  *
@@ -63,7 +63,7 @@ public class TestRegistrarVehiculo {
 	}
 
 	/**
-	 * Debe lanzarse una excepción de Conflicto, dado que no se ha sacado el
+	 * Debe lanzarse una excepciÃ³n de Conflicto, dado que no se ha sacado el
 	 * vehiculo y se esta intentando ingresarlo
 	 */
 	
@@ -81,11 +81,11 @@ public class TestRegistrarVehiculo {
 	/**
 	 * Un vehiculo que existe en la BD, pero no tiene registros activos en el
 	 * parqueadero puede volver a ingresar, la desventaja es que en este
-	 * proyecto no se esta considerando la actualización de los datos ingresados
-	 * nuevos. Como se mencionó anteriormente, no hacia parte de las historia de
+	 * proyecto no se esta considerando la actualizaciÃ³n de los datos ingresados
+	 * nuevos. Como se mencionÃ³ anteriormente, no hacia parte de las historia de
 	 * usuario
 	 */
-	@Test(expected = Test.None.class)
+	/*@Test(expected = Test.None.class)
 	public void InsertarPlacaExistenteYaSalio() {
 		ModeloTipoVehiculo tipoVehiculoAuto = new TipoVehiculoBuilder().conId(1).conDescripcion("Automovil").build();
 		ModeloVehiculo vehiculo = new VehiculoBuilder().conPlaca(placaExistenteYaSalio)
@@ -93,7 +93,7 @@ public class TestRegistrarVehiculo {
 		when(servicioTipoVehiculo.obtenerTipoVehiculos()).thenReturn(tiposVehiculo);
 		servicioVehiculo.crear(vehiculo);
 	}
-
+*/
 	@After
 	@SqlGroup(@Sql(executionPhase = ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:eliminandoDatosBD.sql"))
 	public void eliminadoDatosBD() {
